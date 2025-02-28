@@ -23,12 +23,12 @@
       width: 100%;
       height: 100%;
       font-family: 'Montserrat', sans-serif;
-      color: #fff; /* Texto blanco para contrastar con el fondo */
-      background: #000; /* Negro mientras carga la imagen */
-      overflow: hidden; /* Intentamos evitar scroll global */
+      color: #fff;
+      background: #000;
+      overflow: hidden;
     }
 
-    /* Fondo fijo y cubriendo pantalla */
+    /* Fondo fijo */
     body {
       background-size: cover;
       background-position: center;
@@ -37,15 +37,27 @@
       transition: background-image 1s ease-in-out;
     }
 
-    /* Contenedor principal que ocupa toda la altura de la ventana */
+    /* Contenedor principal */
     .container {
-      height: 100vh; /* 100% del alto de la ventana */
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background-color: rgba(0, 0, 0, 0.45); 
+      background-color: rgba(0, 0, 0, 0.45);
       padding: 1rem;
+    }
+
+    /* Contenedor de fecha y hora */
+    .datetime-container {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.2rem;
+      font-weight: 400;
+      text-align: center;
+      color: #fff;
     }
 
     /* Cabecera */
@@ -66,23 +78,23 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Contenedor de las 2 columnas */
+    /* Contenedor de columnas */
     .columns {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: flex-start;
-      gap: 2rem; /* Espacio entre columnas */
-      width: 90%; /* Que ocupe la mayor parte del ancho */
-      max-width: 1200px; /* Límite máximo de ancho */
+      gap: 2rem;
+      width: 90%;
+      max-width: 1200px;
     }
 
-    /* Cada columna */
+    /* Columnas */
     .column {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 1.5rem; 
+      gap: 1.5rem;
     }
 
     /* Secciones */
@@ -98,7 +110,7 @@
       margin-bottom: 0.5rem;
       text-transform: uppercase;
       letter-spacing: 1px;
-      border-bottom: 1px solid #666; 
+      border-bottom: 1px solid #666;
       padding-bottom: 0.25rem;
     }
 
@@ -131,10 +143,10 @@
       color: #aaa;
     }
 
-    /* Responsivo en pantallas pequeñas */
+    /* Responsivo */
     @media (max-width: 900px) {
       body {
-        overflow: auto; /* Permitir scroll en móvil o pantallas bajas */
+        overflow: auto;
       }
       .columns {
         flex-direction: column;
@@ -156,15 +168,17 @@
 </head>
 <body>
 
+  <!-- Contenedor de fecha y hora -->
+  <div class="datetime-container">
+    <span id="date"></span> - <span id="time"></span>
+  </div>
+
   <div class="container">
-    <!-- Título principal -->
     <h1>Stay focused and trust the process</h1>
     <p class="subtitle">-----</p>
 
     <div class="columns">
-      <!-- Columna 1 -->
       <div class="column">
-        <!-- Sección DIA -->
         <div class="section">
           <h2>DÍA</h2>
           <ul>
@@ -173,12 +187,10 @@
             <li><a href="https://chat.openai.com" target="_blank">ChatGPT</a></li>
             <li><a href="https://grok.com/" target="_blank">Grok (X AI)</a></li>
             <li><a href="https://translate.google.com/" target="_blank">Traductor</a></li>
-            <!-- Nuevo enlace Holded -->
             <li><a href="https://app.holded.com/" target="_blank">Holded</a></li>
           </ul>
         </div>
 
-        <!-- Sección Redes -->
         <div class="section">
           <h2>Redes</h2>
           <ul>
@@ -186,11 +198,9 @@
             <li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li>
           </ul>
         </div>
-      </div> <!-- Fin Columna 1 -->
+      </div>
 
-      <!-- Columna 2 -->
       <div class="column">
-        <!-- Sección Utilidades -->
         <div class="section">
           <h2>Utilidades</h2>
           <ul>
@@ -204,7 +214,6 @@
           </ul>
         </div>
 
-        <!-- Sección Drive -->
         <div class="section">
           <h2>Drive</h2>
           <ul>
@@ -214,8 +223,8 @@
             <li><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank">Spreadsheets</a></li>
           </ul>
         </div>
-      </div> <!-- Fin Columna 2 -->
-    </div> <!-- Fin .columns -->
+      </div>
+    </div>
 
     <div class="footer">
       © 2025 - Página de inicio TriTonRuleS
@@ -223,17 +232,13 @@
   </div>
 
   <script>
-    // Función para establecer un fondo aleatorio desde Picsum
-    function setRandomBackground() {
-      const imageUrl = 'https://picsum.photos/1920/1080?random=' + new Date().getTime();
-      document.body.style.backgroundImage = `url(${imageUrl})`;
+    function updateTime() {
+      const now = new Date();
+      document.getElementById("date").textContent = now.toLocaleDateString("es-ES", { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+      document.getElementById("time").textContent = now.toLocaleTimeString("es-ES");
     }
-
-    // Establecer el fondo inmediatamente
-    setRandomBackground();
-
-    // Cambiar el fondo cada 15 minutos (15 * 60 * 1000 = 900000 ms)
-    setInterval(setRandomBackground, 900000);
+    setInterval(updateTime, 1000);
+    updateTime();
   </script>
 
 </body>
