@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio Minimalista en Dos Columnas</title>
+  <!-- Fuente Montserrat desde Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" 
+    rel="stylesheet">
+    
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Altura completa para el HTML y el body */
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      color: #fff; /* Texto blanco para contrastar con el fondo */
+      background: #000; /* Negro mientras carga la imagen */
+      overflow: hidden; /* Intentamos evitar scroll global */
+    }
+
+    /* Fondo fijo y cubriendo pantalla */
+    body {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      transition: background-image 1s ease-in-out;
+    }
+
+    /* Contenedor principal que ocupa toda la altura de la ventana */
+    .container {
+      height: 100vh; /* 100% del alto de la ventana */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.45); 
+      padding: 1rem;
+    }
+
+    /* Cabecera */
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Subtítulo */
+    .subtitle {
+      font-size: 1rem;
+      text-align: center;
+      color: #ccc;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Contenedor de las 2 columnas */
+    .columns {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem; /* Espacio entre columnas */
+      width: 90%; /* Que ocupe la mayor parte del ancho */
+      max-width: 1200px; /* Límite máximo de ancho */
+    }
+
+    /* Cada columna */
+    .column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem; 
+    }
+
+    /* Secciones */
+    .section {
+      background-color: rgba(0,0,0,0.4);
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+
+    .section h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #666; 
+      padding-bottom: 0.25rem;
+    }
+
+    .section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .section li {
+      margin: 0.3rem 0;
+    }
+
+    /* Estilo de enlaces */
+    a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 400;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #66eaff;
+    }
+
+    /* Pie de página */
+    .footer {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    /* Responsivo en pantallas pequeñas */
+    @media (max-width: 900px) {
+      body {
+        overflow: auto; /* Permitir scroll en móvil o pantallas bajas */
+      }
+      .columns {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        gap: 1rem;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+      .section h2 {
+        font-size: 1.1rem;
+      }
+      a {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Inicio</h1>
+    <p class="subtitle">-----</p>
+
+    <div class="columns">
+      <!-- Columna 1 -->
+      <div class="column">
+
+        <!-- Sección DIA -->
+        <div class="section">
+          <h2>DIA</h2>
+          <ul>
+            <li><a href="https://www.alibaba.com/" target="_blank">Alibaba</a></li>
+            <li><a href="https://www.icloud.com/" target="_blank">iCloud</a></li>
+            <li><a href="https://chat.openai.com" target="_blank">ChatGPT</a></li>
+            <li><a href="https://grok.com/" target="_blank">Grok (X AI)</a></li>
+          </ul>
+        </div>
+
+        <!-- Sección Utilidades -->
+        <div class="section">
+          <h2>Utilidades</h2>
+          <ul>
+            <li><a href="https://www.fiverr.com/inbox" target="_blank">Fiverr</a></li>
+            <li><a href="https://www.idealista.com/" target="_blank">Idealista</a></li>
+            <li><a href="https://www.amazon.es/" target="_blank">Amazon</a></li>
+            <li><a href="https://biwenger.as.com/round" target="_blank">Biwenger</a></li>
+            <li><a href="https://www.futbolfantasy.com/" target="_blank">Fantasy</a></li>
+            <li><a href="https://www.top5credits.com/es/calculadora/" target="_blank">Calculadora de préstamos</a></li>
+          </ul>
+        </div>
+
+      </div> <!-- Fin Columna 1 -->
+
+      <!-- Columna 2 -->
+      <div class="column">
+
+        <!-- Sección Redes -->
+        <div class="section">
+          <h2>Redes</h2>
+          <ul>
+            <li><a href="https://x.com/home" target="_blank">X (Twitter)</a></li>
+            <li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li>
+          </ul>
+        </div>
+
+        <!-- Sección Drive -->
+        <div class="section">
+          <h2>Drive</h2>
+          <ul>
+            <li><a href="https://drive.google.com/drive/u/0/my-drive" target="_blank">Mi Unidad (Drive)</a></li>
+            <li><a href="https://accounts.google.com/b/0/AddMailService" target="_blank">Gmail</a></li>
+            <li><a href="https://docs.google.com/document/u/0/" target="_blank">Documentos</a></li>
+            <li><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank">Spreadsheets</a></li>
+          </ul>
+        </div>
+
+      </div> <!-- Fin Columna 2 -->
+    </div> <!-- Fin .columns -->
+
+    <div class="footer">
+      © 2025 - Página de inicio TriTonRuleS
+    </div>
+  </div>
+
+  <script>
+    // Función para establecer un fondo aleatorio desde Picsum
+    function setRandomBackground() {
+      const imageUrl = 'https://picsum.photos/1920/1080?random=' + new Date().getTime();
+      document.body.style.backgroundImage = `url(${imageUrl})`;
+    }
+
+    // Establecer el fondo inmediatamente
+    setRandomBackground();
+
+    // Cambiar el fondo cada 15 minutos (15 * 60 * 1000 = 900000 ms)
+    setInterval(setRandomBackground, 900000);
+  </script>
+
+</body>
+</html>
