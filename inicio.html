@@ -190,6 +190,39 @@
             <li><a href="https://app.holded.com/" target="_blank">Holded</a></li>
           </ul>
         </div>
+
+        <div class="section">
+          <h2>Redes</h2>
+          <ul>
+            <li><a href="https://x.com/home" target="_blank">X (Twitter)</a></li>
+            <li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="section">
+          <h2>Utilidades</h2>
+          <ul>
+            <li><a href="https://www.fiverr.com/inbox" target="_blank">Fiverr</a></li>
+            <li><a href="https://www.idealista.com/" target="_blank">Idealista</a></li>
+            <li><a href="https://www.amazon.es/" target="_blank">Amazon</a></li>
+            <li><a href="https://biwenger.as.com/round" target="_blank">Biwenger</a></li>
+            <li><a href="https://www.futbolfantasy.com/" target="_blank">Fantasy</a></li>
+            <li><a href="https://www.top5credits.com/es/calculadora/" target="_blank">Calculadora de préstamos</a></li>
+            <li><a href="https://www.besoccer.com/team/matches/novelda-union-deportiva-senior" target="_blank">BeSoccer</a></li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Drive</h2>
+          <ul>
+            <li><a href="https://drive.google.com/drive/u/0/my-drive" target="_blank">Mi Unidad (Drive)</a></li>
+            <li><a href="https://accounts.google.com/b/0/AddMailService" target="_blank">Gmail</a></li>
+            <li><a href="https://docs.google.com/document/u/0/" target="_blank">Documentos</a></li>
+            <li><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank">Spreadsheets</a></li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -206,15 +239,11 @@
     }
     
     function setRandomBackground() {
-      const imageUrl = 'https://picsum.photos/1920/1080?random=' + new Date().getTime();
-      document.body.style.backgroundImage = `url(${imageUrl})`;
+      document.body.style.backgroundImage = `url('https://picsum.photos/1920/1080?random=${new Date().getTime()}')`;
     }
 
-    // Inicializar la fecha y la hora y actualizar cada segundo
     updateTime();
     setInterval(updateTime, 1000);
-
-    // Establecer el fondo aleatorio y actualizar cada 15 minutos
     setRandomBackground();
     setInterval(setRandomBackground, 900000);
   </script>
