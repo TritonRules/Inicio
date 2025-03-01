@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Stay focused and trust the process</title>
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
   <!-- Fuente Montserrat desde Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" 
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
   <style>
     /* Reset básico */
@@ -37,7 +39,7 @@
       transition: background-image 1s ease-in-out;
     }
 
-    /* Contenedor principal */
+    /* Contenedor principal con animación de fade-in */
     .container {
       height: 100vh;
       display: flex;
@@ -46,10 +48,17 @@
       align-items: center;
       background-color: rgba(0, 0, 0, 0.45);
       padding: 1rem;
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out forwards;
     }
 
-    /* Contenedor de fecha y hora */
-    .datetime-container {
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Contenedor del reloj con fondo opaco */
+    .time-container {
       position: absolute;
       top: 10px;
       left: 50%;
@@ -58,6 +67,11 @@
       font-weight: 400;
       text-align: center;
       color: #fff;
+    }
+    .time-container span {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 5px 10px;
+      border-radius: 5px;
     }
 
     /* Cabecera */
@@ -78,6 +92,56 @@
       margin-bottom: 1.5rem;
     }
 
+    /* Buscador */
+    .search-container {
+      display: flex;
+      margin-bottom: 1.5rem;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px 0 0 5px;
+      border: none;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .search-buttons {
+      display: flex;
+    }
+
+    .search-button {
+      padding: 10px 15px;
+      border: none;
+      background: #4285f4;
+      color: white;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .search-button:first-child {
+      border-radius: 0;
+    }
+
+    .search-button:last-child {
+      border-radius: 0 5px 5px 0;
+      background: #19a971;
+    }
+
+    .search-button:hover {
+      background-color: #3367d6;
+      transform: translateY(-2px);
+    }
+
+    .search-button:last-child:hover {
+      background-color: #158f60;
+    }
+
     /* Contenedor de columnas */
     .columns {
       display: flex;
@@ -95,6 +159,23 @@
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+      opacity: 0;
+      animation: slideIn 0.8s ease-out forwards;
+    }
+
+    .column:nth-child(1) { animation-delay: 0.2s; }
+    .column:nth-child(2) { animation-delay: 0.4s; }
+    .column:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Secciones */
@@ -102,6 +183,14 @@
       background-color: rgba(0,0,0,0.4);
       padding: 1rem;
       border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      backdrop-filter: blur(5px);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
     }
 
     .section h2 {
@@ -112,6 +201,9 @@
       letter-spacing: 1px;
       border-bottom: 1px solid #666;
       padding-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .section ul {
@@ -120,19 +212,169 @@
     }
 
     .section li {
-      margin: 0.3rem 0;
+      margin: 0.5rem 0;
     }
 
-    /* Estilo de enlaces */
+    /* Estilo de enlaces con transición */
     a {
       text-decoration: none;
       color: #fff;
       font-weight: 400;
       font-size: 0.95rem;
-      transition: color 0.3s;
+      transition: color 0.3s, transform 0.3s, padding-left 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
+
     a:hover {
       color: #66eaff;
+      transform: translateX(5px);
+      padding-left: 2px;
+    }
+
+    /* Notas rápidas */
+    .notes-container {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .notes-textarea {
+      width: 100%;
+      height: 100px;
+      padding: 8px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 5px;
+      resize: none;
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+    }
+
+    /* Fecha completa */
+    .date-container {
+      width: 100%;
+      margin-top: 10px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 10px;
+      border-radius: 5px;
+      backdrop-filter: blur(5px);
+    }
+
+    .date-text {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #fff;
+      text-transform: capitalize;
+    }
+
+    /* Widget de clima */
+    .weather-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
+    }
+
+    .weather-city-selector {
+      width: 100%;
+      padding: 5px;
+      border-radius: 3px;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #333;
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 5px;
+    }
+
+    .weather-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .weather-temp {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .weather-icon {
+      font-size: 1.5rem;
+    }
+
+    .weather-desc {
+      font-size: 0.9rem;
+      color: #ddd;
+    }
+
+    .weather-tomorrow {
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: 5px;
+      color: #ccc;
+    }
+
+    .weather-link {
+      font-size: 0.8rem;
+      margin-top: 5px;
+      color: #aaa;
+      transition: color 0.3s;
+    }
+
+    .weather-link:hover {
+      color: #66eaff;
+    }
+
+    /* Temporizador Pomodoro */
+    .pomodoro-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .timer-display {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 5px 0;
+    }
+
+    .timer-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .timer-button {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 3px;
+      background-color: #4285f4;
+      color: white;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: background-color 0.3s;
+    }
+
+    .timer-button:hover {
+      background-color: #3367d6;
+    }
+
+    .timer-button.stop {
+      background-color: #ea4335;
+    }
+
+    .timer-button.stop:hover {
+      background-color: #d33426;
+    }
+
+    .timer-button.reset {
+      background-color: #fbbc05;
+    }
+
+    .timer-button.reset:hover {
+      background-color: #f2b101;
     }
 
     /* Pie de página */
@@ -163,65 +405,132 @@
       a {
         font-size: 0.9rem;
       }
+      .search-container {
+        width: 95%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Contenedor de fecha y hora -->
-  <div class="datetime-container">
-    <span id="date"></span> - <span id="time"></span>
+  <!-- Contenedor del reloj (hora solamente) -->
+  <div class="time-container">
+    <span id="time"></span>
   </div>
 
   <div class="container">
     <h1>Stay focused and trust the process</h1>
     <p class="subtitle">-----</p>
 
+    <!-- Buscador rápido -->
+    <div class="search-container">
+      <input type="text" id="search-input" class="search-input" placeholder="Buscar en...">
+      <div class="search-buttons">
+        <button class="search-button" id="google-search" title="Buscar en Google">
+          <i class="fab fa-google"></i>
+        </button>
+        <button class="search-button" id="chatgpt-search" title="Buscar con ChatGPT">
+          <i class="fas fa-robot"></i>
+        </button>
+      </div>
+    </div>
+
     <div class="columns">
       <div class="column">
         <div class="section">
-          <h2>DÍA</h2>
+          <h2><i class="fas fa-calendar-day"></i> DÍA</h2>
           <ul>
-            <li><a href="https://www.alibaba.com/" target="_blank">Alibaba</a></li>
-            <li><a href="https://www.icloud.com/" target="_blank">iCloud</a></li>
-            <li><a href="https://chat.openai.com" target="_blank">ChatGPT</a></li>
-            <li><a href="https://grok.com/" target="_blank">Grok (X AI)</a></li>
-            <li><a href="https://translate.google.com/" target="_blank">Traductor</a></li>
-            <li><a href="https://app.holded.com/" target="_blank">Holded</a></li>
+            <li><a href="https://www.alibaba.com/" target="_blank"><i class="fas fa-shopping-cart"></i> Alibaba</a></li>
+            <li><a href="https://www.icloud.com/" target="_blank"><i class="fab fa-apple"></i> iCloud</a></li>
+            <li><a href="https://chat.openai.com" target="_blank"><i class="fas fa-comment-dots"></i> ChatGPT</a></li>
+            <li><a href="https://grok.com/" target="_blank"><i class="fab fa-xing"></i> Grok (X AI)</a></li>
+            <li><a href="https://translate.google.com/" target="_blank"><i class="fas fa-language"></i> Traductor</a></li>
+            <li><a href="https://app.holded.com/" target="_blank"><i class="fas fa-folder-open"></i> Holded</a></li>
           </ul>
         </div>
 
         <div class="section">
-          <h2>Redes</h2>
+          <h2><i class="fas fa-network-wired"></i> Redes</h2>
           <ul>
-            <li><a href="https://x.com/home" target="_blank">X (Twitter)</a></li>
-            <li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li>
+            <li><a href="https://x.com/home" target="_blank"><i class="fab fa-twitter"></i> X (Twitter)</a></li>
+            <li><a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
           </ul>
+        </div>
+
+        <!-- Widget del clima con conexión a wttr.in usando códigos postales -->
+        <div class="section">
+          <h2><i class="fas fa-cloud-sun"></i> Clima</h2>
+          <div class="weather-container">
+            <select id="weather-city" class="weather-city-selector">
+              <option value="madrid">Madrid</option>
+              <option value="elche">Elche</option>
+              <option value="albacete">Albacete</option>
+              <option value="leon">León</option>
+              <option value="candanchu">Candanchú</option>
+            </select>
+            <div class="weather-info">
+              <div class="weather-icon" id="weather-icon"><i class="fas fa-sync fa-spin"></i></div>
+              <div class="weather-temp" id="weather-temp">--°C</div>
+            </div>
+            <div class="weather-desc" id="weather-desc">Cargando...</div>
+            <!-- Previsión para mañana -->
+            <div class="weather-tomorrow" id="weather-tomorrow">Previsión mañana: Cargando...</div>
+            <a href="#" target="_blank" class="weather-link" id="weather-link">
+              Más detalles <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="column">
         <div class="section">
-          <h2>Utilidades</h2>
+          <h2><i class="fas fa-tools"></i> Utilidades</h2>
           <ul>
-            <li><a href="https://www.fiverr.com/inbox" target="_blank">Fiverr</a></li>
-            <li><a href="https://www.idealista.com/" target="_blank">Idealista</a></li>
-            <li><a href="https://www.amazon.es/" target="_blank">Amazon</a></li>
-            <li><a href="https://biwenger.as.com/round" target="_blank">Biwenger</a></li>
-            <li><a href="https://www.futbolfantasy.com/" target="_blank">Fantasy</a></li>
-            <li><a href="https://www.top5credits.com/es/calculadora/" target="_blank">Calculadora de préstamos</a></li>
-            <li><a href="https://www.besoccer.com/team/matches/novelda-union-deportiva-senior" target="_blank">BeSoccer</a></li>
+            <li><a href="https://www.fiverr.com/inbox" target="_blank"><i class="fas fa-briefcase"></i> Fiverr</a></li>
+            <li><a href="https://www.idealista.com/" target="_blank"><i class="fas fa-home"></i> Idealista</a></li>
+            <li><a href="https://www.amazon.es/" target="_blank"><i class="fab fa-amazon"></i> Amazon</a></li>
+            <li><a href="https://biwenger.as.com/round" target="_blank"><i class="fas fa-futbol"></i> Biwenger</a></li>
+            <li><a href="https://www.futbolfantasy.com/" target="_blank"><i class="fas fa-gamepad"></i> Fantasy</a></li>
+            <li><a href="https://www.top5credits.com/es/calculadora/" target="_blank"><i class="fas fa-calculator"></i> Calculadora de préstamos</a></li>
+            <li><a href="https://www.besoccer.com/team/matches/novelda-union-deportiva-senior" target="_blank"><i class="fas fa-trophy"></i> BeSoccer</a></li>
           </ul>
         </div>
 
         <div class="section">
-          <h2>Drive</h2>
+          <h2><i class="fab fa-google-drive"></i> Drive</h2>
           <ul>
-            <li><a href="https://drive.google.com/drive/u/0/my-drive" target="_blank">Mi Unidad (Drive)</a></li>
-            <li><a href="https://accounts.google.com/b/0/AddMailService" target="_blank">Gmail</a></li>
-            <li><a href="https://docs.google.com/document/u/0/" target="_blank">Documentos</a></li>
-            <li><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank">Spreadsheets</a></li>
+            <li><a href="https://drive.google.com/drive/u/0/my-drive" target="_blank"><i class="fas fa-hdd"></i> Mi Unidad (Drive)</a></li>
+            <li><a href="https://accounts.google.com/b/0/AddMailService" target="_blank"><i class="fas fa-envelope"></i> Gmail</a></li>
+            <li><a href="https://docs.google.com/document/u/0/" target="_blank"><i class="fas fa-file-alt"></i> Documentos</a></li>
+            <li><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank"><i class="fas fa-table"></i> Spreadsheets</a></li>
           </ul>
+        </div>
+      </div>
+
+      <div class="column">
+        <!-- Temporizador Pomodoro -->
+        <div class="section">
+          <h2><i class="fas fa-clock"></i> Pomodoro</h2>
+          <div class="pomodoro-container">
+            <div class="timer-display" id="timer-display">25:00</div>
+            <div class="timer-buttons">
+              <button class="timer-button start" id="timer-start"><i class="fas fa-play"></i> Iniciar</button>
+              <button class="timer-button stop" id="timer-stop" disabled><i class="fas fa-pause"></i> Pausa</button>
+              <button class="timer-button reset" id="timer-reset"><i class="fas fa-redo"></i> Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notas rápidas -->
+        <div class="section">
+          <h2><i class="fas fa-sticky-note"></i> Notas rápidas</h2>
+          <div class="notes-container">
+            <textarea id="quick-notes" class="notes-textarea" placeholder="Escribe tus notas aquí..."></textarea>
+          </div>
+          <!-- Fecha completa en un recuadro -->
+          <div class="date-container">
+            <div class="date-text" id="date-full"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -232,20 +541,236 @@
   </div>
 
   <script>
+    // Actualizar hora y fecha
     function updateTime() {
       const now = new Date();
-      document.getElementById("date").textContent = now.toLocaleDateString("es-ES", { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
       document.getElementById("time").textContent = now.toLocaleTimeString("es-ES");
+      document.getElementById("date-full").textContent = now.toLocaleDateString("es-ES", { 
+        weekday: 'long', 
+        day: 'numeric', 
+        month: 'long', 
+        year: 'numeric' 
+      });
+    }
+    
+    // Cambio de fondo y precarga
+    function preloadImage(url) {
+      const img = new Image();
+      img.src = url;
+      return img;
     }
     
     function setRandomBackground() {
-      document.body.style.backgroundImage = `url('https://picsum.photos/1920/1080?random=${new Date().getTime()}')`;
+      const imageUrl = `https://picsum.photos/1920/1080?random=${new Date().getTime()}`;
+      const img = preloadImage(imageUrl);
+      img.onload = function() {
+        document.body.style.backgroundImage = `url('${imageUrl}')`;
+      };
     }
 
-    updateTime();
-    setInterval(updateTime, 1000);
-    setRandomBackground();
-    setInterval(setRandomBackground, 900000);
+    // Función de búsqueda
+    function setupSearch() {
+      const searchInput = document.getElementById('search-input');
+      const googleButton = document.getElementById('google-search');
+      const chatgptButton = document.getElementById('chatgpt-search');
+
+      googleButton.addEventListener('click', () => {
+        const query = searchInput.value.trim();
+        if (query) {
+          window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+        }
+      });
+
+      chatgptButton.addEventListener('click', () => {
+        const query = searchInput.value.trim();
+        if (query) {
+          window.open(`https://chat.openai.com/?q=${encodeURIComponent(query)}`, '_blank');
+        }
+      });
+
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          googleButton.click();
+        }
+      });
+    }
+
+    // Conexión al widget de clima usando wttr.in por códigos postales y mostrando previsión de mañana
+    function setupWeather() {
+      const citySelector = document.getElementById('weather-city');
+      const weatherLink = document.getElementById('weather-link');
+
+      // Mapeo de ciudades a códigos postales
+      const cityZip = {
+        madrid: "28001",
+        elche: "03201",
+        albacete: "02001",
+        leon: "24001",
+        candanchu: "22580"  // Código postal aproximado para Candanchú
+      };
+
+      function updateWeather() {
+        const selectedCity = citySelector.value;
+        const zip = cityZip[selectedCity];
+        // URL de wttr.in con formato JSON
+        const url = `https://wttr.in/${zip}?format=j1`;
+
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            // Datos actuales
+            const currentCondition = data.current_condition[0];
+            const temp = currentCondition.temp_C;
+            const description = currentCondition.weatherDesc[0].value;
+            let icon = "sun";
+            const lowerDesc = description.toLowerCase();
+            if (lowerDesc.includes("nublado") || lowerDesc.includes("nuboso")) {
+              icon = "cloud";
+            } else if (lowerDesc.includes("lluvia")) {
+              icon = "cloud-showers-heavy";
+            } else if (lowerDesc.includes("nieve")) {
+              icon = "snowflake";
+            }
+            document.getElementById('weather-temp').textContent = `${temp}°C`;
+            document.getElementById('weather-desc').textContent = description;
+            document.getElementById('weather-icon').innerHTML = `<i class="fas fa-${icon}"></i>`;
+            // Enlace a wttr.in para más detalles
+            weatherLink.href = `https://wttr.in/${zip}`;
+
+            // Previsión para mañana: data.weather es un array con la previsión de varios días,
+            // siendo el índice 0 hoy y 1 mañana.
+            if(data.weather && data.weather.length > 1) {
+              const tomorrow = data.weather[1];
+              const minTemp = tomorrow.mintempC;
+              const maxTemp = tomorrow.maxtempC;
+              // Se utiliza la primera descripción disponible de la previsión horaria
+              const tomorrowDesc = tomorrow.hourly[0].weatherDesc[0].value;
+              document.getElementById('weather-tomorrow').textContent = 
+                `Previsión mañana: ${minTemp}°C - ${maxTemp}°C, ${tomorrowDesc}`;
+            } else {
+              document.getElementById('weather-tomorrow').textContent = "Previsión mañana: Sin datos";
+            }
+          })
+          .catch(err => {
+            console.error(err);
+            document.getElementById('weather-desc').textContent = "Error al obtener datos";
+            document.getElementById('weather-tomorrow').textContent = "Previsión mañana: Error";
+          });
+      }
+
+      // Inicializar el clima
+      updateWeather();
+
+      // Actualizar cuando se cambie la ciudad y guardar la selección
+      citySelector.addEventListener('change', () => {
+        updateWeather();
+        localStorage.setItem('selectedCity', citySelector.value);
+      });
+
+      if (localStorage.getItem('selectedCity')) {
+        citySelector.value = localStorage.getItem('selectedCity');
+        updateWeather();
+      }
+    }
+
+    // Temporizador Pomodoro
+    function setupPomodoro() {
+      const timerDisplay = document.getElementById('timer-display');
+      const startButton = document.getElementById('timer-start');
+      const stopButton = document.getElementById('timer-stop');
+      const resetButton = document.getElementById('timer-reset');
+      
+      let timer;
+      let minutes = 25;
+      let seconds = 0;
+      let isRunning = false;
+      
+      function updateDisplay() {
+        timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      }
+      
+      function startTimer() {
+        if (!isRunning) {
+          isRunning = true;
+          startButton.disabled = true;
+          stopButton.disabled = false;
+          
+          timer = setInterval(() => {
+            if (seconds === 0) {
+              if (minutes === 0) {
+                clearInterval(timer);
+                isRunning = false;
+                if (Notification.permission === 'granted') {
+                  new Notification('Pomodoro Timer', {
+                    body: '¡Tiempo completado!',
+                    icon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⏰</text></svg>'
+                  });
+                }
+                startButton.disabled = false;
+                stopButton.disabled = true;
+                return;
+              }
+              minutes--;
+              seconds = 59;
+            } else {
+              seconds--;
+            }
+            updateDisplay();
+          }, 1000);
+        }
+      }
+      
+      function stopTimer() {
+        clearInterval(timer);
+        isRunning = false;
+        startButton.disabled = false;
+        stopButton.disabled = true;
+      }
+      
+      function resetTimer() {
+        clearInterval(timer);
+        isRunning = false;
+        minutes = 25;
+        seconds = 0;
+        updateDisplay();
+        startButton.disabled = false;
+        stopButton.disabled = true;
+      }
+      
+      startButton.addEventListener('click', startTimer);
+      stopButton.addEventListener('click', stopTimer);
+      resetButton.addEventListener('click', resetTimer);
+      
+      if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+        Notification.requestPermission();
+      }
+    }
+
+    // Notas rápidas con localStorage
+    function setupNotes() {
+      const notesArea = document.getElementById('quick-notes');
+      
+      if (localStorage.getItem('quickNotes')) {
+        notesArea.value = localStorage.getItem('quickNotes');
+      }
+      
+      notesArea.addEventListener('input', () => {
+        localStorage.setItem('quickNotes', notesArea.value);
+      });
+    }
+
+    // Inicializar todos los componentes
+    document.addEventListener('DOMContentLoaded', function() {
+      updateTime();
+      setInterval(updateTime, 1000);
+      setRandomBackground();
+      setInterval(setRandomBackground, 300000);
+      
+      setupSearch();
+      setupWeather();
+      setupPomodoro();
+      setupNotes();
+    });
   </script>
 
 </body>
