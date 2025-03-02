@@ -346,36 +346,51 @@
       gap: 0.5rem;
     }
 
-    .timer-button {
-      padding: 5px 10px;
-      border: none;
-      border-radius: 3px;
-      background-color: #4285f4;
-      color: white;
-      cursor: pointer;
-      font-family: 'Montserrat', sans-serif;
-      transition: background-color 0.3s;
-    }
+    .timer-button.start {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #28a745; /* Verde para Iniciar */
+  color: white;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: background-color 0.3s;
+}
 
-    .timer-button:hover {
-      background-color: #3367d6;
-    }
+.timer-button.start:hover {
+  background-color: #218838;
+}
 
-    .timer-button.stop {
-      background-color: #ea4335;
-    }
+.timer-button.stop {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #ffc107; /* Amarillo para Pausa */
+  color: #333;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: background-color 0.3s;
+}
 
-    .timer-button.stop:hover {
-      background-color: #d33426;
-    }
+.timer-button.stop:hover {
+  background-color: #e0a800;
+}
 
-    .timer-button.reset {
-      background-color: #fbbc05;
-    }
+.timer-button.reset {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #dc3545; /* Rojo para Reset */
+  color: white;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: background-color 0.3s;
+}
 
-    .timer-button.reset:hover {
-      background-color: #f2b101;
-    }
+.timer-button.reset:hover {
+  background-color: #c82333;
+}
+
 
     /* Pie de página */
     .footer {
