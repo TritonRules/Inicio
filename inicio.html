@@ -346,51 +346,46 @@
       gap: 0.5rem;
     }
 
+    /* Estilos de botones actualizados */
     .timer-button.start {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 3px;
-  background-color: #28a745; /* Verde para Iniciar */
-  color: white;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  transition: background-color 0.3s;
-}
-
-.timer-button.start:hover {
-  background-color: #218838;
-}
-
-.timer-button.stop {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 3px;
-  background-color: #ffc107; /* Amarillo para Pausa */
-  color: #333;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  transition: background-color 0.3s;
-}
-
-.timer-button.stop:hover {
-  background-color: #e0a800;
-}
-
-.timer-button.reset {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 3px;
-  background-color: #dc3545; /* Rojo para Reset */
-  color: white;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  transition: background-color 0.3s;
-}
-
-.timer-button.reset:hover {
-  background-color: #c82333;
-}
-
+      padding: 5px 10px;
+      border: none;
+      border-radius: 3px;
+      background-color: #28a745; /* Verde para Iniciar */
+      color: white;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: background-color 0.3s;
+    }
+    .timer-button.start:hover {
+      background-color: #218838;
+    }
+    .timer-button.stop {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 3px;
+      background-color: #ffc107; /* Amarillo para Pausa */
+      color: #333;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: background-color 0.3s;
+    }
+    .timer-button.stop:hover {
+      background-color: #e0a800;
+    }
+    .timer-button.reset {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 3px;
+      background-color: #dc3545; /* Rojo para Reset */
+      color: white;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: background-color 0.3s;
+    }
+    .timer-button.reset:hover {
+      background-color: #c82333;
+    }
 
     /* Pie de página */
     .footer {
@@ -465,17 +460,16 @@
         </div>
 
         <div class="section">
-  <h2><i class="fas fa-network-wired"></i> Redes</h2>
-  <ul>
-    <li><a href="https://x.com/home" target="_blank"><i class="fab fa-twitter"></i> X (Twitter)</a></li>
-    <li><a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
-    <li><a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i> Whatsapp</a></li>
-    <li><a href="https://web.telegram.org/" target="_blank"><i class="fab fa-telegram"></i> Telegram</a></li>
-  </ul>
-</div>
+          <h2><i class="fas fa-network-wired"></i> Redes</h2>
+          <ul>
+            <li><a href="https://x.com/home" target="_blank"><i class="fab fa-twitter"></i> X (Twitter)</a></li>
+            <li><a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
+            <li><a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i> Whatsapp</a></li>
+            <li><a href="https://web.telegram.org/" target="_blank"><i class="fab fa-telegram"></i> Telegram</a></li>
+          </ul>
+        </div>
 
-
-        <!-- Widget del clima con conexión a wttr.in usando códigos postales -->
+        <!-- Widget del clima con Open‑Meteo -->
         <div class="section">
           <h2><i class="fas fa-cloud-sun"></i> Clima</h2>
           <div class="weather-container">
@@ -613,61 +607,66 @@
       });
     }
 
-    // Conexión al widget de clima usando wttr.in por códigos postales y mostrando previsión de mañana
+    // Conexión al widget de clima usando Open‑Meteo
     function setupWeather() {
       const citySelector = document.getElementById('weather-city');
       const weatherLink = document.getElementById('weather-link');
 
-      // Mapeo de ciudades a códigos postales
-      const cityZip = {
-        madrid: "28001",
-        elche: "03201",
-        albacete: "02001",
-        leon: "24001",
-        candanchu: "22580"  // Código postal aproximado para Candanchú
+      // Mapeo de ciudades a coordenadas (latitud y longitud)
+      const cityCoords = {
+        madrid: { lat: 40.4168, lon: -3.7038 },
+        elche: { lat: 38.2682, lon: -0.7016 },
+        albacete: { lat: 38.9943, lon: -1.8561 },
+        leon: { lat: 42.5987, lon: -5.5671 },
+        candanchu: { lat: 42.6169, lon: 0.7594 } // Aproximado
       };
+
+      // Función para mapear el weathercode a descripción e icono (simplificado)
+      function mapWeatherCode(code) {
+        if (code === 0) return { desc: "Despejado", icon: "sun" };
+        if ([1, 2, 3].includes(code)) return { desc: "Parcialmente nublado", icon: "cloud" };
+        if ([45, 48].includes(code)) return { desc: "Con niebla", icon: "smog" };
+        if ([51, 53, 55].includes(code)) return { desc: "Llovizna", icon: "cloud-rain" };
+        if ([61, 63, 65].includes(code)) return { desc: "Lluvia", icon: "cloud-showers-heavy" };
+        if ([66, 67].includes(code)) return { desc: "Lluvia helada", icon: "snowflake" };
+        if ([71, 73, 75].includes(code)) return { desc: "Nieve", icon: "snowflake" };
+        if ([80, 81, 82].includes(code)) return { desc: "Chubascos", icon: "cloud-showers-heavy" };
+        if ([95, 96, 99].includes(code)) return { desc: "Tormenta", icon: "bolt" };
+        return { desc: "Desconocido", icon: "question" };
+      }
 
       function updateWeather() {
         const selectedCity = citySelector.value;
-        const zip = cityZip[selectedCity];
-        // URL de wttr.in con formato JSON
-        const url = `https://wttr.in/${zip}?format=j1`;
+        const coords = cityCoords[selectedCity];
+        if (!coords) return;
+
+        // URL de Open‑Meteo: se solicita clima actual y datos diarios (temperaturas máxima, mínima y weathercode)
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`;
 
         fetch(url)
           .then(response => response.json())
           .then(data => {
             // Datos actuales
-            const currentCondition = data.current_condition[0];
-            const temp = currentCondition.temp_C;
-            const description = currentCondition.weatherDesc[0].value;
-            let icon = "sun";
-            const lowerDesc = description.toLowerCase();
-            if (lowerDesc.includes("nublado") || lowerDesc.includes("nuboso")) {
-              icon = "cloud";
-            } else if (lowerDesc.includes("lluvia")) {
-              icon = "cloud-showers-heavy";
-            } else if (lowerDesc.includes("nieve")) {
-              icon = "snowflake";
-            }
-            document.getElementById('weather-temp').textContent = `${temp}°C`;
-            document.getElementById('weather-desc').textContent = description;
-            document.getElementById('weather-icon').innerHTML = `<i class="fas fa-${icon}"></i>`;
-            // Enlace a wttr.in para más detalles
-            weatherLink.href = `https://wttr.in/${zip}`;
+            const current = data.current_weather;
+            const currentMap = mapWeatherCode(current.weathercode);
+            document.getElementById('weather-temp').textContent = `${current.temperature}°C`;
+            document.getElementById('weather-desc').textContent = currentMap.desc;
+            document.getElementById('weather-icon').innerHTML = `<i class="fas fa-${currentMap.icon}"></i>`;
 
-            // Previsión para mañana: data.weather es un array con la previsión de varios días,
-            // siendo el índice 0 hoy y 1 mañana.
-            if(data.weather && data.weather.length > 1) {
-              const tomorrow = data.weather[1];
-              const minTemp = tomorrow.mintempC;
-              const maxTemp = tomorrow.maxtempC;
-              // Se utiliza la primera descripción disponible de la previsión horaria
-              const tomorrowDesc = tomorrow.hourly[0].weatherDesc[0].value;
+            // Previsión para mañana: asumimos que daily.time[0] es hoy y [1] es mañana
+            const daily = data.daily;
+            if (daily && daily.time && daily.time.length > 1) {
+              const minTemp = daily.temperature_2m_min[1];
+              const maxTemp = daily.temperature_2m_max[1];
+              const weatherCodeTomorrow = daily.weathercode[1];
+              const tomorrowMap = mapWeatherCode(weatherCodeTomorrow);
               document.getElementById('weather-tomorrow').textContent = 
-                `Previsión mañana: ${minTemp}°C - ${maxTemp}°C, ${tomorrowDesc}`;
+                `Previsión mañana: ${minTemp}°C - ${maxTemp}°C, ${tomorrowMap.desc}`;
             } else {
               document.getElementById('weather-tomorrow').textContent = "Previsión mañana: Sin datos";
             }
+            // Enlace a Open‑Meteo (o puedes dirigir a otra página con más detalles)
+            weatherLink.href = `https://open-meteo.com/`;
           })
           .catch(err => {
             console.error(err);
