@@ -57,22 +57,7 @@
       to { opacity: 1; }
     }
 
-    /* Contenedor del reloj con fondo opaco */
-    .time-container {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 1.2rem;
-      font-weight: 400;
-      text-align: center;
-      color: #fff;
-    }
-    .time-container span {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 5px 10px;
-      border-radius: 5px;
-    }
+    /* (Eliminado el contenedor del reloj local) */
 
     /* Cabecera */
     h1 {
@@ -251,7 +236,7 @@
       color: #333;
     }
 
-    /* Fecha completa */
+    /* Fecha completa y relojes mundiales */
     .date-container {
       width: 100%;
       margin-top: 10px;
@@ -267,6 +252,13 @@
       font-weight: 400;
       color: #fff;
       text-transform: capitalize;
+    }
+    
+    /* Nuevo contenedor para los relojes mundiales */
+    #world-clocks {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #fff;
     }
 
     /* Widget de clima */
@@ -423,10 +415,7 @@
 </head>
 <body>
 
-  <!-- Contenedor del reloj (hora solamente) -->
-  <div class="time-container">
-    <span id="time"></span>
-  </div>
+  <!-- Se ha eliminado el contenedor del reloj local -->
 
   <div class="container">
     <h1>Stay focused and trust the process</h1>
@@ -539,9 +528,11 @@
           <div class="notes-container">
             <textarea id="quick-notes" class="notes-textarea" placeholder="Escribe tus notas aquí..."></textarea>
           </div>
-          <!-- Fecha completa en un recuadro -->
+          <!-- Fecha completa y relojes mundiales -->
           <div class="date-container">
             <div class="date-text" id="date-full"></div>
+            <!-- Aquí se mostrarán las horas de Madrid y Shenzhen -->
+            <div id="world-clocks"></div>
           </div>
         </div>
       </div>
@@ -553,16 +544,24 @@
   </div>
 
   <script>
-    // Actualizar hora y fecha
+    // Actualizar fecha y relojes mundiales
     function updateTime() {
       const now = new Date();
-      document.getElementById("time").textContent = now.toLocaleTimeString("es-ES");
       document.getElementById("date-full").textContent = now.toLocaleDateString("es-ES", { 
         weekday: 'long', 
         day: 'numeric', 
         month: 'long', 
         year: 'numeric' 
       });
+      updateWorldClocks();
+    }
+    
+    // Actualizar los relojes para Madrid y Shenzhen
+    function updateWorldClocks() {
+      const madridTime = new Date().toLocaleTimeString("es-ES", { timeZone: "Europe/Madrid", hour12: false });
+      const shenzhenTime = new Date().toLocaleTimeString("es-ES", { timeZone: "Asia/Shanghai", hour12: false });
+      document.getElementById('world-clocks').innerHTML = 
+        `<div>Madrid: ${madridTime}</div><div>Shenzhen: ${shenzhenTime}</div>`;
     }
     
     // Cambio de fondo y precarga
@@ -618,7 +617,7 @@
         elche: { lat: 38.2682, lon: -0.7016 },
         albacete: { lat: 38.9943, lon: -1.8561 },
         leon: { lat: 42.5987, lon: -5.5671 },
-        candanchu: { lat: 42.6169, lon: 0.7594 } // Aproximado
+        candanchu: { lat: 42.6169, lon: 0.7594 }
       };
 
       // Función para mapear el weathercode a descripción e icono (simplificado)
