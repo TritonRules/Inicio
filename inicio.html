@@ -468,7 +468,7 @@
           </div>
         </div>
 
-        <!-- Tercera columna: Pomodoro, Notas rápidas y Clima (reubicado) -->
+        <!-- Tercera columna: Pomodoro, Notas rápidas y Clima -->
         <div class="column">
           <div class="section">
             <h2><i class="fas fa-clock" aria-hidden="true"></i> Pomodoro</h2>
@@ -493,7 +493,7 @@
             </div>
           </div>
           
-          <!-- Se agrega la sección de Clima debajo de los relojes -->
+          <!-- Sección de Clima reubicada debajo de los relojes -->
           <div class="section">
             <h2><i class="fas fa-cloud-sun" aria-hidden="true"></i> Clima</h2>
             <div class="weather-container">
@@ -540,7 +540,13 @@
     function updateWorldClocks() {
       const madridTime = new Date().toLocaleTimeString("es-ES", { timeZone: "Europe/Madrid", hour12: false });
       const shenzhenTime = new Date().toLocaleTimeString("es-ES", { timeZone: "Asia/Shanghai", hour12: false });
-      document.getElementById('world-clocks').innerHTML = `<div>Madrid: ${madridTime}</div><div>Shenzhen: ${shenzhenTime}</div>`;
+      const sanDiegoTime = new Date().toLocaleTimeString("es-ES", { timeZone: "America/Los_Angeles", hour12: false });
+      const newYorkTime = new Date().toLocaleTimeString("es-ES", { timeZone: "America/New_York", hour12: false });
+      document.getElementById('world-clocks').innerHTML =
+        `<div>Madrid: ${madridTime}</div>
+         <div>Shenzhen: ${shenzhenTime}</div>
+         <div>San Diego: ${sanDiegoTime}</div>
+         <div>New York: ${newYorkTime}</div>`;
     }
     
     // Precarga y cambio de fondo
