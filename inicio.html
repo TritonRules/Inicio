@@ -415,6 +415,7 @@
 
     <main>
       <div class="columns">
+        <!-- Primera columna: DÍA y Redes -->
         <div class="column">
           <div class="section">
             <h2><i class="fas fa-calendar-day" aria-hidden="true"></i> DÍA</h2>
@@ -439,30 +440,9 @@
               <li><a href="https://www.primevideo.com/" target="_blank"><i class="fab fa-amazon" aria-hidden="true"></i> Amazon Prime Video</a></li>
             </ul>
           </div>
-
-          <div class="section">
-            <h2><i class="fas fa-cloud-sun" aria-hidden="true"></i> Clima</h2>
-            <div class="weather-container">
-              <select id="weather-city" class="weather-city-selector">
-                <option value="madrid">Madrid</option>
-                <option value="elche">Elche</option>
-                <option value="albacete">Albacete</option>
-                <option value="leon">León</option>
-                <option value="candanchu">Candanchú</option>
-              </select>
-              <div class="weather-info">
-                <div class="weather-icon" id="weather-icon"><i class="fas fa-sync fa-spin" aria-hidden="true"></i></div>
-                <div class="weather-temp" id="weather-temp">--°C</div>
-              </div>
-              <div class="weather-desc" id="weather-desc">Cargando...</div>
-              <div class="weather-tomorrow" id="weather-tomorrow">Previsión mañana: Cargando...</div>
-              <a href="#" target="_blank" class="weather-link" id="weather-link">
-                Más detalles <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
         </div>
 
+        <!-- Segunda columna: Utilidades y Drive -->
         <div class="column">
           <div class="section">
             <h2><i class="fas fa-tools" aria-hidden="true"></i> Utilidades</h2>
@@ -488,6 +468,7 @@
           </div>
         </div>
 
+        <!-- Tercera columna: Pomodoro, Notas rápidas y Clima (reubicado) -->
         <div class="column">
           <div class="section">
             <h2><i class="fas fa-clock" aria-hidden="true"></i> Pomodoro</h2>
@@ -509,6 +490,29 @@
             <div class="date-container">
               <div class="date-text" id="date-full"></div>
               <div id="world-clocks"></div>
+            </div>
+          </div>
+          
+          <!-- Se agrega la sección de Clima debajo de los relojes -->
+          <div class="section">
+            <h2><i class="fas fa-cloud-sun" aria-hidden="true"></i> Clima</h2>
+            <div class="weather-container">
+              <select id="weather-city" class="weather-city-selector">
+                <option value="madrid">Madrid</option>
+                <option value="elche">Elche</option>
+                <option value="albacete">Albacete</option>
+                <option value="leon">León</option>
+                <option value="candanchu">Candanchú</option>
+              </select>
+              <div class="weather-info">
+                <div class="weather-icon" id="weather-icon"><i class="fas fa-sync fa-spin" aria-hidden="true"></i></div>
+                <div class="weather-temp" id="weather-temp">--°C</div>
+              </div>
+              <div class="weather-desc" id="weather-desc">Cargando...</div>
+              <div class="weather-tomorrow" id="weather-tomorrow">Previsión mañana: Cargando...</div>
+              <a href="#" target="_blank" class="weather-link" id="weather-link">
+                Más detalles <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
         </div>
