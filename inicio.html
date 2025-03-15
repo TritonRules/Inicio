@@ -675,9 +675,10 @@
       let seconds = 0;
       let isRunning = false;
       
-      // Crear objeto Audio para el sonido de alarma
-      const alarmSound = new Audio('https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg');
-
+      // Crear objeto Audio para el sonido de alarma (nuevo sonido)
+      const alarmSound = new Audio('https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg');
+      alarmSound.loop = true; // Para que suene en bucle
+      
       function updateDisplay() {
         timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
       }
@@ -692,7 +693,7 @@
               if (minutes === 0) {
                 clearInterval(timer);
                 isRunning = false;
-                // Reproducir sonido de alarma
+                // Reproducir sonido de alarma en bucle
                 alarmSound.play();
                 if (Notification.permission === 'granted') {
                   new Notification('Pomodoro Timer', {
@@ -729,6 +730,9 @@
         updateDisplay();
         startButton.disabled = false;
         stopButton.disabled = true;
+        // Detener el sonido de alarma si está sonando
+        alarmSound.pause();
+        alarmSound.currentTime = 0;
       }
       
       startButton.addEventListener('click', startTimer);
