@@ -675,6 +675,9 @@
       let seconds = 0;
       let isRunning = false;
       
+      // Crear objeto Audio para el sonido de alarma
+      const alarmSound = new Audio('https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg');
+
       function updateDisplay() {
         timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
       }
@@ -689,6 +692,8 @@
               if (minutes === 0) {
                 clearInterval(timer);
                 isRunning = false;
+                // Reproducir sonido de alarma
+                alarmSound.play();
                 if (Notification.permission === 'granted') {
                   new Notification('Pomodoro Timer', {
                     body: '¡Tiempo completado!',
