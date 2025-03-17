@@ -13,12 +13,12 @@
   <!-- Font Awesome para iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Firebase (para notas en línea) -->
+  <!-- Firebase para notas en línea -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   
   <style>
-    /* Reset básico */
+    /* Reset y estilos generales */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       width: 100%; height: 100%;
@@ -36,7 +36,7 @@
       height: 100vh;
       display: flex; flex-direction: column;
       justify-content: center; align-items: center;
-      background-color: rgba(0, 0, 0, 0.45);
+      background-color: rgba(0,0,0,0.45);
       padding: 1rem; opacity: 0;
       animation: fadeIn 1s ease-in-out forwards;
     }
@@ -48,6 +48,7 @@
       margin-bottom: 0.5rem;
     }
     .subtitle { font-size: 1rem; color: #ccc; margin-bottom: 1.5rem; }
+    
     .search-container {
       display: flex; margin-bottom: 1.5rem;
       width: 80%; max-width: 600px;
@@ -55,7 +56,7 @@
     .search-input {
       flex: 1; padding: 10px;
       border-radius: 5px 0 0 5px; border: none;
-      background: rgba(255, 255, 255, 0.9); color: #333;
+      background: rgba(255,255,255,0.9); color: #333;
     }
     .search-buttons { display: flex; }
     .search-button {
@@ -71,7 +72,11 @@
       background-color: #3367d6; transform: translateY(-2px);
     }
     .search-button:last-child:hover { background-color: #158f60; }
-    main { width: 90%; max-width: 1200px; flex: 1; display: flex; gap: 2rem; }
+    
+    main {
+      width: 90%; max-width: 1200px;
+      display: flex; gap: 2rem;
+    }
     .column {
       flex: 1; display: flex; flex-direction: column;
       gap: 1.5rem; opacity: 0;
@@ -84,6 +89,8 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    
+    /* Secciones generales */
     .section {
       background-color: rgba(0,0,0,0.4);
       padding: 1rem; border-radius: 0.5rem;
@@ -111,11 +118,13 @@
       display: flex; align-items: center; gap: 0.5rem;
     }
     a:hover { color: #66eaff; transform: translateX(5px); padding-left: 2px; }
-    /* Secciones específicas */
-    /* Columna 1: DÍA, Redes, DRIVE */
-    /* (Se reutilizan los estilos de .section para cada recuadro) */
-    /* Columna 2: Calendario y Notas en línea */
-    #calendar { margin-bottom: 1rem; }
+    
+    /* Columna 1 (Izquierda): DÍA, Redes, Drive */
+    /* Columna 2 (Central): Utilidades, Calendario y Notas en línea */
+    /* Calendario */
+    #calendar {
+      margin-bottom: 1rem;
+    }
     #calendar table {
       width: 100%; border-collapse: collapse; text-align: center;
     }
@@ -123,14 +132,19 @@
       border: 1px solid #444; padding: 5px; font-size: 0.9rem;
     }
     #calendar th { background-color: rgba(255,255,255,0.2); }
+    /* Notas en línea */
     .online-notes-textarea {
       width: 100%; height: 80px;
       padding: 8px; background-color: rgba(255,255,255,0.9);
       border: none; border-radius: 5px; resize: none;
       color: #333;
     }
-    /* Columna 3: Pomodoro y Clima */
-    .pomodoro-container { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+    
+    /* Columna 3 (Derecha): Pomodoro y Clima */
+    .pomodoro-container {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.5rem;
+    }
     .timer-display { font-size: 1.5rem; font-weight: 600; margin: 5px 0; }
     .timer-buttons { display: flex; gap: 0.5rem; }
     .timer-button {
@@ -143,6 +157,7 @@
     .timer-button.stop:hover { background-color: #e0a800; }
     .timer-button.reset { background-color: #dc3545; color: white; }
     .timer-button.reset:hover { background-color: #c82333; }
+    
     .weather-container {
       display: flex; flex-direction: column; align-items: center;
       gap: 0.5rem; padding: 0.5rem;
@@ -159,7 +174,12 @@
     .weather-tomorrow { font-size: 0.9rem; text-align: center; margin-top: 5px; color: #ccc; }
     .weather-link { font-size: 0.8rem; margin-top: 5px; color: #aaa; transition: color 0.3s; }
     .weather-link:hover { color: #66eaff; }
-    .footer { margin-top: 1rem; text-align: center; font-size: 0.8rem; color: #aaa; }
+    
+    .footer {
+      margin-top: 1rem; text-align: center;
+      font-size: 0.8rem; color: #aaa;
+    }
+    
     @media (max-width: 900px) {
       body { overflow: auto; }
       main { flex-direction: column; align-items: center; gap: 1rem; }
@@ -190,7 +210,7 @@
     </div>
 
     <main>
-      <!-- Columna 1: DÍA, Redes, DRIVE -->
+      <!-- Columna 1: DÍA, Redes y DRIVE (movido debajo de Redes) -->
       <div class="column">
         <div class="section">
           <h2><i class="fas fa-calendar-day" aria-hidden="true"></i> DÍA</h2>
@@ -225,8 +245,20 @@
         </div>
       </div>
 
-      <!-- Columna 2: Calendario y Notas en línea (online) -->
+      <!-- Columna 2: Utilidades, Calendario y Notas en línea -->
       <div class="column">
+        <div class="section">
+          <h2><i class="fas fa-tools" aria-hidden="true"></i> Utilidades</h2>
+          <ul>
+            <li><a href="https://www.fiverr.com/inbox" target="_blank"><i class="fas fa-briefcase" aria-hidden="true"></i> Fiverr</a></li>
+            <li><a href="https://www.idealista.com/usuario/tus-alertas" target="_blank"><i class="fas fa-home" aria-hidden="true"></i> Idealista</a></li>
+            <li><a href="https://www.amazon.es/" target="_blank"><i class="fab fa-amazon" aria-hidden="true"></i> Amazon</a></li>
+            <li><a href="https://biwenger.as.com/round" target="_blank"><i class="fas fa-futbol" aria-hidden="true"></i> Biwenger</a></li>
+            <li><a href="https://www.futbolfantasy.com/" target="_blank"><i class="fas fa-gamepad" aria-hidden="true"></i> Fantasy</a></li>
+            <li><a href="https://music.amazon.es/" target="_blank"><i class="fab fa-amazon" aria-hidden="true"></i> Amazon Music</a></li>
+            <li><a href="https://www.besoccer.com/team/matches/novelda-union-deportiva-senior" target="_blank"><i class="fas fa-trophy" aria-hidden="true"></i> BeSoccer</a></li>
+          </ul>
+        </div>
         <div class="section" id="calendar-section">
           <h2><i class="fas fa-calendar-alt" aria-hidden="true"></i> Calendario</h2>
           <div id="calendar"></div>
@@ -240,7 +272,7 @@
       <!-- Columna 3: Pomodoro y Clima -->
       <div class="column">
         <div class="section">
-          <!-- Recuadro de Pomodoro sin título -->
+          <!-- Recuadro de Pomodoro sin título para ahorrar espacio -->
           <div class="pomodoro-container">
             <div class="timer-display" id="timer-display">25:00</div>
             <div class="timer-buttons">
@@ -261,7 +293,9 @@
               <option value="candanchu">Candanchú</option>
             </select>
             <div class="weather-info">
-              <div class="weather-icon" id="weather-icon"><i class="fas fa-sync fa-spin" aria-hidden="true"></i></div>
+              <div class="weather-icon" id="weather-icon">
+                <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+              </div>
               <div class="weather-temp" id="weather-temp">--°C</div>
             </div>
             <div class="weather-desc" id="weather-desc">Cargando...</div>
@@ -281,7 +315,7 @@
 
   <script>
     // ---------------------------
-    // Calendario mensual dinámico
+    // Generar calendario mensual
     // ---------------------------
     function generateCalendar() {
       const calendarDiv = document.getElementById('calendar');
@@ -291,26 +325,22 @@
       const firstDay = new Date(year, month, 1);
       const lastDay = new Date(year, month + 1, 0);
       const daysInMonth = lastDay.getDate();
+      // Ajustar para que la semana empiece en lunes (si firstDay.getDay() es 0, es domingo -> tratar como 7)
+      let startDay = firstDay.getDay();
+      startDay = (startDay === 0) ? 7 : startDay;
       
-      // Empezamos el lunes, obtener el día de la semana del primer día (0=domingo, 1=lunes,...)
-      let startDay = firstDay.getDay(); 
-      startDay = startDay === 0 ? 7 : startDay; // Si es domingo, lo tratamos como 7
-
       let html = '<table>';
-      // Encabezados de días
+      // Encabezados de días (lunes a domingo)
       const daysOfWeek = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
       html += '<tr>';
       for (const day of daysOfWeek) {
         html += '<th>' + day + '</th>';
       }
       html += '</tr><tr>';
-      
-      // Espacios vacíos antes del primer día
+      // Celdas vacías antes del primer día
       for (let i = 1; i < startDay; i++) {
         html += '<td></td>';
       }
-      
-      // Días del mes
       let dayCount = startDay;
       for (let d = 1; d <= daysInMonth; d++) {
         html += '<td>' + d + '</td>';
@@ -326,7 +356,7 @@
     // ---------------------------
     // Notas en línea con Firebase Firestore
     // ---------------------------
-    // Configuración de Firebase (reemplaza con tus propios datos)
+    // Configura Firebase con tus datos
     const firebaseConfig = {
       apiKey: "TU_API_KEY",
       authDomain: "TU_PROJECT_ID.firebaseapp.com",
@@ -341,8 +371,7 @@
     function setupOnlineNotes() {
       const notesTextarea = document.getElementById('online-notes');
       const docRef = db.collection('notes').doc('onlineNotes');
-      
-      // Escuchar cambios en tiempo real
+      // Escucha cambios en tiempo real
       docRef.onSnapshot((doc) => {
         if (doc.exists) {
           const data = doc.data();
@@ -354,8 +383,7 @@
           docRef.set({ text: "" });
         }
       });
-      
-      // Actualizar la nota en Firestore al modificar (con debounce)
+      // Actualiza Firestore con debounce
       let timeout;
       notesTextarea.addEventListener('input', () => {
         clearTimeout(timeout);
@@ -366,28 +394,6 @@
     }
     
     // ---------------------------
-    // Relojes mundiales
-    // ---------------------------
-    function updateTime() {
-      const now = new Date();
-      const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-      document.getElementById("date-full") && (document.getElementById("date-full").textContent = now.toLocaleDateString("es-ES", options));
-      updateWorldClocks();
-    }
-    
-    function updateWorldClocks() {
-      const madridTime = new Date().toLocaleTimeString("es-ES", { timeZone: "Europe/Madrid", hour12: false });
-      const shenzhenTime = new Date().toLocaleTimeString("es-ES", { timeZone: "Asia/Shanghai", hour12: false });
-      const sanDiegoTime = new Date().toLocaleTimeString("es-ES", { timeZone: "America/Los_Angeles", hour12: false });
-      const newYorkTime = new Date().toLocaleTimeString("es-ES", { timeZone: "America/New_York", hour12: false });
-      document.getElementById('world-clocks') && (document.getElementById('world-clocks').innerHTML =
-        `<div>Madrid: ${madridTime}</div>
-         <div>Shenzhen: ${shenzhenTime}</div>
-         <div>San Diego: ${sanDiegoTime}</div>
-         <div>New York: ${newYorkTime}</div>`);
-    }
-    
-    // ---------------------------
     // Fondo aleatorio
     // ---------------------------
     function preloadImage(url) {
@@ -395,7 +401,6 @@
       img.src = url;
       return img;
     }
-    
     function setRandomBackground() {
       const imageUrl = `https://picsum.photos/1920/1080?random=${new Date().getTime()}`;
       const img = preloadImage(imageUrl);
@@ -405,27 +410,20 @@
     }
     
     // ---------------------------
-    // Buscador: abre búsqueda en Google y ChatGPT
+    // Buscador: abre búsquedas en Google y ChatGPT
     // ---------------------------
     function setupSearch() {
       const searchInput = document.getElementById('search-input');
       const googleButton = document.getElementById('google-search');
       const chatgptButton = document.getElementById('chatgpt-search');
-  
       googleButton.addEventListener('click', () => {
         const query = searchInput.value.trim();
-        if (query) {
-          window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
-        }
+        if (query) window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
       });
-  
       chatgptButton.addEventListener('click', () => {
         const query = searchInput.value.trim();
-        if (query) {
-          window.open(`https://chat.openai.com/?q=${encodeURIComponent(query)}`, '_blank');
-        }
+        if (query) window.open(`https://chat.openai.com/?q=${encodeURIComponent(query)}`, '_blank');
       });
-  
       searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
           const query = searchInput.value.trim();
@@ -438,7 +436,7 @@
     }
     
     // ---------------------------
-    // Widget del clima con Open‑Meteo
+    // Widget del clima (Open‑Meteo)
     // ---------------------------
     function setupWeather() {
       const citySelector = document.getElementById('weather-city');
@@ -450,20 +448,18 @@
         leon: { lat: 42.5987, lon: -5.5671 },
         candanchu: { lat: 42.6169, lon: 0.7594 }
       };
-  
       function mapWeatherCode(code) {
         if (code === 0) return { desc: "Despejado", icon: "sun" };
-        if ([1, 2, 3].includes(code)) return { desc: "Parcialmente nublado", icon: "cloud" };
-        if ([45, 48].includes(code)) return { desc: "Con niebla", icon: "smog" };
-        if ([51, 53, 55].includes(code)) return { desc: "Llovizna", icon: "cloud-rain" };
-        if ([61, 63, 65].includes(code)) return { desc: "Lluvia", icon: "cloud-showers-heavy" };
-        if ([66, 67].includes(code)) return { desc: "Lluvia helada", icon: "snowflake" };
-        if ([71, 73, 75].includes(code)) return { desc: "Nieve", icon: "snowflake" };
-        if ([80, 81, 82].includes(code)) return { desc: "Chubascos", icon: "cloud-showers-heavy" };
-        if ([95, 96, 99].includes(code)) return { desc: "Tormenta", icon: "bolt" };
+        if ([1,2,3].includes(code)) return { desc: "Parcialmente nublado", icon: "cloud" };
+        if ([45,48].includes(code)) return { desc: "Con niebla", icon: "smog" };
+        if ([51,53,55].includes(code)) return { desc: "Llovizna", icon: "cloud-rain" };
+        if ([61,63,65].includes(code)) return { desc: "Lluvia", icon: "cloud-showers-heavy" };
+        if ([66,67].includes(code)) return { desc: "Lluvia helada", icon: "snowflake" };
+        if ([71,73,75].includes(code)) return { desc: "Nieve", icon: "snowflake" };
+        if ([80,81,82].includes(code)) return { desc: "Chubascos", icon: "cloud-showers-heavy" };
+        if ([95,96,99].includes(code)) return { desc: "Tormenta", icon: "bolt" };
         return { desc: "Desconocido", icon: "question" };
       }
-  
       function updateWeather() {
         const selectedCity = citySelector.value;
         const coords = cityCoords[selectedCity];
@@ -487,7 +483,7 @@
             } else {
               document.getElementById('weather-tomorrow').textContent = "Previsión mañana: Sin datos";
             }
-            weatherLink.href = `https://open-meteo.com/`;
+            weatherLink.href = "https://open-meteo.com/";
           })
           .catch(err => {
             console.error(err);
@@ -495,13 +491,11 @@
             document.getElementById('weather-tomorrow').textContent = "Previsión mañana: Error";
           });
       }
-  
       updateWeather();
       citySelector.addEventListener('change', () => {
         updateWeather();
         localStorage.setItem('selectedCity', citySelector.value);
       });
-  
       if (localStorage.getItem('selectedCity')) {
         citySelector.value = localStorage.getItem('selectedCity');
         updateWeather();
@@ -520,11 +514,10 @@
       let minutes = 25;
       let seconds = 0;
       let isRunning = false;
-      
-      // Crear objeto Audio con el nuevo sonido, en bucle
+      // Crear objeto Audio con el sonido solicitado, en bucle
       const alarmSound = new Audio('https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg');
       alarmSound.loop = true;
-  
+      
       function updateDisplay() {
         timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
       }
@@ -575,7 +568,7 @@
         updateDisplay();
         startButton.disabled = false;
         stopButton.disabled = true;
-        // Detener el sonido si está sonando
+        // Detener el sonido si está reproduciéndose
         alarmSound.pause();
         alarmSound.currentTime = 0;
       }
@@ -593,8 +586,6 @@
     // Inicialización de componentes al cargar
     // ---------------------------
     document.addEventListener('DOMContentLoaded', function() {
-      updateTime();
-      setInterval(updateTime, 1000);
       setRandomBackground();
       setInterval(setRandomBackground, 300000);
       setupSearch();
@@ -602,6 +593,11 @@
       setupPomodoro();
       generateCalendar();
       setupOnlineNotes();
+      // Actualizar fecha (opcional, si deseas mostrarla en otro lugar)
+      setInterval(() => {
+        const now = new Date();
+        // Si deseas usarla, puedes agregar un contenedor para la fecha
+      }, 1000);
     });
   </script>
 </body>
