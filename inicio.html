@@ -12,24 +12,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <!-- Font Awesome para iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+  
+  <!-- Firebase (para notas en línea) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  
   <style>
-    /* Reset básico */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* Reset y estilos generales */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       font-family: 'Montserrat', sans-serif;
-      color: #fff;
-      background: #000;
-      overflow: hidden;
+      color: #fff; background: #000; overflow: hidden;
     }
-
     body {
       background-size: cover;
       background-position: center;
@@ -37,360 +32,179 @@
       background-attachment: fixed;
       transition: background-image 1s ease-in-out;
     }
-
     .container {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
       background-color: rgba(0, 0, 0, 0.45);
       padding: 1rem;
-      opacity: 0;
       animation: fadeIn 1s ease-in-out forwards;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    header { text-align: center; margin-bottom: 1rem; }
     h1 {
-      font-size: 2rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      font-size: 2rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2px;
       margin-bottom: 0.5rem;
+      white-space: normal;
     }
-
     .subtitle {
-      font-size: 1rem;
-      color: #ccc;
+      font-size: 1rem; color: #ccc;
       margin-bottom: 1.5rem;
+      white-space: normal;
     }
-
     .search-container {
-      display: flex;
-      margin-bottom: 1.5rem;
-      width: 80%;
-      max-width: 600px;
+      display: flex; margin-bottom: 1.5rem;
+      width: 80%; max-width: 600px;
     }
-
     .search-input {
-      flex: 1;
-      padding: 10px;
-      border-radius: 5px 0 0 5px;
-      border: none;
-      background: rgba(255, 255, 255, 0.9);
-      color: #333;
+      flex: 1; padding: 10px;
+      border-radius: 5px 0 0 5px; border: none;
+      background: rgba(255,255,255,0.9); color: #333;
     }
-
-    .search-buttons {
-      display: flex;
-    }
-
+    .search-buttons { display: flex; }
     .search-button {
-      padding: 10px 15px;
-      border: none;
-      background: #4285f4;
-      color: white;
-      cursor: pointer;
+      padding: 10px 15px; border: none;
+      background: #4285f4; color: white; cursor: pointer;
       transition: background-color 0.3s, transform 0.2s;
     }
-
-    .search-button:first-child {
-      border-radius: 0;
-    }
-
+    .search-button:first-child { border-radius: 0; }
     .search-button:last-child {
-      border-radius: 0 5px 5px 0;
-      background: #19a971;
+      border-radius: 0 5px 5px 0; background: #19a971;
     }
-
     .search-button:hover {
-      background-color: #3367d6;
-      transform: translateY(-2px);
+      background-color: #3367d6; transform: translateY(-2px);
     }
-
-    .search-button:last-child:hover {
-      background-color: #158f60;
-    }
-
+    .search-button:last-child:hover { background-color: #158f60; }
     main {
-      width: 90%;
-      max-width: 1200px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
+      width: 90%; max-width: 1200px;
+      display: flex; gap: 2rem;
+      /* Permitir scroll vertical en caso de sobreflujo */
+      overflow-y: auto;
     }
-
-    .columns {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 2rem;
-    }
-
     .column {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      opacity: 0;
-      animation: slideIn 0.8s ease-out forwards;
+      flex: 1; display: flex; flex-direction: column;
+      gap: 1.5rem; animation: slideIn 0.8s ease-out forwards;
     }
-
     .column:nth-child(1) { animation-delay: 0.2s; }
     .column:nth-child(2) { animation-delay: 0.4s; }
     .column:nth-child(3) { animation-delay: 0.6s; }
-
     @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
     .section {
       background-color: rgba(0,0,0,0.4);
-      padding: 1rem;
-      border-radius: 0.5rem;
+      padding: 1rem; border-radius: 0.5rem;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       backdrop-filter: blur(5px);
       transition: transform 0.3s, box-shadow 0.3s;
     }
-
     .section:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 12px rgba(0,0,0,0.2);
     }
-
     .section h2 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 1px solid #666;
-      padding-bottom: 0.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      font-size: 1.2rem; font-weight: 600;
+      margin-bottom: 0.5rem; text-transform: uppercase;
+      letter-spacing: 1px; border-bottom: 1px solid #666;
+      padding-bottom: 0.25rem; display: flex;
+      align-items: center; gap: 0.5rem;
+      white-space: normal;
     }
-
-    .section ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .section li {
-      margin: 0.5rem 0;
-    }
-
+    .section ul { list-style: none; padding-left: 0; }
+    .section li { margin: 0.5rem 0; }
     a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 400;
-      font-size: 0.95rem;
+      text-decoration: none; color: #fff;
+      font-weight: 400; font-size: 0.95rem;
       transition: color 0.3s, transform 0.3s, padding-left 0.3s;
-      display: flex;
-      align-items: center;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    a:hover { color: #66eaff; transform: translateX(5px); padding-left: 2px; }
+    
+    /* ============================
+       COLUMA IZQUIERDA: DÍA, Redes, Drive
+       ============================ */
+    /* (No se requieren estilos específicos adicionales) */
+    
+    /* ============================
+       COLUMNA CENTRAL: Utilidades y Calendario
+       ============================ */
+    #calendar {
+      margin-bottom: 1rem;
+    }
+    #calendar table {
+      width: 100%; border-collapse: collapse; text-align: center;
+    }
+    #calendar th, #calendar td {
+      border: 1px solid #444; padding: 5px; font-size: 0.9rem;
+    }
+    #calendar th { background-color: rgba(255,255,255,0.2); }
+    
+    /* ============================
+       COLUMNA DERECHA: Pomodoro, Relojes, Notas en línea, Clima
+       ============================ */
+    .pomodoro-container {
+      display: flex; flex-direction: column; align-items: center;
       gap: 0.5rem;
     }
-
-    a:hover {
-      color: #66eaff;
-      transform: translateX(5px);
-      padding-left: 2px;
+    .timer-display { font-size: 1.5rem; font-weight: 600; margin: 5px 0; }
+    .timer-buttons { display: flex; gap: 0.5rem; }
+    .timer-button {
+      padding: 5px 10px; border: none; border-radius: 3px;
+      cursor: pointer; transition: background-color 0.3s;
     }
-
-    .notes-container {
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    .notes-textarea {
-      width: 100%;
-      height: 100px;
-      padding: 8px;
-      background-color: rgba(255, 255, 255, 0.9);
-      border: none;
-      border-radius: 5px;
-      resize: none;
-      color: #333;
-    }
-
-    .date-container {
-      width: 100%;
-      margin-top: 10px;
+    .timer-button.start { background-color: #28a745; color: white; }
+    .timer-button.start:hover { background-color: #218838; }
+    .timer-button.stop { background-color: #ffc107; color: #333; }
+    .timer-button.stop:hover { background-color: #e0a800; }
+    .timer-button.reset { background-color: #dc3545; color: white; }
+    .timer-button.reset:hover { background-color: #c82333; }
+    
+    /* Relojes */
+    .clocks-container {
+      background-color: rgba(0,0,0,0.35);
+      padding: 0.5rem; border-radius: 0.5rem;
       text-align: center;
-      background-color: rgba(0, 0, 0, 0.3);
-      padding: 10px;
-      border-radius: 5px;
-      backdrop-filter: blur(5px);
-    }
-
-    .date-text {
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: #fff;
-      text-transform: capitalize;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
     }
     
-    #world-clocks {
-      margin-top: 10px;
-      font-size: 1rem;
-      color: #fff;
+    /* Notas en línea */
+    .online-notes-textarea {
+      width: 100%; height: 80px;
+      padding: 8px; background-color: rgba(255,255,255,0.9);
+      border: none; border-radius: 5px; resize: none;
+      color: #333;
     }
-
+    
+    /* Clima */
     .weather-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.5rem; padding: 0.5rem;
     }
-
     .weather-city-selector {
-      width: 100%;
-      padding: 5px;
-      border-radius: 3px;
-      border: none;
-      background-color: rgba(255, 255, 255, 0.9);
-      color: #333;
-      margin-bottom: 5px;
+      width: 100%; padding: 5px; border-radius: 3px;
+      border: none; background-color: rgba(255,255,255,0.9);
+      color: #333; margin-bottom: 5px;
     }
-
-    .weather-info {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .weather-temp {
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
-
-    .weather-icon {
-      font-size: 1.5rem;
-    }
-
-    .weather-desc {
-      font-size: 0.9rem;
-      color: #ddd;
-    }
-
-    .weather-tomorrow {
-      font-size: 0.9rem;
-      text-align: center;
-      margin-top: 5px;
-      color: #ccc;
-    }
-
-    .weather-link {
-      font-size: 0.8rem;
-      margin-top: 5px;
-      color: #aaa;
-      transition: color 0.3s;
-    }
-
-    .weather-link:hover {
-      color: #66eaff;
-    }
-
-    .pomodoro-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .timer-display {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin: 5px 0;
-    }
-
-    .timer-buttons {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .timer-button {
-      padding: 5px 10px;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .timer-button.start {
-      background-color: #28a745;
-      color: white;
-    }
-
-    .timer-button.start:hover {
-      background-color: #218838;
-    }
-
-    .timer-button.stop {
-      background-color: #ffc107;
-      color: #333;
-    }
-
-    .timer-button.stop:hover {
-      background-color: #e0a800;
-    }
-
-    .timer-button.reset {
-      background-color: #dc3545;
-      color: white;
-    }
-
-    .timer-button.reset:hover {
-      background-color: #c82333;
-    }
-
-    .footer {
-      margin-top: 1rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #aaa;
-    }
-
+    .weather-info { display: flex; align-items: center; gap: 0.5rem; }
+    .weather-temp { font-size: 1.2rem; font-weight: 600; }
+    .weather-icon { font-size: 1.5rem; }
+    .weather-desc { font-size: 0.9rem; color: #ddd; }
+    .weather-tomorrow { font-size: 0.9rem; text-align: center; margin-top: 5px; color: #ccc; }
+    .weather-link { font-size: 0.8rem; margin-top: 5px; color: #aaa; transition: color 0.3s; }
+    .weather-link:hover { color: #66eaff; }
+    
+    .footer { margin-top: 1rem; text-align: center; font-size: 0.8rem; color: #aaa; }
+    
     @media (max-width: 900px) {
-      body {
-        overflow: auto;
-      }
-      .columns {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-      }
-      h1 {
-        font-size: 1.7rem;
-      }
-      .section h2 {
-        font-size: 1.1rem;
-      }
-      a {
-        font-size: 0.9rem;
-      }
-      .search-container {
-        width: 95%;
-      }
+      body { overflow: auto; }
+      main { flex-direction: column; align-items: center; gap: 1rem; }
+      h1 { font-size: 1.7rem; }
+      .section h2 { font-size: 1.1rem; }
+      a { font-size: 0.9rem; }
+      .search-container { width: 95%; }
     }
   </style>
 </head>
@@ -400,7 +214,7 @@
       <h1>Stay focused and trust the process</h1>
       <p class="subtitle">Si una tarea toma menos de 2 minutos, hazla inmediatamente. Done is better than perfect.</p>
     </header>
-
+    
     <div class="search-container">
       <input type="text" id="search-input" class="search-input" placeholder="Buscar en..." aria-label="Campo de búsqueda">
       <div class="search-buttons">
@@ -412,150 +226,224 @@
         </button>
       </div>
     </div>
-
+    
     <main>
-      <div class="columns">
-        <!-- Primera columna: DÍA y Redes -->
-        <div class="column">
-          <div class="section">
-            <h2><i class="fas fa-calendar-day" aria-hidden="true"></i> DÍA</h2>
-            <ul>
-              <li><a href="https://www.alibaba.com/" target="_blank"><i class="fas fa-shopping-cart" aria-hidden="true"></i> Alibaba</a></li>
-              <li><a href="https://www.icloud.com/" target="_blank"><i class="fab fa-apple" aria-hidden="true"></i> iCloud</a></li>
-              <li><a href="https://chat.openai.com" target="_blank"><i class="fas fa-comment-dots" aria-hidden="true"></i> ChatGPT</a></li>
-              <li><a href="https://grok.com/" target="_blank"><i class="fab fa-xing" aria-hidden="true"></i> Grok (X AI)</a></li>
-              <li><a href="https://translate.google.com/" target="_blank"><i class="fas fa-language" aria-hidden="true"></i> Traductor</a></li>
-              <li><a href="https://app.holded.com/" target="_blank"><i class="fas fa-folder-open" aria-hidden="true"></i> Holded</a></li>
-            </ul>
-          </div>
-
-          <div class="section">
-            <h2><i class="fas fa-network-wired" aria-hidden="true"></i> Redes</h2>
-            <ul>
-              <li><a href="https://x.com/home" target="_blank"><i class="fab fa-twitter" aria-hidden="true"></i> X (Twitter)</a></li>
-              <li><a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube" aria-hidden="true"></i> YouTube</a></li>
-              <li><a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp" aria-hidden="true"></i> Whatsapp</a></li>
-              <li><a href="https://web.telegram.org/" target="_blank"><i class="fab fa-telegram" aria-hidden="true"></i> Telegram</a></li>
-              <li><a href="https://www.netflix.com/" target="_blank"><i class="fas fa-tv" aria-hidden="true"></i> Netflix</a></li>
-              <li><a href="https://www.primevideo.com/" target="_blank"><i class="fab fa-amazon" aria-hidden="true"></i> Amazon Prime Video</a></li>
-            </ul>
+      <!-- COLUMA IZQUIERDA: DÍA, Redes, Drive -->
+      <div class="column">
+        <div class="section">
+          <h2><i class="fas fa-calendar-day" aria-hidden="true"></i> DÍA</h2>
+          <ul>
+            <li><a href="https://www.alibaba.com/" target="_blank"><i class="fas fa-shopping-cart" aria-hidden="true"></i> Alibaba</a></li>
+            <li><a href="https://www.icloud.com/" target="_blank"><i class="fab fa-apple" aria-hidden="true"></i> iCloud</a></li>
+            <li><a href="https://chat.openai.com" target="_blank"><i class="fas fa-comment-dots" aria-hidden="true"></i> ChatGPT</a></li>
+            <li><a href="https://grok.com/" target="_blank"><i class="fab fa-xing" aria-hidden="true"></i> Grok (X AI)</a></li>
+            <li><a href="https://translate.google.com/" target="_blank"><i class="fas fa-language" aria-hidden="true"></i> Traductor</a></li>
+            <li><a href="https://app.holded.com/" target="_blank"><i class="fas fa-folder-open" aria-hidden="true"></i> Holded</a></li>
+          </ul>
+        </div>
+        <div class="section">
+          <h2><i class="fas fa-network-wired" aria-hidden="true"></i> Redes</h2>
+          <ul>
+            <li><a href="https://x.com/home" target="_blank"><i class="fab fa-twitter" aria-hidden="true"></i> X (Twitter)</a></li>
+            <li><a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube" aria-hidden="true"></i> YouTube</a></li>
+            <li><a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp" aria-hidden="true"></i> Whatsapp</a></li>
+            <li><a href="https://web.telegram.org/" target="_blank"><i class="fab fa-telegram" aria-hidden="true"></i> Telegram</a></li>
+            <li><a href="https://www.netflix.com/" target="_blank"><i class="fas fa-tv" aria-hidden="true"></i> Netflix</a></li>
+            <li><a href="https://www.primevideo.com/" target="_blank"><i class="fab fa-amazon" aria-hidden="true"></i> Amazon Prime Video</a></li>
+          </ul>
+        </div>
+        <div class="section">
+          <h2><i class="fab fa-google-drive" aria-hidden="true"></i> Drive</h2>
+          <ul>
+            <li><a href="https://drive.google.com/drive/u/0/my-drive" target="_blank"><i class="fas fa-hdd" aria-hidden="true"></i> Mi Unidad (Drive)</a></li>
+            <li><a href="https://accounts.google.com/b/0/AddMailService" target="_blank"><i class="fas fa-envelope" aria-hidden="true"></i> Gmail</a></li>
+            <li><a href="https://docs.google.com/document/u/0/" target="_blank"><i class="fas fa-file-alt" aria-hidden="true"></i> Documentos</a></li>
+            <li><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank"><i class="fas fa-table" aria-hidden="true"></i> Spreadsheets</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- COLUMNA CENTRAL: Utilidades y Calendario -->
+      <div class="column">
+        <div class="section">
+          <h2><i class="fas fa-tools" aria-hidden="true"></i> Utilidades</h2>
+          <ul>
+            <li><a href="https://www.fiverr.com/inbox" target="_blank"><i class="fas fa-briefcase" aria-hidden="true"></i> Fiverr</a></li>
+            <li><a href="https://www.idealista.com/usuario/tus-alertas" target="_blank"><i class="fas fa-home" aria-hidden="true"></i> Idealista</a></li>
+            <li><a href="https://www.amazon.es/" target="_blank"><i class="fab fa-amazon" aria-hidden="true"></i> Amazon</a></li>
+            <li><a href="https://biwenger.as.com/round" target="_blank"><i class="fas fa-futbol" aria-hidden="true"></i> Biwenger</a></li>
+            <li><a href="https://www.futbolfantasy.com/" target="_blank"><i class="fas fa-gamepad" aria-hidden="true"></i> Fantasy</a></li>
+            <li><a href="https://music.amazon.es/" target="_blank"><i class="fab fa-amazon" aria-hidden="true"></i> Amazon Music</a></li>
+            <li><a href="https://www.besoccer.com/team/matches/novelda-union-deportiva-senior" target="_blank"><i class="fas fa-trophy" aria-hidden="true"></i> BeSoccer</a></li>
+          </ul>
+        </div>
+        <div class="section" id="calendar-section">
+          <h2><i class="fas fa-calendar-alt" aria-hidden="true"></i> Calendario</h2>
+          <div id="calendar"></div>
+        </div>
+      </div>
+      
+      <!-- COLUMNA DERECHA: Pomodoro, Relojes, Notas en línea, Clima -->
+      <div class="column">
+        <div class="section">
+          <!-- Pomodoro sin título -->
+          <div class="pomodoro-container">
+            <div class="timer-display" id="timer-display">25:00</div>
+            <div class="timer-buttons">
+              <button class="timer-button start" id="timer-start"><i class="fas fa-play" aria-hidden="true"></i> Iniciar</button>
+              <button class="timer-button stop" id="timer-stop" disabled><i class="fas fa-pause" aria-hidden="true"></i> Pausa</button>
+              <button class="timer-button reset" id="timer-reset"><i class="fas fa-redo" aria-hidden="true"></i> Reset</button>
+            </div>
           </div>
         </div>
-
-        <!-- Segunda columna: Utilidades y Drive -->
-        <div class="column">
-          <div class="section">
-            <h2><i class="fas fa-tools" aria-hidden="true"></i> Utilidades</h2>
-            <ul>
-              <li><a href="https://www.fiverr.com/inbox" target="_blank"><i class="fas fa-briefcase" aria-hidden="true"></i> Fiverr</a></li>
-              <li><a href="https://www.idealista.com/usuario/tus-alertas" target="_blank"><i class="fas fa-home" aria-hidden="true"></i> Idealista</a></li>
-              <li><a href="https://www.amazon.es/" target="_blank"><i class="fab fa-amazon" aria-hidden="true"></i> Amazon</a></li>
-              <li><a href="https://biwenger.as.com/round" target="_blank"><i class="fas fa-futbol" aria-hidden="true"></i> Biwenger</a></li>
-              <li><a href="https://www.futbolfantasy.com/" target="_blank"><i class="fas fa-gamepad" aria-hidden="true"></i> Fantasy</a></li>
-              <li><a href="https://music.amazon.es/" target="_blank"><i class="fab fa-amazon" aria-hidden="true"></i> Amazon Music</a></li>
-              <li><a href="https://www.besoccer.com/team/matches/novelda-union-deportiva-senior" target="_blank"><i class="fas fa-trophy" aria-hidden="true"></i> BeSoccer</a></li>
-            </ul>
-          </div>
-
-          <div class="section">
-            <h2><i class="fab fa-google-drive" aria-hidden="true"></i> Drive</h2>
-            <ul>
-              <li><a href="https://drive.google.com/drive/u/0/my-drive" target="_blank"><i class="fas fa-hdd" aria-hidden="true"></i> Mi Unidad (Drive)</a></li>
-              <li><a href="https://accounts.google.com/b/0/AddMailService" target="_blank"><i class="fas fa-envelope" aria-hidden="true"></i> Gmail</a></li>
-              <li><a href="https://docs.google.com/document/u/0/" target="_blank"><i class="fas fa-file-alt" aria-hidden="true"></i> Documentos</a></li>
-              <li><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank"><i class="fas fa-table" aria-hidden="true"></i> Spreadsheets</a></li>
-            </ul>
+        <div class="section">
+          <h2><i class="fas fa-clock" aria-hidden="true"></i> Relojes</h2>
+          <div class="clocks-container" id="world-clocks">
+            <!-- Se actualizarán en JS -->
           </div>
         </div>
-
-        <!-- Tercera columna: Temporizador, Notas rápidas y Clima -->
-        <div class="column">
-          <!-- Recuadro de Pomodoro sin título -->
-          <div class="section">
-            <div class="pomodoro-container">
-              <div class="timer-display" id="timer-display">25:00</div>
-              <div class="timer-buttons">
-                <button class="timer-button start" id="timer-start"><i class="fas fa-play" aria-hidden="true"></i> Iniciar</button>
-                <button class="timer-button stop" id="timer-stop" disabled><i class="fas fa-pause" aria-hidden="true"></i> Pausa</button>
-                <button class="timer-button reset" id="timer-reset"><i class="fas fa-redo" aria-hidden="true"></i> Reset</button>
+        <div class="section">
+          <h2><i class="fas fa-pencil-alt" aria-hidden="true"></i> Notas en línea</h2>
+          <textarea id="online-notes" class="online-notes-textarea" placeholder="Escribe tus notas aquí..."></textarea>
+        </div>
+        <div class="section">
+          <h2><i class="fas fa-cloud-sun" aria-hidden="true"></i> Clima</h2>
+          <div class="weather-container">
+            <select id="weather-city" class="weather-city-selector">
+              <option value="madrid">Madrid</option>
+              <option value="elche">Elche</option>
+              <option value="albacete">Albacete</option>
+              <option value="leon">León</option>
+              <option value="candanchu">Candanchú</option>
+            </select>
+            <div class="weather-info">
+              <div class="weather-icon" id="weather-icon">
+                <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
               </div>
+              <div class="weather-temp" id="weather-temp">--°C</div>
             </div>
-          </div>
-
-          <div class="section">
-            <h2><i class="fas fa-sticky-note" aria-hidden="true"></i> Notas rápidas</h2>
-            <div class="notes-container">
-              <textarea id="quick-notes" class="notes-textarea" placeholder="Escribe tus notas aquí..." aria-label="Notas rápidas"></textarea>
-            </div>
-            <div class="date-container">
-              <div class="date-text" id="date-full"></div>
-              <div id="world-clocks"></div>
-            </div>
-          </div>
-          
-          <!-- Sección de Clima reubicada debajo de los relojes -->
-          <div class="section">
-            <h2><i class="fas fa-cloud-sun" aria-hidden="true"></i> Clima</h2>
-            <div class="weather-container">
-              <select id="weather-city" class="weather-city-selector">
-                <option value="madrid">Madrid</option>
-                <option value="elche">Elche</option>
-                <option value="albacete">Albacete</option>
-                <option value="leon">León</option>
-                <option value="candanchu">Candanchú</option>
-              </select>
-              <div class="weather-info">
-                <div class="weather-icon" id="weather-icon"><i class="fas fa-sync fa-spin" aria-hidden="true"></i></div>
-                <div class="weather-temp" id="weather-temp">--°C</div>
-              </div>
-              <div class="weather-desc" id="weather-desc">Cargando...</div>
-              <div class="weather-tomorrow" id="weather-tomorrow">Previsión mañana: Cargando...</div>
-              <a href="#" target="_blank" class="weather-link" id="weather-link">
-                Más detalles <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-              </a>
-            </div>
+            <div class="weather-desc" id="weather-desc">Cargando...</div>
+            <div class="weather-tomorrow" id="weather-tomorrow">Previsión mañana: Cargando...</div>
+            <a href="#" target="_blank" class="weather-link" id="weather-link">
+              Más detalles <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>
     </main>
-
+    
     <footer class="footer">
       © 2025 - Página de inicio TriTonRuleS
     </footer>
   </div>
-
+  
   <script>
-    // Actualizar fecha y relojes mundiales
-    function updateTime() {
+    // ---------------------------
+    // Calendario mensual dinámico
+    // ---------------------------
+    function generateCalendar() {
+      const calendarDiv = document.getElementById('calendar');
       const now = new Date();
-      document.getElementById("date-full").textContent = now.toLocaleDateString("es-ES", { 
-        weekday: 'long', 
-        day: 'numeric', 
-        month: 'long', 
-        year: 'numeric' 
-      });
-      updateWorldClocks();
+      const year = now.getFullYear();
+      const month = now.getMonth(); // 0-indexado
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const daysInMonth = lastDay.getDate();
+      // Ajustar para que la semana empiece en lunes (si es domingo, tratarlo como 7)
+      let startDay = firstDay.getDay();
+      startDay = (startDay === 0) ? 7 : startDay;
+      
+      let html = '<table>';
+      // Encabezados de días (Lun a Dom)
+      const daysOfWeek = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+      html += '<tr>';
+      for (const day of daysOfWeek) {
+        html += '<th>' + day + '</th>';
+      }
+      html += '</tr><tr>';
+      // Celdas vacías antes del primer día
+      for (let i = 1; i < startDay; i++) {
+        html += '<td></td>';
+      }
+      let dayCount = startDay;
+      for (let d = 1; d <= daysInMonth; d++) {
+        html += '<td>' + d + '</td>';
+        if (dayCount % 7 === 0 && d !== daysInMonth) {
+          html += '</tr><tr>';
+        }
+        dayCount++;
+      }
+      html += '</tr></table>';
+      calendarDiv.innerHTML = html;
     }
     
+    // ---------------------------
+    // Notas en línea con Firebase Firestore
+    // ---------------------------
+    // Reemplaza los datos de firebaseConfig con los de tu proyecto
+    const firebaseConfig = {
+      apiKey: "TU_API_KEY",
+      authDomain: "TU_PROJECT_ID.firebaseapp.com",
+      projectId: "TU_PROJECT_ID",
+      storageBucket: "TU_PROJECT_ID.appspot.com",
+      messagingSenderId: "TU_SENDER_ID",
+      appId: "TU_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    
+    function setupOnlineNotes() {
+      const notesTextarea = document.getElementById('online-notes');
+      const docRef = db.collection('notes').doc('onlineNotes');
+      // Escuchar cambios en tiempo real
+      docRef.onSnapshot((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          if (data.text !== notesTextarea.value) {
+            notesTextarea.value = data.text;
+          }
+        } else {
+          docRef.set({ text: "" });
+        }
+      });
+      // Guardar cambios (debounce de 500ms)
+      let timeout;
+      notesTextarea.addEventListener('input', () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          docRef.set({ text: notesTextarea.value });
+        }, 500);
+      });
+    }
+    
+    // ---------------------------
+    // Relojes mundiales
+    // ---------------------------
     function updateWorldClocks() {
       const madridTime = new Date().toLocaleTimeString("es-ES", { timeZone: "Europe/Madrid", hour12: false });
       const shenzhenTime = new Date().toLocaleTimeString("es-ES", { timeZone: "Asia/Shanghai", hour12: false });
       const sanDiegoTime = new Date().toLocaleTimeString("es-ES", { timeZone: "America/Los_Angeles", hour12: false });
       const newYorkTime = new Date().toLocaleTimeString("es-ES", { timeZone: "America/New_York", hour12: false });
-      document.getElementById('world-clocks').innerHTML =
-        `<div>Madrid: ${madridTime}</div>
-         <div>Shenzhen: ${shenzhenTime}</div>
-         <div>San Diego: ${sanDiegoTime}</div>
-         <div>New York: ${newYorkTime}</div>`;
+      const clocksDiv = document.getElementById('world-clocks');
+      if (clocksDiv) {
+        clocksDiv.innerHTML =
+          `<div>Madrid: ${madridTime}</div>
+           <div>Shenzhen: ${shenzhenTime}</div>
+           <div>San Diego: ${sanDiegoTime}</div>
+           <div>New York: ${newYorkTime}</div>`;
+      }
     }
+    // Actualizar relojes cada segundo
+    setInterval(updateWorldClocks, 1000);
     
-    // Precarga y cambio de fondo
+    // ---------------------------
+    // Fondo aleatorio
+    // ---------------------------
     function preloadImage(url) {
       const img = new Image();
       img.src = url;
       return img;
     }
-    
     function setRandomBackground() {
       const imageUrl = `https://picsum.photos/1920/1080?random=${new Date().getTime()}`;
       const img = preloadImage(imageUrl);
@@ -564,30 +452,29 @@
       };
     }
     
-    // Funcionalidad del buscador: al pulsar Enter se abren ambas búsquedas
+    // ---------------------------
+    // Buscador: abre Google y ChatGPT
+    // ---------------------------
     function setupSearch() {
       const searchInput = document.getElementById('search-input');
       const googleButton = document.getElementById('google-search');
       const chatgptButton = document.getElementById('chatgpt-search');
-
       googleButton.addEventListener('click', () => {
         const query = searchInput.value.trim();
         if (query) {
           window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
         }
       });
-
       chatgptButton.addEventListener('click', () => {
         const query = searchInput.value.trim();
         if (query) {
           window.open(`https://chat.openai.com/?q=${encodeURIComponent(query)}`, '_blank');
         }
       });
-
       searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
           const query = searchInput.value.trim();
-          if(query) {
+          if (query) {
             window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
             window.open(`https://chat.openai.com/?q=${encodeURIComponent(query)}`, '_blank');
           }
@@ -595,7 +482,9 @@
       });
     }
     
-    // Configuración del widget del clima usando Open‑Meteo
+    // ---------------------------
+    // Widget del clima con Open‑Meteo
+    // ---------------------------
     function setupWeather() {
       const citySelector = document.getElementById('weather-city');
       const weatherLink = document.getElementById('weather-link');
@@ -606,20 +495,18 @@
         leon: { lat: 42.5987, lon: -5.5671 },
         candanchu: { lat: 42.6169, lon: 0.7594 }
       };
-
       function mapWeatherCode(code) {
         if (code === 0) return { desc: "Despejado", icon: "sun" };
-        if ([1, 2, 3].includes(code)) return { desc: "Parcialmente nublado", icon: "cloud" };
-        if ([45, 48].includes(code)) return { desc: "Con niebla", icon: "smog" };
-        if ([51, 53, 55].includes(code)) return { desc: "Llovizna", icon: "cloud-rain" };
-        if ([61, 63, 65].includes(code)) return { desc: "Lluvia", icon: "cloud-showers-heavy" };
-        if ([66, 67].includes(code)) return { desc: "Lluvia helada", icon: "snowflake" };
-        if ([71, 73, 75].includes(code)) return { desc: "Nieve", icon: "snowflake" };
-        if ([80, 81, 82].includes(code)) return { desc: "Chubascos", icon: "cloud-showers-heavy" };
-        if ([95, 96, 99].includes(code)) return { desc: "Tormenta", icon: "bolt" };
+        if ([1,2,3].includes(code)) return { desc: "Parcialmente nublado", icon: "cloud" };
+        if ([45,48].includes(code)) return { desc: "Con niebla", icon: "smog" };
+        if ([51,53,55].includes(code)) return { desc: "Llovizna", icon: "cloud-rain" };
+        if ([61,63,65].includes(code)) return { desc: "Lluvia", icon: "cloud-showers-heavy" };
+        if ([66,67].includes(code)) return { desc: "Lluvia helada", icon: "snowflake" };
+        if ([71,73,75].includes(code)) return { desc: "Nieve", icon: "snowflake" };
+        if ([80,81,82].includes(code)) return { desc: "Chubascos", icon: "cloud-showers-heavy" };
+        if ([95,96,99].includes(code)) return { desc: "Tormenta", icon: "bolt" };
         return { desc: "Desconocido", icon: "question" };
       }
-
       function updateWeather() {
         const selectedCity = citySelector.value;
         const coords = cityCoords[selectedCity];
@@ -643,7 +530,7 @@
             } else {
               document.getElementById('weather-tomorrow').textContent = "Previsión mañana: Sin datos";
             }
-            weatherLink.href = `https://open-meteo.com/`;
+            weatherLink.href = "https://open-meteo.com/";
           })
           .catch(err => {
             console.error(err);
@@ -651,20 +538,20 @@
             document.getElementById('weather-tomorrow').textContent = "Previsión mañana: Error";
           });
       }
-
       updateWeather();
       citySelector.addEventListener('change', () => {
         updateWeather();
         localStorage.setItem('selectedCity', citySelector.value);
       });
-
       if (localStorage.getItem('selectedCity')) {
         citySelector.value = localStorage.getItem('selectedCity');
         updateWeather();
       }
     }
     
-    // Temporizador Pomodoro
+    // ---------------------------
+    // Temporizador Pomodoro con sonido en bucle
+    // ---------------------------
     function setupPomodoro() {
       const timerDisplay = document.getElementById('timer-display');
       const startButton = document.getElementById('timer-start');
@@ -674,10 +561,9 @@
       let minutes = 25;
       let seconds = 0;
       let isRunning = false;
-      
-      // Crear objeto Audio para el sonido de alarma (nuevo sonido)
+      // Sonido (bugle_tune) en bucle
       const alarmSound = new Audio('https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg');
-      alarmSound.loop = true; // Para que suene en bucle
+      alarmSound.loop = true;
       
       function updateDisplay() {
         timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
@@ -693,7 +579,6 @@
               if (minutes === 0) {
                 clearInterval(timer);
                 isRunning = false;
-                // Reproducir sonido de alarma en bucle
                 alarmSound.play();
                 if (Notification.permission === 'granted') {
                   new Notification('Pomodoro Timer', {
@@ -730,7 +615,6 @@
         updateDisplay();
         startButton.disabled = false;
         stopButton.disabled = true;
-        // Detener el sonido de alarma si está sonando
         alarmSound.pause();
         alarmSound.currentTime = 0;
       }
@@ -744,27 +628,19 @@
       }
     }
     
-    // Notas rápidas con localStorage
-    function setupNotes() {
-      const notesArea = document.getElementById('quick-notes');
-      if (localStorage.getItem('quickNotes')) {
-        notesArea.value = localStorage.getItem('quickNotes');
-      }
-      notesArea.addEventListener('input', () => {
-        localStorage.setItem('quickNotes', notesArea.value);
-      });
-    }
-    
-    // Inicialización de todos los componentes
+    // ---------------------------
+    // Inicialización de todos los componentes al cargar
+    // ---------------------------
     document.addEventListener('DOMContentLoaded', function() {
-      updateTime();
-      setInterval(updateTime, 1000);
       setRandomBackground();
       setInterval(setRandomBackground, 300000);
       setupSearch();
       setupWeather();
       setupPomodoro();
-      setupNotes();
+      generateCalendar();
+      setupOnlineNotes();
+      // Iniciar actualización de relojes (se actualizan cada segundo en updateWorldClocks)
+      updateWorldClocks();
     });
   </script>
 </body>
