@@ -118,12 +118,10 @@
     a:hover { color: #66eaff; transform: translateX(5px); padding-left: 2px; }
     
     /* COL. IZQUIERDA: DÍA, Redes, Drive */
-    /* (Usa estilos generales de .section) */
+    /* Se usan los estilos generales de .section */
     
     /* COL. CENTRAL: Utilidades y Calendario */
-    #calendar {
-      margin-bottom: 1rem;
-    }
+    #calendar { margin-bottom: 1rem; }
     #calendar table {
       width: 100%; border-collapse: collapse; text-align: center;
     }
@@ -150,7 +148,7 @@
     .timer-button.stop:hover { background-color: #e0a800; }
     .timer-button.reset { background-color: #dc3545; color: white; }
     .timer-button.reset:hover { background-color: #c82333; }
-    /* Opciones de configuración y modo */
+    /* Opciones de Pomodoro */
     .pomodoro-options {
       display: flex; justify-content: space-around;
       width: 100%; margin-bottom: 0.5rem;
@@ -227,7 +225,7 @@
     </div>
     
     <main>
-      <!-- COLUMNA IZQUIERDA: DÍA, Redes, Drive -->
+      <!-- COL. IZQUIERDA: DÍA, Redes, Drive -->
       <div class="column">
         <div class="section">
           <h2><i class="fas fa-calendar-day" aria-hidden="true"></i> DÍA</h2>
@@ -249,6 +247,8 @@
             <li><a href="https://web.telegram.org/" target="_blank"><i class="fab fa-telegram" aria-hidden="true"></i> Telegram</a></li>
             <li><a href="https://www.netflix.com/" target="_blank"><i class="fas fa-tv" aria-hidden="true"></i> Netflix</a></li>
             <li><a href="https://www.primevideo.com/" target="_blank"><i class="fab fa-amazon" aria-hidden="true"></i> Amazon Prime Video</a></li>
+            <!-- Enlace añadido: Apple TV -->
+            <li><a href="https://tv.apple.com/" target="_blank"><i class="fas fa-tv" aria-hidden="true"></i> Apple TV</a></li>
           </ul>
         </div>
         <div class="section">
@@ -262,7 +262,7 @@
         </div>
       </div>
       
-      <!-- COLUMNA CENTRAL: Utilidades y Calendario -->
+      <!-- COL. CENTRAL: Utilidades y Calendario -->
       <div class="column">
         <div class="section">
           <h2><i class="fas fa-tools" aria-hidden="true"></i> Utilidades</h2>
@@ -270,6 +270,8 @@
             <li><a href="https://www.fiverr.com/inbox" target="_blank"><i class="fas fa-briefcase" aria-hidden="true"></i> Fiverr</a></li>
             <li><a href="https://www.idealista.com/usuario/tus-alertas" target="_blank"><i class="fas fa-home" aria-hidden="true"></i> Idealista</a></li>
             <li><a href="https://www.amazon.es/" target="_blank"><i class="fab fa-amazon" aria-hidden="true"></i> Amazon</a></li>
+            <!-- Enlace añadido: Logística Alibaba, después de Amazon y antes de Biwenger -->
+            <li><a href="https://logistics.alibaba.com/buyer/luyou/public/blg/buyer_query_price.htm?from=buyerCentral" target="_blank"><i class="fas fa-truck" aria-hidden="true"></i> Logística Alibaba</a></li>
             <li><a href="https://biwenger.as.com/round" target="_blank"><i class="fas fa-futbol" aria-hidden="true"></i> Biwenger</a></li>
             <li><a href="https://www.futbolfantasy.com/" target="_blank"><i class="fas fa-gamepad" aria-hidden="true"></i> Fantasy</a></li>
             <li><a href="https://music.amazon.es/" target="_blank"><i class="fab fa-amazon" aria-hidden="true"></i> Amazon Music</a></li>
@@ -282,7 +284,7 @@
         </div>
       </div>
       
-      <!-- COLUMNA DERECHA: Pomodoro, Relojes, Clima -->
+      <!-- COL. DERECHA: Pomodoro, Relojes, Clima -->
       <div class="column">
         <div class="section">
           <!-- Opciones de Pomodoro -->
@@ -318,7 +320,7 @@
         <div class="section">
           <h2><i class="fas fa-clock" aria-hidden="true"></i> Relojes</h2>
           <div class="clocks-container" id="world-clocks">
-            <!-- Relojes actualizados en JS -->
+            <!-- Se actualizarán en JS -->
           </div>
         </div>
         <div class="section">
@@ -533,7 +535,7 @@
       const modeLabel = document.getElementById('mode-label');
       
       let timer;
-      let minutes = parseInt(workSelect.value); // Inicialmente 25
+      let minutes = parseInt(workSelect.value); // Por defecto 25
       let seconds = 0;
       let isRunning = false;
       let mode = "work"; // "work" o "break"
@@ -550,11 +552,7 @@
       function startTimer() {
         if (!isRunning) {
           // Al iniciar, establecer duración según el modo
-          if (mode === "work") {
-            minutes = parseInt(workSelect.value);
-          } else {
-            minutes = parseInt(breakSelect.value);
-          }
+          minutes = (mode === "work") ? parseInt(workSelect.value) : parseInt(breakSelect.value);
           seconds = 0;
           updateDisplay();
           isRunning = true;
@@ -565,62 +563,23 @@
               if (minutes === 0) {
                 clearInterval(timer);
                 isRunning = false;
-                // Reproducir sonido de alarma en bucle
                 alarmSound.play();
-                // Notificar y cambiar de modo automáticamente
                 if (Notification.permission === 'granted') {
                   new Notification('Pomodoro Timer', {
                     body: '¡Tiempo completado!',
                     icon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⏰</text></svg>'
                   });
                 }
-                // Cambiar de modo: de trabajo a descanso, o viceversa
+                // Cambiar de modo automáticamente
                 mode = (mode === "work") ? "break" : "work";
-                // Reiniciar el temporizador con la nueva duración sin esperar a que el usuario pulse Start
-                if (mode === "work") {
-                  minutes = parseInt(workSelect.value);
-                } else {
-                  minutes = parseInt(breakSelect.value);
-                }
+                minutes = (mode === "work") ? parseInt(workSelect.value) : parseInt(breakSelect.value);
                 seconds = 0;
                 updateDisplay();
-                // Reiniciar el intervalo automáticamente
+                // Reiniciar el temporizador automáticamente
                 isRunning = true;
                 startButton.disabled = true;
                 stopButton.disabled = false;
-                timer = setInterval(() => {
-                  if (seconds === 0) {
-                    if (minutes === 0) {
-                      clearInterval(timer);
-                      isRunning = false;
-                      alarmSound.play();
-                      if (Notification.permission === 'granted') {
-                        new Notification('Pomodoro Timer', {
-                          body: '¡Tiempo completado!',
-                          icon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⏰</text></svg>'
-                        });
-                      }
-                      mode = (mode === "work") ? "break" : "work";
-                      if (mode === "work") {
-                        minutes = parseInt(workSelect.value);
-                      } else {
-                        minutes = parseInt(breakSelect.value);
-                      }
-                      seconds = 0;
-                      updateDisplay();
-                      isRunning = true;
-                      startButton.disabled = true;
-                      stopButton.disabled = false;
-                      timer = setInterval(arguments.callee, 1000);
-                      return;
-                    }
-                    minutes--;
-                    seconds = 59;
-                  } else {
-                    seconds--;
-                  }
-                  updateDisplay();
-                }, 1000);
+                timer = setInterval(arguments.callee, 1000);
                 return;
               }
               minutes--;
