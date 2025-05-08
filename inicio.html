@@ -1,207 +1,70 @@
+Pensó durante 8 segundos
+
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stay focused and trust the process</title>
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
-  <!-- Fuente Montserrat desde Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- Font Awesome para iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <style>
-    /* Reset y estilos generales */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      width: 100%; height: 100%;
-      font-family: 'Montserrat', sans-serif;
-      color: #fff; background: #000; overflow: hidden;
-    }
-    body {
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      transition: background-image 1s ease-in-out;
-    }
-    .container {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      background-color: rgba(0,0,0,0.45);
-      padding: 1rem;
-      animation: fadeIn 1s ease-in-out forwards;
-    }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    header { text-align: center; margin-bottom: 1rem; }
-    h1 {
-      font-size: 2rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 2px;
-      margin-bottom: 0.5rem;
-      white-space: normal;
-    }
-    .subtitle {
-      font-size: 1rem; color: #ccc;
-      margin-bottom: 1.5rem;
-      white-space: normal;
-    }
-    .search-container {
-      display: flex; margin-bottom: 1.5rem;
-      width: 80%; max-width: 600px;
-    }
-    .search-input {
-      flex: 1; padding: 10px;
-      border-radius: 5px 0 0 5px; border: none;
-      background: rgba(255,255,255,0.9); color: #333;
-    }
-    .search-buttons { display: flex; }
-    .search-button {
-      padding: 10px 15px; border: none;
-      background: #4285f4; color: white; cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-    .search-button:first-child { border-radius: 0; }
-    .search-button:last-child {
-      border-radius: 0 5px 5px 0; background: #19a971;
-    }
-    .search-button:hover {
-      background-color: #3367d6; transform: translateY(-2px);
-    }
-    .search-button:last-child:hover { background-color: #158f60; }
-    main {
-      width: 90%; max-width: 1200px;
-      display: flex; gap: 2rem;
-      overflow-y: auto;
-    }
-    .column {
-      flex: 1; display: flex; flex-direction: column;
-      gap: 1.5rem; animation: slideIn 0.8s ease-out forwards;
-    }
-    .column:nth-child(1) { animation-delay: 0.2s; }
-    .column:nth-child(2) { animation-delay: 0.4s; }
-    .column:nth-child(3) { animation-delay: 0.6s; }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .section {
-      background-color: rgba(0,0,0,0.4);
-      padding: 1rem; border-radius: 0.5rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      backdrop-filter: blur(5px);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-    }
-    .section h2 {
-      font-size: 1.2rem; font-weight: 600;
-      margin-bottom: 0.5rem; text-transform: uppercase;
-      letter-spacing: 1px; border-bottom: 1px solid #666;
-      padding-bottom: 0.25rem; display: flex;
-      align-items: center; gap: 0.5rem;
-      white-space: normal;
-    }
-    .section ul { list-style: none; padding-left: 0; }
-    .section li { margin: 0.5rem 0; }
-    a {
-      text-decoration: none; color: #fff;
-      font-weight: 400; font-size: 0.95rem;
-      transition: color 0.3s, transform 0.3s, padding-left 0.3s;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    a:hover { color: #66eaff; transform: translateX(5px); padding-left: 2px; }
-    
-    /* CALCULADORA DE MONEDAS */
-    #converter-section input,
-    #converter-section select,
-    #converter-section button {
-      padding: 5px; margin-right: 5px;
-      border-radius: 3px; border: none;
-      font-family: inherit;
-    }
-    #conversion-result {
-      margin-top: 0.5rem; font-size: 0.9rem;
-    }
-    
-    /* CALENDARIO */
-    #calendar { margin-bottom: 1rem; }
-    #calendar table {
-      width: 100%; border-collapse: collapse; text-align: center;
-    }
-    #calendar th, #calendar td {
-      border: 1px solid #444; padding: 5px; font-size: 0.9rem;
-    }
-    #calendar th { background-color: rgba(255,255,255,0.2); }
-    
-    /* POMODORO */
-    .pomodoro-container {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 0.5rem;
-    }
-    .timer-display { font-size: 1.5rem; font-weight: 600; margin: 5px 0; }
-    .timer-buttons { display: flex; gap: 0.5rem; }
-    .timer-button {
-      padding: 5px 10px; border: none; border-radius: 3px;
-      cursor: pointer; transition: background-color 0.3s;
-    }
-    .timer-button.start { background-color: #28a745; color: white; }
-    .timer-button.start:hover { background-color: #218838; }
-    .timer-button.stop { background-color: #ffc107; color: #333; }
-    .timer-button.stop:hover { background-color: #e0a800; }
-    .timer-button.reset { background-color: #dc3545; color: white; }
-    .timer-button.reset:hover { background-color: #c82333; }
-    .pomodoro-options {
-      display: flex; justify-content: space-around;
-      width: 100%; margin-bottom: 0.5rem;
-    }
-    .pomodoro-options select {
-      padding: 5px; border-radius: 3px; border: none;
-      background: rgba(255,255,255,0.9); color: #333;
-    }
-    .mode-label { text-align: center; font-size: 1rem; margin-bottom: 0.5rem; }
-
-    /* RELOJES */
-    .clocks-container {
-      background-color: rgba(0,0,0,0.35);
-      padding: 0.5rem; border-radius: 0.5rem;
-      text-align: center; font-size: 0.95rem; margin-bottom: 1rem;
-    }
-    
-    /* CLIMA */
-    .weather-container {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 0.5rem; padding: 0.5rem;
-    }
-    .weather-city-selector {
-      width: 100%; padding: 5px; border-radius: 3px; border: none;
-      background-color: rgba(255,255,255,0.9); color: #333; margin-bottom: 5px;
-    }
-    .weather-info { display: flex; align-items: center; gap: 0.5rem; }
-    .weather-temp { font-size: 1.2rem; font-weight: 600; }
-    .weather-icon { font-size: 1.5rem; }
-    .weather-desc { font-size: 0.9rem; color: #ddd; }
-    .weather-tomorrow { font-size: 0.9rem; margin-top: 5px; color: #ccc; }
-    .weather-link { font-size: 0.8rem; margin-top: 5px; color: #aaa; transition: color 0.3s; }
-    .weather-link:hover { color: #66eaff; }
-
-    .footer {
-      margin-top: 1rem; text-align: center;
-      font-size: 0.8rem; color: #aaa;
-    }
-    @media (max-width: 900px) {
-      body { overflow: auto; }
-      main { flex-direction: column; align-items: center; gap: 1rem; }
-      h1 { font-size: 1.7rem; }
-      .section h2 { font-size: 1.1rem; }
-      a { font-size: 0.9rem; }
-      .search-container { width: 95%; }
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{width:100%;height:100%;font-family:'Montserrat',sans-serif;color:#fff;background:#000;overflow:hidden}
+    body{background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;transition:background-image 1s ease-in-out}
+    .container{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background-color:rgba(0,0,0,.45);padding:1rem;animation:fadeIn 1s ease-in-out forwards}
+    @keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
+    header{text-align:center;margin-bottom:1rem}
+    h1{font-size:2rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:.5rem;white-space:normal}
+    .subtitle{font-size:1rem;color:#ccc;margin-bottom:1.5rem;white-space:normal}
+    .search-container{display:flex;margin-bottom:1.5rem;width:80%;max-width:600px}
+    .search-input{flex:1;padding:10px;border-radius:5px 0 0 5px;border:none;background:rgba(255,255,255,.9);color:#333}
+    .search-buttons{display:flex}
+    .search-button{padding:10px 15px;border:none;background:#4285f4;color:#fff;cursor:pointer;transition:background-color .3s,transform .2s}
+    .search-button:first-child{border-radius:0}
+    .search-button:last-child{border-radius:0 5px 5px 0;background:#19a971}
+    .search-button:hover{background-color:#3367d6;transform:translateY(-2px)}
+    .search-button:last-child:hover{background-color:#158f60}
+    main{width:90%;max-width:1200px;display:flex;gap:2rem;overflow-y:auto}
+    .column{flex:1;display:flex;flex-direction:column;gap:1.5rem;animation:slideIn .8s ease-out forwards}
+    .column:nth-child(1){animation-delay:.2s}.column:nth-child(2){animation-delay:.4s}.column:nth-child(3){animation-delay:.6s}
+    @keyframes slideIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+    .section{background-color:rgba(0,0,0,.4);padding:1rem;border-radius:.5rem;box-shadow:0 4px 6px rgba(0,0,0,.1);backdrop-filter:blur(5px);transition:transform .3s,box-shadow .3s}
+    .section:hover{transform:translateY(-5px);box-shadow:0 6px 12px rgba(0,0,0,.2)}
+    .section h2{font-size:1.2rem;font-weight:600;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #666;padding-bottom:.25rem;display:flex;align-items:center;gap:.5rem;white-space:normal}
+    .section ul{list-style:none;padding-left:0}.section li{margin:.5rem 0}
+    a{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-size:.95rem;transition:color .3s,transform .3s,padding-left .3s}
+    a:hover{color:#66eaff;transform:translateX(5px);padding-left:2px}
+    #converter-section input,#converter-section select,#converter-section button{padding:5px;margin-right:5px;border:none;border-radius:3px;font-family:inherit}
+    #conversion-result{margin-top:.5rem;font-size:.9rem}
+    .month-name{text-align:center;color:#ccc;margin-bottom:.5rem;font-size:1rem}
+    #calendar{margin-bottom:1rem}
+    #calendar table{width:100%;border-collapse:collapse;text-align:center}
+    #calendar th,#calendar td{border:1px solid #444;padding:5px;font-size:.9rem}
+    #calendar th{background-color:rgba(255,255,255,.2)}
+    .pomodoro-container{display:flex;flex-direction:column;align-items:center;gap:.5rem}
+    .timer-display{font-size:1.5rem;font-weight:600;margin:5px 0}
+    .timer-buttons{display:flex;gap:.5rem}
+    .timer-button{padding:5px 10px;border:none;border-radius:3px;cursor:pointer;transition:background-color .3s}
+    .timer-button.start{background:#28a745;color:#fff}.timer-button.start:hover{background:#218838}
+    .timer-button.stop{background:#ffc107;color:#333}.timer-button.stop:hover{background:#e0a800}
+    .timer-button.reset{background:#dc3545;color:#fff}.timer-button.reset:hover{background:#c82333}
+    .pomodoro-options{display:flex;justify-content:space-around;width:100%;margin-bottom:.5rem}
+    .pomodoro-options select{padding:5px;border:none;border-radius:3px;background:rgba(255,255,255,.9);color:#333}
+    .mode-label{text-align:center;font-size:1rem;margin-bottom:.5rem}
+    .clocks-container{background:rgba(0,0,0,.35);padding:.5rem;border-radius:.5rem;text-align:center;font-size:.95rem;margin-bottom:1rem}
+    .weather-container{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:.5rem}
+    .weather-city-selector{width:100%;padding:5px;border:none;border-radius:3px;background:rgba(255,255,255,.9);color:#333;margin-bottom:5px}
+    .weather-info{display:flex;align-items:center;gap:.5rem}.weather-temp{font-size:1.2rem;font-weight:600}.weather-icon{font-size:1.5rem}
+    .weather-desc{font-size:.9rem;color:#ddd}.weather-tomorrow{font-size:.9rem;margin-top:5px;color:#ccc}
+    .weather-link{font-size:.8rem;margin-top:5px;color:#aaa;transition:color .3s}.weather-link:hover{color:#66eaff}
+    .footer{margin-top:1rem;text-align:center;font-size:.8rem;color:#aaa}
+    @media(max-width:900px){body{overflow:auto}main{flex-direction:column;align-items:center;gap:1rem}h1{font-size:1.7rem}.section h2{font-size:1.1rem}a{font-size:.9rem}.search-container{width:95%}}
   </style>
 </head>
 <body>
@@ -210,31 +73,31 @@
       <h1>Stay focused and trust the process</h1>
       <p class="subtitle">Si una tarea toma menos de 2 minutos, hazla inmediatamente. Done is better than perfect.</p>
     </header>
-    
+
     <div class="search-container">
-      <input type="text" id="search-input" class="search-input" placeholder="Buscar en..." aria-label="Campo de búsqueda">
+      <input id="search-input" class="search-input" placeholder="Buscar en..." />
       <div class="search-buttons">
-        <button class="search-button" id="google-search" title="Buscar en Google"><i class="fab fa-google"></i></button>
-        <button class="search-button" id="chatgpt-search" title="Buscar con ChatGPT"><i class="fas fa-robot"></i></button>
+        <button class="search-button" id="google-search" title="Google"><i class="fab fa-google"></i></button>
+        <button class="search-button" id="chatgpt-search" title="ChatGPT"><i class="fas fa-robot"></i></button>
       </div>
     </div>
-    
+
     <main>
-      <!-- COLUMNA IZQUIERDA: DÍA, Redes, Drive -->
+      <!-- COLUMNA IZQUIERDA -->
       <div class="column">
         <div class="section">
           <h2><i class="fas fa-calendar-day"></i> DÍA</h2>
           <ul>
             <li><a href="https://www.alibaba.com/" target="_blank"><i class="fas fa-shopping-cart"></i> Alibaba</a></li>
+            <li><a href="https://www.fiverr.com/inbox" target="_blank"><i class="fas fa-briefcase"></i> Fiverr</a></li>
             <li><a href="https://www.icloud.com/" target="_blank"><i class="fab fa-apple"></i> iCloud</a></li>
             <li><a href="https://chat.openai.com" target="_blank"><i class="fas fa-comment-dots"></i> ChatGPT</a></li>
             <li><a href="https://grok.com/" target="_blank"><i class="fab fa-xing"></i> Grok (X AI)</a></li>
             <li><a href="https://translate.google.com/" target="_blank"><i class="fas fa-language"></i> Traductor</a></li>
             <li><a href="https://app.holded.com/" target="_blank"><i class="fas fa-folder-open"></i> Holded</a></li>
-            <!-- Fiverr movido aquí -->
-            <li><a href="https://www.fiverr.com/inbox" target="_blank"><i class="fas fa-briefcase"></i> Fiverr</a></li>
           </ul>
         </div>
+
         <div class="section">
           <h2><i class="fas fa-network-wired"></i> Redes</h2>
           <ul>
@@ -247,18 +110,19 @@
             <li><a href="https://tv.apple.com/" target="_blank"><i class="fas fa-tv"></i> Apple TV</a></li>
           </ul>
         </div>
+
         <div class="section">
           <h2><i class="fab fa-google-drive"></i> Drive</h2>
           <ul>
-            <li><a href="https://drive.google.com/drive/u/0/my-drive" target="_blank"><i class="fas fa-hdd"></i> Mi Unidad (Drive)</a></li>
+            <li><a href="https://drive.google.com/drive/u/0/my-drive" target="_blank"><i class="fas fa-hdd"></i> Mi Unidad</a></li>
             <li><a href="https://accounts.google.com/b/0/AddMailService" target="_blank"><i class="fas fa-envelope"></i> Gmail</a></li>
             <li><a href="https://docs.google.com/document/u/0/" target="_blank"><i class="fas fa-file-alt"></i> Documentos</a></li>
             <li><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank"><i class="fas fa-table"></i> Spreadsheets</a></li>
           </ul>
         </div>
       </div>
-      
-      <!-- COLUMNA CENTRAL: Utilidades, Conversor, Calendario -->
+
+      <!-- COLUMNA CENTRAL -->
       <div class="column">
         <div class="section">
           <h2><i class="fas fa-tools"></i> Utilidades</h2>
@@ -266,17 +130,18 @@
             <li><a href="https://www.idealista.com/usuario/tus-alertas" target="_blank"><i class="fas fa-home"></i> Idealista</a></li>
             <li><a href="https://www.amazon.es/" target="_blank"><i class="fab fa-amazon"></i> Amazon</a></li>
             <li><a href="https://logistics.alibaba.com/buyer/luyou/public/blg/buyer_query_price.htm?from=buyerCentral" target="_blank"><i class="fas fa-truck"></i> Logística Alibaba</a></li>
+            <li><a href="https://www.google.com/maps/place/Mavepa/@40.4218119,-3.6838356,835m" target="_blank"><i class="fas fa-map-marker-alt"></i> Mavepa</a></li>
             <li><a href="https://biwenger.as.com/round" target="_blank"><i class="fas fa-futbol"></i> Biwenger</a></li>
             <li><a href="https://www.futbolfantasy.com/" target="_blank"><i class="fas fa-gamepad"></i> Fantasy</a></li>
             <li><a href="https://music.amazon.es/" target="_blank"><i class="fab fa-amazon"></i> Amazon Music</a></li>
             <li><a href="https://www.besoccer.com/team/matches/novelda-union-deportiva-senior" target="_blank"><i class="fas fa-trophy"></i> BeSoccer</a></li>
           </ul>
         </div>
-        <!-- Nuevo: Conversor de Monedas -->
+
         <div class="section" id="converter-section">
           <h2><i class="fas fa-exchange-alt"></i> Conversor de Monedas</h2>
           <div>
-            <input type="number" id="amount" placeholder="Cantidad" />
+            <input id="amount" type="number" placeholder="Cantidad">
             <select id="currency-from">
               <option value="EUR">EUR</option>
               <option value="USD">USD</option>
@@ -286,14 +151,15 @@
           </div>
           <div id="conversion-result"></div>
         </div>
-        <!-- Calendario -->
+
         <div class="section" id="calendar-section">
           <h2><i class="fas fa-calendar-alt"></i> Calendario</h2>
+          <div class="month-name" id="month-name"></div>
           <div id="calendar"></div>
         </div>
       </div>
-      
-      <!-- COLUMNA DERECHA: Pomodoro, Relojes, Clima -->
+
+      <!-- COLUMNA DERECHA -->
       <div class="column">
         <div class="section">
           <div class="pomodoro-options">
@@ -323,10 +189,12 @@
             </div>
           </div>
         </div>
+
         <div class="section">
           <h2><i class="fas fa-clock"></i> Relojes</h2>
           <div class="clocks-container" id="world-clocks"></div>
         </div>
+
         <div class="section">
           <h2><i class="fas fa-cloud-sun"></i> Clima</h2>
           <div class="weather-container">
@@ -343,217 +211,96 @@
             </div>
             <div class="weather-desc" id="weather-desc">Cargando...</div>
             <div class="weather-tomorrow" id="weather-tomorrow">Previsión mañana: Cargando...</div>
-            <a href="#" target="_blank" class="weather-link" id="weather-link">Más detalles <i class="fas fa-external-link-alt"></i></a>
+            <a id="weather-link" class="weather-link" target="_blank">Más detalles <i class="fas fa-external-link-alt"></i></a>
           </div>
         </div>
       </div>
     </main>
-    
-    <footer class="footer">
-      © 2025 - Página de inicio TriTonRuleS
-    </footer>
+
+    <footer class="footer">© 2025 - Página de inicio TriTonRuleS</footer>
   </div>
-  
+
   <script>
-    // Monedas: tasas
-    let rates = {};
-    async function fetchRates() {
-      try {
-        const res = await fetch('https://api.exchangerate-api.com/v4/latest/EUR');
-        const data = await res.json();
-        rates = data.rates;
-      } catch (e) {
-        console.error('Error al obtener tasas:', e);
-      }
+    // Conversor
+    let rates={};
+    async function fetchRates(){try{const r=await fetch('https://api.exchangerate-api.com/v4/latest/EUR');rates=(await r.json()).rates}catch(e){console.error(e)}}
+    function convert(){
+      const amt=parseFloat(document.getElementById('amount').value),from=document.getElementById('currency-from').value;
+      if(!amt||!rates[from])return;
+      document.getElementById('conversion-result').innerHTML=['EUR','USD','CNY'].filter(t=>t!==from)
+        .map(t=>`${amt} ${from} = ${(amt*(rates[t]/rates[from])).toFixed(4)} ${t}`).join('<br>');
     }
-    function convert() {
-      const amt = parseFloat(document.getElementById('amount').value);
-      const from = document.getElementById('currency-from').value;
-      if (!amt || !rates[from]) return;
-      const resultDiv = document.getElementById('conversion-result');
-      resultDiv.innerHTML = '';
-      ['EUR','USD','CNY'].forEach(to => {
-        if (to === from) return;
-        const converted = (amt * (rates[to] / rates[from])).toFixed(4);
-        resultDiv.innerHTML += `<div>${amt} ${from} = ${converted} ${to}</div>`;
-      });
+
+    // Calendario + mes
+    function generateCalendar(){
+      const cal=document.getElementById('calendar'),mn=document.getElementById('month-name');
+      const now=new Date(),y=now.getFullYear(),m=now.getMonth();
+      mn.textContent=now.toLocaleDateString('es-ES',{month:'long',year:'numeric'});
+      const first=new Date(y,m,1),last=new Date(y,m+1,0),days=last.getDate();
+      let start=first.getDay();if(start===0)start=7;
+      let html='<table><tr>'+['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(d=>`<th>${d}</th>`).join('')+'</tr><tr>';
+      for(let i=1;i<start;i++)html+='<td></td>';
+      let c=start;for(let d=1;d<=days;d++){html+=`<td>${d}</td>`;if(c%7===0&&d!==days)html+='</tr><tr>';c++;}
+      cal.innerHTML=html+'</tr></table>';
     }
-    
-    // Calendar
-    function generateCalendar() {
-      const cal = document.getElementById('calendar');
-      const now = new Date(), y = now.getFullYear(), m = now.getMonth();
-      const first = new Date(y,m,1), last = new Date(y,m+1,0);
-      const days = last.getDate();
-      let start = first.getDay(); if(start===0) start=7;
-      let html = '<table><tr>' + ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom']
-        .map(d=>`<th>${d}</th>`).join('') + '</tr><tr>';
-      for(let i=1;i<start;i++) html+='<td></td>';
-      let count=start;
-      for(let d=1;d<=days;d++){
-        html+=`<td>${d}</td>`;
-        if(count%7===0&&d!==days) html+='</tr><tr>';
-        count++;
-      }
-      html+='</tr></table>';
-      cal.innerHTML=html;
-    }
-    
+
     // Relojes
-    function updateWorldClocks() {
-      const zones = [
-        ['Madrid','Europe/Madrid'],
-        ['Shenzhen','Asia/Shanghai'],
-        ['San Diego','America/Los_Angeles'],
-        ['New York','America/New_York']
-      ];
-      const div = document.getElementById('world-clocks');
-      div.innerHTML = zones.map(z=>`<div>${z[0]}: ${new Date().toLocaleTimeString('es-ES',{timeZone:z[1],hour12:false})}</div>`).join('');
+    function updateWorldClocks(){
+      const z=[['Madrid','Europe/Madrid'],['Shenzhen','Asia/Shanghai'],['San Diego','America/Los_Angeles'],['New York','America/New_York']];
+      document.getElementById('world-clocks').innerHTML=z.map(([n,t])=>`${n}: ${new Date().toLocaleTimeString('es-ES',{timeZone:t,hour12:false})}`).join('<br>');
     }
-    
+
     // Fondo
-    function setRandomBackground() {
-      const url = `https://picsum.photos/1920/1080?random=${Date.now()}`;
-      const img = new Image();
-      img.src = url;
-      img.onload = ()=>document.body.style.backgroundImage=`url('${url}')`;
+    function setRandomBackground(){
+      const url=`https://picsum.photos/1920/1080?random=${Date.now()}`,img=new Image();
+      img.src=url;img.onload=()=>document.body.style.backgroundImage=`url('${url}')`;
     }
-    
+
     // Buscador
     function setupSearch(){
-      const inp = document.getElementById('search-input');
-      document.getElementById('google-search')
-        .addEventListener('click',()=>window.open(`https://www.google.com/search?q=${encodeURIComponent(inp.value)}`,'_blank'));
-      document.getElementById('chatgpt-search')
-        .addEventListener('click',()=>window.open(`https://chat.openai.com/?q=${encodeURIComponent(inp.value)}`,'_blank'));
-      inp.addEventListener('keydown',e=>{
-        if(e.key==='Enter'){
-          window.open(`https://www.google.com/search?q=${encodeURIComponent(inp.value)}`,'_blank');
-          window.open(`https://chat.openai.com/?q=${encodeURIComponent(inp.value)}`,'_blank');
-        }
-      });
+      const i=document.getElementById('search-input');
+      document.getElementById('google-search').onclick=()=>window.open(`https://www.google.com/search?q=${encodeURIComponent(i.value)}`,'_blank');
+      document.getElementById('chatgpt-search').onclick=()=>window.open(`https://chat.openai.com/?q=${encodeURIComponent(i.value)}`,'_blank');
+      i.addEventListener('keydown',e=>{if(e.key==='Enter'){document.getElementById('google-search').click();document.getElementById('chatgpt-search').click();}});
     }
-    
+
     // Clima
     function setupWeather(){
-      const cityCoords={
-        madrid:{lat:40.4168,lon:-3.7038},
-        elche:{lat:38.2682,lon:-0.7016},
-        albacete:{lat:38.9943,lon:-1.8561},
-        leon:{lat:42.5987,lon:-5.5671},
-        candanchu:{lat:42.6169,lon:0.7594}
-      };
-      const sel=document.getElementById('weather-city');
-      const link=document.getElementById('weather-link');
-      function mapCode(c){
-        if(c===0)return['Despejado','sun'];
-        if([1,2,3].includes(c))return['Parcialmente nublado','cloud'];
-        if([45,48].includes(c))return['Con niebla','smog'];
-        if([51,53,55].includes(c))return['Llovizna','cloud-rain'];
-        if([61,63,65].includes(c))return['Lluvia','cloud-showers-heavy'];
-        if([66,67].includes(c))return['Lluvia helada','snowflake'];
-        if([71,73,75].includes(c))return['Nieve','snowflake'];
-        if([80,81,82].includes(c))return['Chubascos','cloud-showers-heavy'];
-        if([95,96,99].includes(c))return['Tormenta','bolt'];
-        return['Desconocido','question'];
+      const c={madrid:[40.4168,-3.7038],elche:[38.2682,-0.7016],albacete:[38.9943,-1.8561],leon:[42.5987,-5.5671],candanchu:[42.6169,0.7594]};
+      const sel=document.getElementById('weather-city'),mapCode=k=>({0:['Despejado','sun'],1:['Parcialmente nublado','cloud'],2:['Parcialmente nublado','cloud'],3:['Parcialmente nublado','cloud'],45:['Con niebla','smog'],48:['Con niebla','smog'],51:['Llovizna','cloud-rain'],53:['Llovizna','cloud-rain'],55:['Llovizna','cloud-rain'],61:['Lluvia','cloud-showers-heavy'],63:['Lluvia','cloud-showers-heavy'],65:['Lluvia','cloud-showers-heavy'],66:['Lluvia helada','snowflake'],67:['Lluvia helada','snowflake'],71:['Nieve','snowflake'],73:['Nieve','snowflake'],75:['Nieve','snowflake'],80:['Chubascos','cloud-showers-heavy'],81:['Chubascos','cloud-showers-heavy'],82:['Chubascos','cloud-showers-heavy'],95:['Tormenta','bolt'],96:['Tormenta','bolt'],99:['Tormenta','bolt']}[k]||['--','question']);
+      async function up(){
+        const [lat,lon]=c[sel.value];const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`;
+        try{const d=await(await fetch(u)).json();const [desc,icon]=mapCode(d.current_weather.weathercode);
+          document.getElementById('weather-temp').textContent=`${d.current_weather.temperature}°C`;
+          document.getElementById('weather-desc').textContent=desc;
+          document.getElementById('weather-icon').innerHTML=`<i class=\"fas fa-${icon}\"></i>`;
+          const [min,max,code]=[d.daily.temperature_2m_min[1],d.daily.temperature_2m_max[1],d.daily.weathercode[1]];
+          const [d2]=mapCode(code);document.getElementById('weather-tomorrow').textContent=`Previsión mañana: ${min}°C - ${max}°C, ${d2}`;
+          document.getElementById('weather-link').href='https://open-meteo.com/';
+        }catch(e){console.error(e)}
       }
-      async function update(){
-        const v=sel.value,co=cityCoords[v];
-        const url=`https://api.open-meteo.com/v1/forecast?latitude=${co.lat}&longitude=${co.lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`;
-        try{
-          const r=await fetch(url),d=await r.json();
-          const cw=d.current_weather,cm=mapCode(cw.weathercode);
-          document.getElementById('weather-temp').textContent=`${cw.temperature}°C`;
-          document.getElementById('weather-desc').textContent=cm[0];
-          document.getElementById('weather-icon').innerHTML=`<i class="fas fa-${cm[1]}"></i>`;
-          if(d.daily.time.length>1){
-            const mn=d.daily.temperature_2m_min[1],mx=d.daily.temperature_2m_max[1],wm=d.daily.weathercode[1];
-            const tm=mapCode(wm);
-            document.getElementById('weather-tomorrow').textContent=`Previsión mañana: ${mn}°C - ${mx}°C, ${tm[0]}`;
-          }
-          link.href='https://open-meteo.com/';
-        } catch(e){
-          console.error(e);
-          document.getElementById('weather-desc').textContent='Error';
-          document.getElementById('weather-tomorrow').textContent='Error';
-        }
-      }
-      sel.addEventListener('change',()=>{
-        update();
-        localStorage.setItem('weatherCity',sel.value);
-      });
-      const saved=localStorage.getItem('weatherCity');
-      if(saved){sel.value=saved;}
-      update();
+      sel.onchange=()=>{up();localStorage.setItem('weatherCity',sel.value)};
+      if(localStorage.getItem('weatherCity'))sel.value=localStorage.getItem('weatherCity');
+      up();
     }
-    
+
     // Pomodoro
     function setupPomodoro(){
-      const disp=document.getElementById('timer-display'),
-            sb=document.getElementById('timer-start'),
-            pb=document.getElementById('timer-stop'),
-            rb=document.getElementById('timer-reset'),
-            work=document.getElementById('work-duration'),
-            brk=document.getElementById('break-duration'),
-            label=document.getElementById('mode-label');
-      let timer,mins=parseInt(work.value),secs=0,run=false,mode='work';
-      const snd=new Audio('https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg');
-      snd.loop=true;
-      function upd(){
-        disp.textContent=`${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
-        label.textContent=mode==='work'?'Modo: Trabajo':'Modo: Descanso';
-      }
-      function tick(){
-        if(secs===0){
-          if(mins===0){
-            clearInterval(timer);run=false;snd.play();
-            if(Notification.permission==='granted'){
-              new Notification('Pomodoro Timer',{body:'¡Tiempo completado!'});
-            }
-            mode=mode==='work'?'break':'work';
-            mins= mode==='work'?parseInt(work.value):parseInt(brk.value);
-            secs=0; upd();
-            run=true; sb.disabled=true; pb.disabled=false;
-            timer=setInterval(tick,1000);
-            return;
-          }
-          mins--;secs=59;
-        } else secs--;
-        upd();
-      }
-      function start(){
-        if(!run){
-          mins= mode==='work'?parseInt(work.value):parseInt(brk.value);
-          secs=0; upd();
-          run=true; sb.disabled=true; pb.disabled=false;
-          timer=setInterval(tick,1000);
-        }
-      }
-      function stop(){
-        clearInterval(timer); run=false; sb.disabled=false; pb.disabled=true;
-      }
-      function reset(){
-        clearInterval(timer); run=false; mode='work';
-        mins=parseInt(work.value); secs=0; upd();
-        sb.disabled=false; pb.disabled=true;
-        snd.pause(); snd.currentTime=0;
-      }
-      sb.addEventListener('click',start);
-      pb.addEventListener('click',stop);
-      rb.addEventListener('click',reset);
-      if(Notification.permission==='default'){
-        Notification.requestPermission();
-      }
-      upd();
+      const d=document,disp=d.getElementById('timer-display'),start=d.getElementById('timer-start'),stop=d.getElementById('timer-stop'),reset=d.getElementById('timer-reset'),work=d.getElementById('work-duration'),brk=d.getElementById('break-duration'),lbl=d.getElementById('mode-label');let t,m=+work.value,s=0,r=false,mode='work';const snd=new Audio('https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg');snd.loop=true;
+      const up=()=>{disp.textContent=`${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;lbl.textContent=mode==='work'?'Modo: Trabajo':'Modo: Descanso'};
+      const tick=()=>{if(s===0){if(m===0){clearInterval(t);snd.play();mode=mode==='work'?'break':'work';m=mode==='work'?+work.value:+brk.value;s=0;up();t=setInterval(tick,1000);return}m--;s=59}else s--;up()};
+      start.onclick=()=>{if(!r){m=mode==='work'?+work.value:+brk.value;s=0;up();r=true;start.disabled=true;stop.disabled=false;t=setInterval(tick,1000)}};
+      stop.onclick=()=>{clearInterval(t);r=false;start.disabled=false;stop.disabled=true};
+      reset.onclick=()=>{clearInterval(t);r=false;mode='work';m=+work.value;s=0;up();start.disabled=false;stop.disabled=true;snd.pause();snd.currentTime=0};
+      if(Notification.permission==='default')Notification.requestPermission();up();
     }
-    
+
     document.addEventListener('DOMContentLoaded',()=>{
-      setRandomBackground(); setInterval(setRandomBackground,300000);
-      setupSearch(); setupWeather(); setupPomodoro();
-      generateCalendar(); setInterval(updateWorldClocks,1000);
-      fetchRates();
-      document.getElementById('convert-btn').addEventListener('click',convert);
+      setRandomBackground();setInterval(setRandomBackground,300000);
+      setupSearch();setupWeather();setupPomodoro();generateCalendar();setInterval(updateWorldClocks,1000);
+      fetchRates();document.getElementById('convert-btn').onclick=convert;
     });
   </script>
 </body>
 </html>
+```
