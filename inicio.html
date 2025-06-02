@@ -11,7 +11,7 @@
     href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🚀</text></svg>'
   />
 
-  <!-- Fuente Montserrat y FontAwesome -->
+  <!-- Fuentes e iconos -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -24,295 +24,65 @@
   />
 
   <style>
-    /* ------------------------------------------------------------------ */
-    /*  RESET Y ESTILOS BÁSICOS                                           */
-    /* ------------------------------------------------------------------ */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      font-family: "Montserrat", sans-serif;
-      color: #fff;
-      background: #000;
-      overflow: hidden;
-    }
-    body {
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      transition: background-image 1s ease-in-out;
-    }
-    .container {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.45);
-      padding: 1rem;
-      animation: fadeIn 1s ease-in-out forwards;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    header {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      font-size: 2rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 0.5rem;
-    }
-    .subtitle {
-      font-size: 1rem;
-      color: #ccc;
-      margin-bottom: 1.5rem;
-    }
+    /* ------------------- RESET Y GENERALES ------------------- */
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{width:100%;height:100%;font-family:'Montserrat',sans-serif;color:#fff;background:#000;overflow:hidden}
+    body{background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;transition:background-image 1s}
+    .container{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(0,0,0,.45);padding:1rem;animation:fadeIn 1s forwards}
+    @keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
+    header{text-align:center;margin-bottom:1rem}
+    h1{font-size:2rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:.5rem}
+    .subtitle{font-size:1rem;color:#ccc;margin-bottom:1.5rem}
 
-    /* ------------------------------------------------------------------ */
-    /*  BUSCADOR                                                          */
-    /* ------------------------------------------------------------------ */
-    .search-container {
-      display: flex;
-      width: 80%;
-      max-width: 600px;
-      margin-bottom: 1.5rem;
-    }
-    .search-input {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      border-radius: 5px 0 0 5px;
-      background: rgba(255, 255, 255, 0.9);
-      color: #333;
-    }
-    .search-buttons {
-      display: flex;
-    }
-    .search-button {
-      padding: 10px 15px;
-      border: none;
-      cursor: pointer;
-      color: #fff;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-    .google-btn { background: #4285f4; }
-    .maps-btn   { background: #ff5722; }
-    .chatgpt-btn{
-      background: #19a971;
-      border-radius: 0 5px 5px 0;
-    }
-    .search-button:hover { transform: translateY(-2px); }
-    .google-btn:hover { background: #3367d6; }
-    .maps-btn:hover   { background: #e64a19; }
-    .chatgpt-btn:hover{ background: #158f60; }
+    /* ------------------- BUSCADOR ------------------- */
+    .search-container{display:flex;width:80%;max-width:600px;margin-bottom:1.5rem}
+    .search-input{flex:1;padding:10px;border:none;border-radius:5px 0 0 5px;background:rgba(255,255,255,.9);color:#333}
+    .search-buttons{display:flex}
+    .search-button{padding:10px 15px;border:none;color:#fff;cursor:pointer;transition:background-color .3s,transform .2s}
+    .google-btn{background:#4285f4}.google-btn:hover{background:#3367d6}
+    .maps-btn{background:#ff5722}.maps-btn:hover{background:#e64a19}
+    .chatgpt-btn{background:#19a971;border-radius:0 5px 5px 0}.chatgpt-btn:hover{background:#158f60}
+    .search-button:hover{transform:translateY(-2px)}
 
-    /* ------------------------------------------------------------------ */
-    /*  LAYOUT DE COLUMNAS                                                */
-    /* ------------------------------------------------------------------ */
-    main {
-      width: 90%;
-      max-width: 1200px;
-      display: flex;
-      gap: 2rem;
-      overflow-y: auto;
-    }
-    .column {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      animation: slideIn 0.8s ease-out forwards;
-    }
-    .column:nth-child(1) { animation-delay: 0.2s; }
-    .column:nth-child(2) { animation-delay: 0.4s; }
-    .column:nth-child(3) { animation-delay: 0.6s; }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    /* ------------------- LAYOUT ------------------- */
+    main{width:90%;max-width:1200px;display:flex;gap:2rem;overflow-y:auto}
+    .column{flex:1;display:flex;flex-direction:column;gap:1.5rem;animation:slideIn .8s ease-out forwards}
+    .column:nth-child(1){animation-delay:.2s}.column:nth-child(2){animation-delay:.4s}.column:nth-child(3){animation-delay:.6s}
+    @keyframes slideIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+    .section{background:rgba(0,0,0,.4);padding:1rem;border-radius:.5rem;box-shadow:0 4px 6px rgba(0,0,0,.1);backdrop-filter:blur(5px);transition:transform .3s,box-shadow .3s}
+    .section:hover{transform:translateY(-5px);box-shadow:0 6px 12px rgba(0,0,0,.2)}
+    .section h2{font-size:1.2rem;font-weight:600;margin-bottom:.5rem;text-transform:uppercase;border-bottom:1px solid #666;padding-bottom:.25rem;display:flex;align-items:center;gap:.5rem}
+    .section ul{list-style:none}.section li{margin:.5rem 0}
+    a{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-size:.95rem;transition:color .3s,transform .3s,padding-left .3s}
+    a:hover{color:#66eaff;transform:translateX(5px);padding-left:2px}
 
-    /* ------------------------------------------------------------------ */
-    /*  SECCIONES                                                         */
-    /* ------------------------------------------------------------------ */
-    .section {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 1rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(5px);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-    .section h2 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 1px solid #666;
-      padding-bottom: 0.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .section ul { list-style: none; }
-    .section li { margin: 0.5rem 0; }
-    a {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      color: #fff;
-      font-size: 0.95rem;
-      transition: color 0.3s, transform 0.3s, padding-left 0.3s;
-    }
-    a:hover {
-      color: #66eaff;
-      transform: translateX(5px);
-      padding-left: 2px;
-    }
-
-    /* ------------------------------------------------------------------ */
-    /*  CONVERSOR                                                         */
-    /* ------------------------------------------------------------------ */
+    /* Conversor, calendario, pomodoro, relojes, clima (estilos previos)... */
     #converter-section input,
     #converter-section select,
-    #converter-section button {
-      padding: 5px;
-      border: none;
-      border-radius: 3px;
-      margin-right: 5px;
-      font-family: inherit;
-    }
-    #conversion-result { margin-top: 0.5rem; font-size: 0.9rem; }
-
-    /* ------------------------------------------------------------------ */
-    /*  CALENDARIO                                                        */
-    /* ------------------------------------------------------------------ */
-    .month-name {
-      text-align: center;
-      color: #ccc;
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-      text-transform: capitalize;
-    }
-    #calendar { margin-bottom: 1rem; }
-    #calendar table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: center;
-    }
-    #calendar th, #calendar td {
-      border: 1px solid #444;
-      padding: 5px;
-      font-size: 0.9rem;
-    }
-    #calendar th { background: rgba(255, 255, 255, 0.2); }
-
-    /* ------------------------------------------------------------------ */
-    /*  POMODORO                                                          */
-    /* ------------------------------------------------------------------ */
-    .pomodoro-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .timer-display { font-size: 1.5rem; font-weight: 600; }
-    .timer-buttons { display: flex; gap: 0.5rem; }
-    .timer-button {
-      padding: 5px 10px;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      color: #fff;
-    }
-    .start { background: #28a745; }
-    .start:hover { background: #218838; }
-    .stop { background: #ffc107; color: #333; }
-    .stop:hover { background: #e0a800; }
-    .reset { background: #dc3545; }
-    .reset:hover { background: #c82333; }
-    .pomodoro-options {
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 0.5rem;
-    }
-    .pomodoro-options select {
-      padding: 5px;
-      border: none;
-      border-radius: 3px;
-      background: rgba(255, 255, 255, 0.9);
-      color: #333;
-    }
-    .mode-label {
-      text-align: center;
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    /* ------------------------------------------------------------------ */
-    /*  RELOJES Y CLIMA                                                   */
-    /* ------------------------------------------------------------------ */
-    .clocks-container {
-      background: rgba(0, 0, 0, 0.35);
-      padding: 0.5rem;
-      border-radius: 0.5rem;
-      text-align: center;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-    .weather-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .weather-city-selector {
-      width: 100%;
-      padding: 5px;
-      border: none;
-      border-radius: 3px;
-      background: rgba(255, 255, 255, 0.9);
-      color: #333;
-      margin-bottom: 5px;
-    }
-    .weather-info   { display: flex; align-items: center; gap: 0.5rem; }
-    .weather-temp   { font-size: 1.2rem; font-weight: 600; }
-    .weather-icon   { font-size: 1.5rem; }
-    .weather-desc   { font-size: 0.9rem; color: #ddd; }
-    .weather-tomorrow { font-size: 0.9rem; color: #ccc; }
-    .weather-link   { font-size: 0.8rem; color: #aaa; transition: color 0.3s; }
-    .weather-link:hover { color: #66eaff; }
-
-    /* ------------------------------------------------------------------ */
-    /*  RESPONSIVE                                                        */
-    /* ------------------------------------------------------------------ */
-    @media (max-width: 900px) {
-      body { overflow: auto; }
-      main {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-      }
-      .search-container { width: 95%; }
-    }
+    #converter-section button{padding:5px;border:none;border-radius:3px;margin-right:5px;font-family:inherit}
+    #conversion-result{margin-top:.5rem;font-size:.9rem}
+    .month-name{text-align:center;color:#ccc;margin-bottom:.5rem;font-size:1rem;text-transform:capitalize}
+    #calendar table{width:100%;border-collapse:collapse;text-align:center}
+    #calendar th,#calendar td{border:1px solid #444;padding:5px;font-size:.9rem}
+    #calendar th{background:rgba(255,255,255,.2)}
+    .pomodoro-container{display:flex;flex-direction:column;align-items:center;gap:.5rem}
+    .timer-display{font-size:1.5rem;font-weight:600}
+    .timer-buttons{display:flex;gap:.5rem}
+    .timer-button{padding:5px 10px;border:none;border-radius:3px;color:#fff;cursor:pointer;transition:background-color .3s}
+    .start{background:#28a745}.start:hover{background:#218838}
+    .stop{background:#ffc107;color:#333}.stop:hover{background:#e0a800}
+    .reset{background:#dc3545}.reset:hover{background:#c82333}
+    .pomodoro-options{display:flex;justify-content:space-around;width:100%;margin-bottom:.5rem}
+    .pomodoro-options select{padding:5px;border:none;border-radius:3px;background:rgba(255,255,255,.9);color:#333}
+    .mode-label{text-align:center;font-size:1rem;margin-bottom:.5rem}
+    .clocks-container{background:rgba(0,0,0,.35);padding:.5rem;border-radius:.5rem;text-align:center;font-size:.95rem;margin-bottom:1rem}
+    .weather-container{display:flex;flex-direction:column;align-items:center;gap:.5rem}
+    .weather-city-selector{width:100%;padding:5px;border:none;border-radius:3px;background:rgba(255,255,255,.9);color:#333;margin-bottom:5px}
+    .weather-info{display:flex;align-items:center;gap:.5rem}
+    .weather-temp{font-size:1.2rem;font-weight:600}
+    .weather-icon{font-size:1.5rem}
+    .footer{margin-top:1rem;text-align:center;font-size:.8rem;color:#aaa}
+    @media(max-width:900px){body{overflow:auto}main{flex-direction:column;align-items:center;gap:1rem}.search-container{width:95%}}
   </style>
 </head>
 <body>
@@ -325,216 +95,79 @@
       </p>
     </header>
 
-    <!-- ====================== BUSCADOR ====================== -->
+    <!-- ------------ BUSCADOR ------------ -->
     <div class="search-container">
-      <input
-        id="search-input"
-        class="search-input"
-        placeholder="Buscar en..."
-      />
+      <input id="search-input" class="search-input" placeholder="Buscar en..." />
       <div class="search-buttons">
-        <button
-          id="google-search"
-          class="search-button google-btn"
-          title="Buscar en Google"
-        >
+        <button id="google-search" class="search-button google-btn" title="Google">
           <i class="fab fa-google"></i>
         </button>
-
-        <button
-          id="maps-search"
-          class="search-button maps-btn"
-          title="Buscar en Google Maps"
-        >
+        <button id="maps-search" class="search-button maps-btn" title="Maps">
           <i class="fas fa-map-marked-alt"></i>
         </button>
-
-        <button
-          id="chatgpt-search"
-          class="search-button chatgpt-btn"
-          title="Buscar con ChatGPT"
-        >
+        <button id="chatgpt-search" class="search-button chatgpt-btn" title="ChatGPT">
           <i class="fas fa-robot"></i>
         </button>
       </div>
     </div>
 
-    <!-- ====================== CONTENIDO PRINCIPAL ====================== -->
+    <!-- ------------ PRINCIPAL ------------ -->
     <main>
-      <!-- -------- COLUMNA 1 -------- -->
+      <!-- COL 1 -->
       <div class="column">
+        <!-- DÍA -->
         <div class="section">
           <h2><i class="fas fa-calendar-day"></i> DÍA</h2>
           <ul>
-            <li>
-              <a href="https://www.alibaba.com/" target="_blank">
-                <i class="fas fa-shopping-cart"></i> Alibaba
-              </a>
-            </li>
-            <li>
-              <a href="https://www.fiverr.com/inbox" target="_blank">
-                <i class="fas fa-briefcase"></i> Fiverr
-              </a>
-            </li>
-            <li>
-              <a href="https://www.icloud.com/" target="_blank">
-                <i class="fab fa-apple"></i> iCloud
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.openai.com" target="_blank">
-                <i class="fas fa-comment-dots"></i> ChatGPT
-              </a>
-            </li>
-            <li>
-              <a href="https://grok.com/" target="_blank">
-                <i class="fab fa-xing"></i> Grok (X AI)
-              </a>
-            </li>
-            <li>
-              <a href="https://translate.google.com/" target="_blank">
-                <i class="fas fa-language"></i> Traductor
-              </a>
-            </li>
-            <li>
-              <a href="https://app.holded.com/" target="_blank">
-                <i class="fas fa-folder-open"></i> Holded
-              </a>
-            </li>
+            <li><a href="https://www.alibaba.com/" target="_blank"><i class="fas fa-shopping-cart"></i> Alibaba</a></li>
+            <li><a href="https://www.fiverr.com/inbox" target="_blank"><i class="fas fa-briefcase"></i> Fiverr</a></li>
+            <li><a href="https://www.icloud.com/" target="_blank"><i class="fab fa-apple"></i> iCloud</a></li>
+            <li><a href="https://chat.openai.com" target="_blank"><i class="fas fa-comment-dots"></i> ChatGPT</a></li>
+            <li><a href="https://grok.com/" target="_blank"><i class="fab fa-xing"></i> Grok (X AI)</a></li>
+            <li><a href="https://claude.ai/new" target="_blank"><i class="fas fa-feather-alt"></i> Sonnet</a></li>
+            <li><a href="https://translate.google.com/" target="_blank"><i class="fas fa-language"></i> Traductor</a></li>
+            <li><a href="https://app.holded.com/" target="_blank"><i class="fas fa-folder-open"></i> Holded</a></li>
           </ul>
         </div>
 
+        <!-- REDES -->
         <div class="section">
           <h2><i class="fas fa-network-wired"></i> Redes</h2>
           <ul>
-            <li>
-              <a href="https://x.com/home" target="_blank">
-                <i class="fab fa-twitter"></i> X (Twitter)
-              </a>
-            </li>
-            <li>
-              <a href="https://www.youtube.com/" target="_blank">
-                <i class="fab fa-youtube"></i> YouTube
-              </a>
-            </li>
-            <li>
-              <a href="https://web.whatsapp.com/" target="_blank">
-                <i class="fab fa-whatsapp"></i> Whatsapp
-              </a>
-            </li>
-            <li>
-              <a href="https://web.telegram.org/" target="_blank">
-                <i class="fab fa-telegram"></i> Telegram
-              </a>
-            </li>
-            <li>
-              <a href="https://www.netflix.com/" target="_blank">
-                <i class="fas fa-tv"></i> Netflix
-              </a>
-            </li>
-            <li>
-              <a href="https://www.primevideo.com/" target="_blank">
-                <i class="fab fa-amazon"></i> Prime Video
-              </a>
-            </li>
-            <li>
-              <a href="https://tv.apple.com/" target="_blank">
-                <i class="fas fa-tv"></i> Apple TV
-              </a>
-            </li>
+            <li><a href="https://x.com/home" target="_blank"><i class="fab fa-twitter"></i> X (Twitter)</a></li>
+            <li><a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
+            <li><a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i> Whatsapp</a></li>
+            <li><a href="https://web.telegram.org/" target="_blank"><i class="fab fa-telegram"></i> Telegram</a></li>
           </ul>
         </div>
 
+        <!-- DRIVE -->
         <div class="section">
           <h2><i class="fab fa-google-drive"></i> Drive</h2>
           <ul>
-            <li>
-              <a
-                href="https://drive.google.com/drive/u/0/my-drive"
-                target="_blank"
-              >
-                <i class="fas fa-hdd"></i> Mi Unidad
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://accounts.google.com/b/0/AddMailService"
-                target="_blank"
-              >
-                <i class="fas fa-envelope"></i> Gmail
-              </a>
-            </li>
-            <li>
-              <a href="https://docs.google.com/document/u/0/" target="_blank">
-                <i class="fas fa-file-alt"></i> Documentos
-              </a>
-            </li>
-            <li>
-              <a href="https://docs.google.com/spreadsheets/u/0/" target="_blank">
-                <i class="fas fa-table"></i> Spreadsheets
-              </a>
-            </li>
+            <li><a href="https://drive.google.com/drive/u/0/my-drive" target="_blank"><i class="fas fa-hdd"></i> Mi Unidad</a></li>
+            <li><a href="https://accounts.google.com/b/0/AddMailService" target="_blank"><i class="fas fa-envelope"></i> Gmail</a></li>
+            <li><a href="https://docs.google.com/document/u/0/" target="_blank"><i class="fas fa-file-alt"></i> Documentos</a></li>
+            <li><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank"><i class="fas fa-table"></i> Spreadsheets</a></li>
           </ul>
         </div>
       </div>
 
-      <!-- -------- COLUMNA 2 -------- -->
+      <!-- COL 2 -->
       <div class="column">
+        <!-- UTILIDADES -->
         <div class="section">
           <h2><i class="fas fa-tools"></i> Utilidades</h2>
           <ul>
-            <li>
-              <a
-                href="https://www.idealista.com/usuario/tus-alertas"
-                target="_blank"
-                ><i class="fas fa-home"></i> Idealista</a
-              >
-            </li>
-            <li>
-              <a href="https://www.amazon.es/" target="_blank"
-                ><i class="fab fa-amazon"></i> Amazon</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://logistics.alibaba.com/buyer/luyou/public/blg/buyer_query_price.htm?from=buyerCentral"
-                target="_blank"
-                ><i class="fas fa-truck"></i> Logística Alibaba</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://www.google.com/maps/place/Mavepa/@40.4218119,-3.6838356,835m"
-                target="_blank"
-                ><i class="fas fa-map-marker-alt"></i> Mavepa</a
-              >
-            </li>
-            <li>
-              <a href="https://biwenger.as.com/round" target="_blank"
-                ><i class="fas fa-futbol"></i> Biwenger</a
-              >
-            </li>
-            <li>
-              <a href="https://www.futbolfantasy.com/" target="_blank"
-                ><i class="fas fa-gamepad"></i> Fantasy</a
-              >
-            </li>
-            <li>
-              <a href="https://music.amazon.es/" target="_blank"
-                ><i class="fab fa-amazon"></i> Amazon Music</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://www.besoccer.com/team/matches/novelda-union-deportiva-senior"
-                target="_blank"
-                ><i class="fas fa-trophy"></i> BeSoccer</a
-              >
-            </li>
+            <li><a href="https://www.idealista.com/usuario/tus-alertas" target="_blank"><i class="fas fa-home"></i> Idealista</a></li>
+            <li><a href="https://www.amazon.es/" target="_blank"><i class="fab fa-amazon"></i> Amazon</a></li>
+            <li><a href="https://www.google.com/maps/place/Mavepa/@40.4218119,-3.6838356,835m" target="_blank"><i class="fas fa-map-marker-alt"></i> Mavepa</a></li>
+            <li><a href="https://biwenger.as.com/round" target="_blank"><i class="fas fa-futbol"></i> Biwenger</a></li>
+            <li><a href="https://www.futbolfantasy.com/" target="_blank"><i class="fas fa-gamepad"></i> Fantasy</a></li>
           </ul>
         </div>
 
-        <!-- Conversor -->
+        <!-- CONVERSOR -->
         <div class="section" id="converter-section">
           <h2><i class="fas fa-exchange-alt"></i> Conversor de Monedas</h2>
           <div>
@@ -549,7 +182,7 @@
           <div id="conversion-result"></div>
         </div>
 
-        <!-- Calendario -->
+        <!-- CALENDARIO -->
         <div class="section" id="calendar-section">
           <h2><i class="fas fa-calendar-alt"></i> Calendario</h2>
           <div id="month-name" class="month-name"></div>
@@ -557,9 +190,9 @@
         </div>
       </div>
 
-      <!-- -------- COLUMNA 3 -------- -->
+      <!-- COL 3 -->
       <div class="column">
-        <!-- Pomodoro -->
+        <!-- POMODORO -->
         <div class="section">
           <div class="pomodoro-options">
             <div>
@@ -578,36 +211,24 @@
               </select>
             </div>
           </div>
-
           <div id="mode-label" class="mode-label">Modo: Trabajo</div>
-
           <div class="pomodoro-container">
             <div id="timer-display" class="timer-display">25:00</div>
             <div class="timer-buttons">
-              <button id="timer-start" class="timer-button start">
-                <i class="fas fa-play"></i> Iniciar
-              </button>
-              <button
-                id="timer-stop"
-                class="timer-button stop"
-                disabled
-              >
-                <i class="fas fa-pause"></i> Pausa
-              </button>
-              <button id="timer-reset" class="timer-button reset">
-                <i class="fas fa-redo"></i> Reset
-              </button>
+              <button id="timer-start" class="timer-button start"><i class="fas fa-play"></i> Iniciar</button>
+              <button id="timer-stop" class="timer-button stop" disabled><i class="fas fa-pause"></i> Pausa</button>
+              <button id="timer-reset" class="timer-button reset"><i class="fas fa-redo"></i> Reset</button>
             </div>
           </div>
         </div>
 
-        <!-- Relojes -->
+        <!-- RELOJES -->
         <div class="section">
           <h2><i class="fas fa-clock"></i> Relojes</h2>
           <div id="world-clocks" class="clocks-container"></div>
         </div>
 
-        <!-- Clima -->
+        <!-- CLIMA -->
         <div class="section">
           <h2><i class="fas fa-cloud-sun"></i> Clima</h2>
           <div class="weather-container">
@@ -619,28 +240,23 @@
               <option value="candanchu">Candanchú</option>
             </select>
             <div class="weather-info">
-              <div
-                id="weather-icon"
-                class="weather-icon"
-              >
-                <i class="fas fa-sync fa-spin"></i>
-              </div>
+              <div id="weather-icon" class="weather-icon"><i class="fas fa-sync fa-spin"></i></div>
               <div id="weather-temp" class="weather-temp">--°C</div>
             </div>
             <div id="weather-desc" class="weather-desc">Cargando...</div>
-            <div
-              id="weather-tomorrow"
-              class="weather-tomorrow"
-            >
-              Previsión mañana: Cargando...
-            </div>
-            <a
-              id="weather-link"
-              class="weather-link"
-              target="_blank"
-              >Más detalles <i class="fas fa-external-link-alt"></i
-            ></a>
+            <div id="weather-tomorrow" class="weather-tomorrow">Previsión mañana: Cargando...</div>
+            <a id="weather-link" class="weather-link" target="_blank">Más detalles <i class="fas fa-external-link-alt"></i></a>
           </div>
+        </div>
+
+        <!-- BANCOS (NUEVO) -->
+        <div class="section">
+          <h2><i class="fas fa-university"></i> Bancos</h2>
+          <ul>
+            <li><a href="https://www.bbva.es/empresas.html" target="_blank"><i class="fas fa-building-columns"></i> BBVA</a></li>
+            <li><a href="https://www.bankinter.com/empresas/empresa" target="_blank"><i class="fas fa-building-columns"></i> Bankinter</a></li>
+            <li><a href="https://www.revolut.com/business/" target="_blank"><i class="fas fa-building-columns"></i> Revolut B</a></li>
+          </ul>
         </div>
       </div>
     </main>
@@ -648,295 +264,86 @@
     <footer class="footer">© 2025 - Página de inicio TriTonRuleS</footer>
   </div>
 
-  <!-- ====================== SCRIPTS ====================== -->
+  <!-- ------------------ SCRIPTS ------------------ -->
   <script>
-    /* ----------- BUSCADOR ----------- */
-    function setupSearch() {
-      const input = document.getElementById("search-input");
-      const googleBtn = document.getElementById("google-search");
-      const mapsBtn = document.getElementById("maps-search");
-      const chatBtn = document.getElementById("chatgpt-search");
-
-      googleBtn.onclick = () =>
-        window.open(
-          "https://www.google.com/search?q=" + encodeURIComponent(input.value),
-          "_blank"
-        );
-
-      mapsBtn.onclick = () =>
-        window.open(
-          "https://www.google.com/maps/search/" + encodeURIComponent(input.value),
-          "_blank"
-        );
-
-      chatBtn.onclick = () =>
-        window.open(
-          "https://chat.openai.com/?q=" + encodeURIComponent(input.value),
-          "_blank"
-        );
-
-      input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          googleBtn.click();
-          chatBtn.click(); // mantenemos doble búsqueda como antes
-        }
-      });
+    /* BUSCADOR */
+    function setupSearch(){
+      const input=document.getElementById('search-input');
+      const gBtn=document.getElementById('google-search');
+      const mBtn=document.getElementById('maps-search');
+      const cBtn=document.getElementById('chatgpt-search');
+      gBtn.onclick=()=>window.open('https://www.google.com/search?q='+encodeURIComponent(input.value),'_blank');
+      mBtn.onclick=()=>window.open('https://www.google.com/maps/search/'+encodeURIComponent(input.value),'_blank');
+      cBtn.onclick=()=>window.open('https://chat.openai.com/?q='+encodeURIComponent(input.value),'_blank');
+      input.addEventListener('keydown',e=>{if(e.key==='Enter'){gBtn.click();cBtn.click();}});
     }
 
-    /* ----------- CONVERSOR ----------- */
-    let rates = {};
-    async function fetchRates() {
-      try {
-        const res = await fetch(
-          "https://api.exchangerate-api.com/v4/latest/EUR"
-        );
-        rates = (await res.json()).rates;
-      } catch (err) {
-        console.error("Error tasas", err);
-      }
-    }
-    function convert() {
-      const amount = parseFloat(document.getElementById("amount").value);
-      const from = document.getElementById("currency-from").value;
-      if (!amount || !rates[from]) return;
-      const out = document.getElementById("conversion-result");
-      out.innerHTML = "";
-      ["EUR", "USD", "CNY"].forEach((to) => {
-        if (to === from) return;
-        const converted = (amount * (rates[to] / rates[from])).toFixed(4);
-        out.innerHTML += `<div>${amount} ${from} = ${converted} ${to}</div>`;
-      });
+    /* CONVERSOR */
+    let rates={};
+    async function fetchRates(){try{const r=await fetch('https://api.exchangerate-api.com/v4/latest/EUR');rates=(await r.json()).rates;}catch(e){console.error(e);}}
+    function convert(){
+      const amt=parseFloat(document.getElementById('amount').value);
+      const from=document.getElementById('currency-from').value;
+      if(!amt||!rates[from])return;
+      const res=document.getElementById('conversion-result');res.innerHTML='';
+      ['EUR','USD','CNY'].forEach(to=>{if(to!==from){const val=(amt*(rates[to]/rates[from])).toFixed(4);res.innerHTML+=`${amt} ${from} = ${val} ${to}<br>`;}});
     }
 
-    /* ----------- CALENDARIO ----------- */
-    function generateCalendar() {
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = now.getMonth(); // 0-11
-      document.getElementById("month-name").textContent = now.toLocaleDateString(
-        "es-ES",
-        { month: "long", year: "numeric" }
-      );
-      const firstDay = new Date(year, month, 1);
-      const lastDay = new Date(year, month + 1, 0);
-      const daysInMonth = lastDay.getDate();
-      let startDay = firstDay.getDay(); // 0=domingo
-      if (startDay === 0) startDay = 7;
-
-      let html = "<table><tr>";
-      ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].forEach(
-        (d) => (html += `<th>${d}</th>`)
-      );
-      html += "</tr><tr>";
-      for (let i = 1; i < startDay; i++) html += "<td></td>";
-      let dayCount = startDay;
-      for (let d = 1; d <= daysInMonth; d++) {
-        html += `<td>${d}</td>`;
-        if (dayCount % 7 === 0 && d !== daysInMonth) html += "</tr><tr>";
-        dayCount++;
-      }
-      html += "</tr></table>";
-      document.getElementById("calendar").innerHTML = html;
+    /* CALENDARIO */
+    function generateCalendar(){
+      const now=new Date(),y=now.getFullYear(),m=now.getMonth();
+      document.getElementById('month-name').textContent=now.toLocaleDateString('es-ES',{month:'long',year:'numeric'});
+      const first=new Date(y,m,1),last=new Date(y,m+1,0),days=last.getDate();
+      let start=first.getDay();if(start===0)start=7;
+      let html='<table><tr>'+['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(d=>`<th>${d}</th>`).join('')+'</tr><tr>';
+      for(let i=1;i<start;i++)html+='<td></td>';
+      let c=start;for(let d=1;d<=days;d++){html+=`<td>${d}</td>`;if(c%7===0&&d!==days)html+='</tr><tr>';c++;}
+      document.getElementById('calendar').innerHTML=html+'</tr></table>';
     }
 
-    /* ----------- RELOJES ----------- */
-    function updateWorldClocks() {
-      const zones = [
-        ["Madrid", "Europe/Madrid"],
-        ["Shenzhen", "Asia/Shanghai"],
-        ["San Diego", "America/Los_Angeles"],
-        ["New York", "America/New_York"],
-      ];
-      document.getElementById("world-clocks").innerHTML = zones
-        .map(
-          ([name, tz]) =>
-            `${name}: ${new Date().toLocaleTimeString("es-ES", {
-              timeZone: tz,
-              hour12: false,
-            })}`
-        )
-        .join("<br>");
+    /* RELOJES */
+    function updateWorldClocks(){
+      const z=[['Madrid','Europe/Madrid'],['Shenzhen','Asia/Shanghai'],['San Diego','America/Los_Angeles'],['New York','America/New_York']];
+      document.getElementById('world-clocks').innerHTML=z.map(([n,t])=>`${n}: ${new Date().toLocaleTimeString('es-ES',{timeZone:t,hour12:false})}`).join('<br>');
     }
 
-    /* ----------- FONDO ALEATORIO ----------- */
-    function setRandomBackground() {
-      const url = `https://picsum.photos/1920/1080?random=${Date.now()}`;
-      const img = new Image();
-      img.src = url;
-      img.onload = () => (document.body.style.backgroundImage = `url('${url}')`);
+    /* FONDO */
+    function setRandomBackground(){
+      const url=`https://picsum.photos/1920/1080?random=${Date.now()}`,img=new Image();
+      img.src=url;img.onload=()=>document.body.style.backgroundImage=`url('${url}')`;
     }
 
-    /* ----------- CLIMA ----------- */
-    function setupWeather() {
-      const coords = {
-        madrid:  [40.4168, -3.7038],
-        elche:   [38.2682, -0.7016],
-        albacete:[38.9943, -1.8561],
-        leon:    [42.5987, -5.5671],
-        candanchu:[42.6169, 0.7594],
-      };
-      const sel = document.getElementById("weather-city");
-      const link = document.getElementById("weather-link");
-
-      function mapCode(c) {
-        const map = {
-          0: ["Despejado", "sun"],
-          1: ["Parcialmente nublado", "cloud"],
-          2: ["Parcialmente nublado", "cloud"],
-          3: ["Parcialmente nublado", "cloud"],
-          45: ["Con niebla", "smog"],
-          48: ["Con niebla", "smog"],
-          51: ["Llovizna", "cloud-rain"],
-          53: ["Llovizna", "cloud-rain"],
-          55: ["Llovizna", "cloud-rain"],
-          61: ["Lluvia", "cloud-showers-heavy"],
-          63: ["Lluvia", "cloud-showers-heavy"],
-          65: ["Lluvia", "cloud-showers-heavy"],
-          66: ["Lluvia helada", "snowflake"],
-          67: ["Lluvia helada", "snowflake"],
-          71: ["Nieve", "snowflake"],
-          73: ["Nieve", "snowflake"],
-          75: ["Nieve", "snowflake"],
-          80: ["Chubascos", "cloud-showers-heavy"],
-          81: ["Chubascos", "cloud-showers-heavy"],
-          82: ["Chubascos", "cloud-showers-heavy"],
-          95: ["Tormenta", "bolt"],
-          96: ["Tormenta", "bolt"],
-          99: ["Tormenta", "bolt"],
-        };
-        return map[c] || ["--", "question"];
-      }
-
-      async function updateWeather() {
-        const [lat, lon] = coords[sel.value];
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`;
-        try {
-          const data = await (await fetch(url)).json();
-          const c = data.current_weather;
-          const [desc, icon] = mapCode(c.weathercode);
-          document.getElementById("weather-temp").textContent =
-            c.temperature + "°C";
-          document.getElementById(
-            "weather-icon"
-          ).innerHTML = `<i class="fas fa-${icon}"></i>`;
-          document.getElementById("weather-desc").textContent = desc;
-
-          if (data.daily.time.length > 1) {
-            const min = data.daily.temperature_2m_min[1];
-            const max = data.daily.temperature_2m_max[1];
-            const [desc2] = mapCode(data.daily.weathercode[1]);
-            document.getElementById(
-              "weather-tomorrow"
-            ).textContent = `Previsión mañana: ${min}°C - ${max}°C, ${desc2}`;
-          }
-          link.href = "https://open-meteo.com/";
-        } catch (err) {
-          console.error(err);
-        }
-      }
-      sel.onchange = () => {
-        updateWeather();
-        localStorage.setItem("weatherCity", sel.value);
-      };
-      if (localStorage.getItem("weatherCity"))
-        sel.value = localStorage.getItem("weatherCity");
-      updateWeather();
+    /* CLIMA */
+    function setupWeather(){
+      const coords={madrid:[40.4168,-3.7038],elche:[38.2682,-0.7016],albacete:[38.9943,-1.8561],leon:[42.5987,-5.5671],candanchu:[42.6169,0.7594]};
+      const sel=document.getElementById('weather-city');
+      const map=c=>({0:['Despejado','sun'],1:['Parc. nublado','cloud'],2:['Parc. nublado','cloud'],3:['Parc. nublado','cloud'],45:['Niebla','smog'],48:['Niebla','smog'],51:['Llovizna','cloud-rain'],53:['Llovizna','cloud-rain'],55:['Llovizna','cloud-rain'],61:['Lluvia','cloud-showers-heavy'],63:['Lluvia','cloud-showers-heavy'],65:['Lluvia','cloud-showers-heavy'],66:['Lluvia helada','snowflake'],67:['Lluvia helada','snowflake'],71:['Nieve','snowflake'],73:['Nieve','snowflake'],75:['Nieve','snowflake'],80:['Chubascos','cloud-showers-heavy'],81:['Chubascos','cloud-showers-heavy'],82:['Chubascos','cloud-showers-heavy'],95:['Tormenta','bolt'],96:['Tormenta','bolt'],99:['Tormenta','bolt']})[c]||['--','question'];
+      async function up(){
+        const [lat,lon]=coords[sel.value];
+        const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`;
+        try{const d=await(await fetch(url)).json();const [desc,ic]=map(d.current_weather.weathercode);document.getElementById('weather-temp').textContent=d.current_weather.temperature+'°C';document.getElementById('weather-desc').textContent=desc;document.getElementById('weather-icon').innerHTML=`<i class="fas fa-${ic}"></i>`;const min=d.daily.temperature_2m_min[1],max=d.daily.temperature_2m_max[1],[desc2]=map(d.daily.weathercode[1]);document.getElementById('weather-tomorrow').textContent=`Previsión mañana: ${min}°C - ${max}°C, ${desc2}`;}catch(e){console.error(e);}}
+      sel.onchange=()=>{up();localStorage.setItem('weatherCity',sel.value)};
+      if(localStorage.getItem('weatherCity'))sel.value=localStorage.getItem('weatherCity');
+      up();
     }
 
-    /* ----------- POMODORO ----------- */
-    function setupPomodoro() {
-      const disp = document.getElementById("timer-display");
-      const startBtn = document.getElementById("timer-start");
-      const stopBtn = document.getElementById("timer-stop");
-      const resetBtn = document.getElementById("timer-reset");
-      const workSel = document.getElementById("work-duration");
-      const breakSel = document.getElementById("break-duration");
-      const modeLbl = document.getElementById("mode-label");
-
-      let mins = parseInt(workSel.value);
-      let secs = 0;
-      let running = false;
-      let mode = "work";
-      let timer;
-      const alarm = new Audio(
-        "https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg"
-      );
-      alarm.loop = true;
-
-      function updateDisplay() {
-        disp.textContent =
-          mins.toString().padStart(2, "0") +
-          ":" +
-          secs.toString().padStart(2, "0");
-        modeLbl.textContent =
-          mode === "work" ? "Modo: Trabajo" : "Modo: Descanso";
-      }
-      function tick() {
-        if (secs === 0) {
-          if (mins === 0) {
-            clearInterval(timer);
-            running = false;
-            alarm.play();
-            if (Notification.permission === "granted") {
-              new Notification("Pomodoro", {
-                body: "¡Tiempo completado!",
-              });
-            }
-            mode = mode === "work" ? "break" : "work";
-            mins = mode === "work" ? parseInt(workSel.value) : parseInt(breakSel.value);
-            secs = 0;
-            updateDisplay();
-            startTimer(); // auto-continúa
-            return;
-          }
-          mins--;
-          secs = 59;
-        } else secs--;
-        updateDisplay();
-      }
-      function startTimer() {
-        if (running) return;
-        running = true;
-        startBtn.disabled = true;
-        stopBtn.disabled = false;
-        timer = setInterval(tick, 1000);
-      }
-      function stopTimer() {
-        clearInterval(timer);
-        running = false;
-        startBtn.disabled = false;
-        stopBtn.disabled = true;
-      }
-      function resetTimer() {
-        stopTimer();
-        mode = "work";
-        mins = parseInt(workSel.value);
-        secs = 0;
-        alarm.pause();
-        alarm.currentTime = 0;
-        updateDisplay();
-      }
-      startBtn.onclick = startTimer;
-      stopBtn.onclick = stopTimer;
-      resetBtn.onclick = resetTimer;
-      if (Notification.permission === "default") Notification.requestPermission();
-      updateDisplay();
-    }
-
-    /* ----------- INICIALIZACIÓN ----------- */
-    document.addEventListener("DOMContentLoaded", () => {
-      setRandomBackground();
-      setInterval(setRandomBackground, 300000); // 5 minutos
-      setupSearch();
-      setupWeather();
-      setupPomodoro();
-      generateCalendar();
-      fetchRates();
-      updateWorldClocks();
-      setInterval(updateWorldClocks, 1000);
-      document.getElementById("convert-btn").onclick = convert;
+    /* POMODORO */
+    function setupPomodoro(){
+      const disp=document.getElementById('timer-display'),start=document.getElementById('timer-start'),stop=document.getElementById('timer-stop'),reset=document.getElementById('timer-reset'),work=document.getElementById('work-duration'),brk=document.getElementById('break-duration'),label=document.getElementById('mode-label');let mins=+work.value,secs=0,running=false,mode='work',timer;const snd=new Audio('https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg');snd.loop=true;
+      function show(){disp.textContent=`${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;label.textContent=mode==='work'?'Modo: Trabajo':'Modo: Descanso';}
+      function tick(){if(secs===0){if(mins===0){clearInterval(timer);snd.play();mode=mode==='work'?'break':'work';mins=mode==='work'?+work.value:+brk.value;secs=0;show();startTimer();return;}mins--;secs=59;}else secs--;show();}
+      function startTimer(){if(running)return;running=true;start.disabled=true;stop.disabled=false;timer=setInterval(tick,1000);}
+      function stopTimer(){clearInterval(timer);running=false;start.disabled=false;stop.disabled=true;}
+      function resetTimer(){stopTimer();mode='work';mins=+work.value;secs=0;snd.pause();snd.currentTime=0;show();}
+      start.onclick=startTimer;stop.onclick=stopTimer;reset.onclick=resetTimer;if(Notification.permission==='default')Notification.requestPermission();show();}
+    
+    /* INICIO */
+    document.addEventListener('DOMContentLoaded',()=>{
+      setRandomBackground();setInterval(setRandomBackground,300000);
+      setupSearch();setupWeather();setupPomodoro();generateCalendar();fetchRates();
+      updateWorldClocks();setInterval(updateWorldClocks,1000);
+      document.getElementById('convert-btn').onclick=convert;
     });
   </script>
 </body>
 </html>
-```
