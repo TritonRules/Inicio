@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>More actions
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stay focused and trust the process</title>
@@ -56,7 +56,6 @@
     a{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-size:.95rem;transition:color .3s,transform .3s,padding-left .3s}
     a:hover{color:#66eaff;transform:translateX(5px);padding-left:2px}
 
-    /* Conversor, calendario, pomodoro, relojes, clima (estilos previos)... */
     /* Conversor, calendario, pomodoro, relojes, clima (estilos previos) */
     #converter-section input,
     #converter-section select,
@@ -100,43 +99,26 @@
     <div class="search-container">
       <input id="search-input" class="search-input" placeholder="Buscar en..." />
       <div class="search-buttons">
-        <button id="google-search" class="search-button google-btn" title="Google">
-          <i class="fab fa-google"></i>
-        </button>
-        <button id="maps-search" class="search-button maps-btn" title="Maps">
-          <i class="fas fa-map-marked-alt"></i>
-        </button>
-        <button id="chatgpt-search" class="search-button chatgpt-btn" title="ChatGPT">
-          <i class="fas fa-robot"></i>
-        </button>
         <button id="google-search" class="search-button google-btn" title="Google"><i class="fab fa-google"></i></button>
         <button id="maps-search"   class="search-button maps-btn"   title="Maps"><i class="fas fa-map-marked-alt"></i></button>
         <button id="chatgpt-search"class="search-button chatgpt-btn"title="ChatGPT"><i class="fas fa-robot"></i></button>
       </div>
     </div>
 
-    <!-- ------------ PRINCIPAL ------------ -->
     <main>
-      <!-- COL 1 -->
       <!-- ===== COL 1 ===== -->
       <div class="column">
         <!-- DÍA -->
         <div class="section">
-          <h2><i class="fas fa-calendar-day"></i> DÍA</h2>
           <h2><i class="fas fa-calendar-day"></i> Día</h2>
           <ul>
             <li><a href="https://www.alibaba.com/" target="_blank"><i class="fas fa-shopping-cart"></i> Alibaba</a></li>
             <li><a href="https://www.fiverr.com/inbox" target="_blank"><i class="fas fa-briefcase"></i> Fiverr</a></li>
-            <li><a href="https://www.icloud.com/" target="_blank"><i class="fab fa-apple"></i> iCloud</a></li>
-            <li><a href="https://chat.openai.com" target="_blank"><i class="fas fa-comment-dots"></i> ChatGPT</a></li>
-            <li><a href="https://grok.com/" target="_blank"><i class="fab fa-xing"></i> Grok (X AI)</a></li>
-            <li><a href="https://claude.ai/new" target="_blank"><i class="fas fa-feather-alt"></i> Sonnet</a></li>
             <li><a href="https://www.icloud.com/"   target="_blank"><i class="fab fa-apple"></i> iCloud</a></li>
             <li><a href="https://chat.openai.com"   target="_blank"><i class="fas fa-comment-dots"></i> ChatGPT</a></li>
             <li><a href="https://grok.com/"         target="_blank"><i class="fab fa-xing"></i> Grok (X AI)</a></li>
             <li><a href="https://claude.ai/new"     target="_blank"><i class="fas fa-feather-alt"></i> Sonnet</a></li>
             <li><a href="https://translate.google.com/" target="_blank"><i class="fas fa-language"></i> Traductor</a></li>
-            <li><a href="https://app.holded.com/" target="_blank"><i class="fas fa-folder-open"></i> Holded</a></li>
             <li><a href="https://app.holded.com/"   target="_blank"><i class="fas fa-folder-open"></i> Holded</a></li>
           </ul>
         </div>
@@ -145,8 +127,6 @@
         <div class="section">
           <h2><i class="fas fa-network-wired"></i> Redes</h2>
           <ul>
-            <li><a href="https://x.com/home" target="_blank"><i class="fab fa-twitter"></i> X (Twitter)</a></li>
-            <li><a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
             <li><a href="https://x.com/home"        target="_blank"><i class="fab fa-twitter"></i> X (Twitter)</a></li>
             <li><a href="https://www.youtube.com/"  target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
             <li><a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i> Whatsapp</a></li>
@@ -166,7 +146,6 @@
         </div>
       </div>
 
-      <!-- COL 2 -->
       <!-- ===== COL 2 ===== -->
       <div class="column">
         <!-- UTILIDADES -->
@@ -206,7 +185,6 @@
         </div>
       </div>
 
-      <!-- COL 3 -->
       <!-- ===== COL 3 ===== -->
       <div class="column">
         <!-- POMODORO -->
@@ -233,7 +211,6 @@
             <div id="timer-display" class="timer-display">25:00</div>
             <div class="timer-buttons">
               <button id="timer-start" class="timer-button start"><i class="fas fa-play"></i> Iniciar</button>
-              <button id="timer-stop" class="timer-button stop" disabled><i class="fas fa-pause"></i> Pausa</button>
               <button id="timer-stop"  class="timer-button stop" disabled><i class="fas fa-pause"></i> Pausa</button>
               <button id="timer-reset" class="timer-button reset"><i class="fas fa-redo"></i> Reset</button>
             </div>
@@ -267,7 +244,6 @@
           </div>
         </div>
 
-        <!-- BANCOS (NUEVO) -->
         <!-- BANCOS -->
         <div class="section">
           <h2><i class="fas fa-university"></i> Bancos</h2>
@@ -288,13 +264,6 @@
     /* BUSCADOR */
     function setupSearch(){
       const input=document.getElementById('search-input');
-      const gBtn=document.getElementById('google-search');
-      const mBtn=document.getElementById('maps-search');
-      const cBtn=document.getElementById('chatgpt-search');
-      gBtn.onclick=()=>window.open('https://www.google.com/search?q='+encodeURIComponent(input.value),'_blank');
-      mBtn.onclick=()=>window.open('https://www.google.com/maps/search/'+encodeURIComponent(input.value),'_blank');
-      cBtn.onclick=()=>window.open('https://chat.openai.com/?q='+encodeURIComponent(input.value),'_blank');
-      input.addEventListener('keydown',e=>{if(e.key==='Enter'){gBtn.click();cBtn.click();}});
       const g=document.getElementById('google-search');
       const m=document.getElementById('maps-search');
       const c=document.getElementById('chatgpt-search');
@@ -306,22 +275,17 @@
 
     /* CONVERSOR */
     let rates={};
-    async function fetchRates(){try{const r=await fetch('https://api.exchangerate-api.com/v4/latest/EUR');rates=(await r.json()).rates;}catch(e){console.error(e);}}
     async function fetchRates(){try{rates=(await (await fetch('https://api.exchangerate-api.com/v4/latest/EUR')).json()).rates;}catch(e){console.error(e);}}
     function convert(){
       const amt=parseFloat(document.getElementById('amount').value);
       const from=document.getElementById('currency-from').value;
       if(!amt||!rates[from])return;
-      const res=document.getElementById('conversion-result');res.innerHTML='';
-      ['EUR','USD','CNY'].forEach(to=>{if(to!==from){const val=(amt*(rates[to]/rates[from])).toFixed(4);res.innerHTML+=`${amt} ${from} = ${val} ${to}<br>`;}});
       const out=document.getElementById('conversion-result');out.innerHTML='';
       ['EUR','USD','CNY'].forEach(t=>{if(t!==from){const v=(amt*(rates[t]/rates[from])).toFixed(4);out.innerHTML+=`${amt} ${from} = ${v} ${t}<br>`;}});
     }
 
     /* CALENDARIO */
     function generateCalendar(){
-      const now=new Date(),y=now.getFullYear(),m=now.getMonth();
-      document.getElementById('month-name').textContent=now.toLocaleDateString('es-ES',{month:'long',year:'numeric'});
       const n=new Date(),y=n.getFullYear(),m=n.getMonth();
       document.getElementById('month-name').textContent=n.toLocaleDateString('es-ES',{month:'long',year:'numeric'});
       const first=new Date(y,m,1),last=new Date(y,m+1,0),days=last.getDate();
@@ -351,8 +315,6 @@
       const map=c=>({0:['Despejado','sun'],1:['Parc. nublado','cloud'],2:['Parc. nublado','cloud'],3:['Parc. nublado','cloud'],45:['Niebla','smog'],48:['Niebla','smog'],51:['Llovizna','cloud-rain'],53:['Llovizna','cloud-rain'],55:['Llovizna','cloud-rain'],61:['Lluvia','cloud-showers-heavy'],63:['Lluvia','cloud-showers-heavy'],65:['Lluvia','cloud-showers-heavy'],66:['Lluvia helada','snowflake'],67:['Lluvia helada','snowflake'],71:['Nieve','snowflake'],73:['Nieve','snowflake'],75:['Nieve','snowflake'],80:['Chubascos','cloud-showers-heavy'],81:['Chubascos','cloud-showers-heavy'],82:['Chubascos','cloud-showers-heavy'],95:['Tormenta','bolt'],96:['Tormenta','bolt'],99:['Tormenta','bolt']})[c]||['--','question'];
       async function up(){
         const [lat,lon]=coords[sel.value];
-        const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`;
-        try{const d=await(await fetch(url)).json();const [desc,ic]=map(d.current_weather.weathercode);document.getElementById('weather-temp').textContent=d.current_weather.temperature+'°C';document.getElementById('weather-desc').textContent=desc;document.getElementById('weather-icon').innerHTML=`<i class="fas fa-${ic}"></i>`;const min=d.daily.temperature_2m_min[1],max=d.daily.temperature_2m_max[1],[desc2]=map(d.daily.weathercode[1]);document.getElementById('weather-tomorrow').textContent=`Previsión mañana: ${min}°C - ${max}°C, ${desc2}`;}catch(e){console.error(e);}}
         try{
           const d=await(await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`)).json();
           const [desc,ic]=map(d.current_weather.weathercode);
@@ -371,15 +333,13 @@
     /* POMODORO */
     function setupPomodoro(){
       const disp=document.getElementById('timer-display'),start=document.getElementById('timer-start'),stop=document.getElementById('timer-stop'),reset=document.getElementById('timer-reset'),work=document.getElementById('work-duration'),brk=document.getElementById('break-duration'),label=document.getElementById('mode-label');let mins=+work.value,secs=0,running=false,mode='work',timer;const snd=new Audio('https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg');snd.loop=true;
-      function show(){disp.textContent=`${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;label.textContent=mode==='work'?'Modo: Trabajo':'Modo: Descanso';}
-      function tick(){if(secs===0){if(mins===0){clearInterval(timer);snd.play();mode=mode==='work'?'break':'work';mins=mode==='work'?+work.value:+brk.value;secs=0;show();startTimer();return;}mins--;secs=59;}else secs--;show();}
       const show=()=>{disp.textContent=`${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;label.textContent=mode==='work'?'Modo: Trabajo':'Modo: Descanso';};
       const tick=()=>{if(secs===0){if(mins===0){clearInterval(timer);snd.play();mode=mode==='work'?'break':'work';mins=mode==='work'?+work.value:+brk.value;secs=0;show();startTimer();return;}mins--;secs=59;}else secs--;show();}
       function startTimer(){if(running)return;running=true;start.disabled=true;stop.disabled=false;timer=setInterval(tick,1000);}
       function stopTimer(){clearInterval(timer);running=false;start.disabled=false;stop.disabled=true;}
       function resetTimer(){stopTimer();mode='work';mins=+work.value;secs=0;snd.pause();snd.currentTime=0;show();}
       start.onclick=startTimer;stop.onclick=stopTimer;reset.onclick=resetTimer;if(Notification.permission==='default')Notification.requestPermission();show();}
-
+    
     /* INICIO */
     document.addEventListener('DOMContentLoaded',()=>{
       setRandomBackground();setInterval(setRandomBackground,300000);
