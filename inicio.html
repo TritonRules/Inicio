@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<head>More actions
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stay focused and trust the process</title>
@@ -26,15 +26,6 @@
   <style>
     /* ------------------- RESET Y GENERALES ------------------- */
     *{margin:0;padding:0;box-sizing:border-box}
-    :root{
-      --primary-color:#66eaff;
-      --secondary-color:#19a971;
-      --danger-color:#dc3545;
-      --warning-color:#ffc107;
-      --success-color:#28a745;
-      --glass-bg:rgba(0,0,0,.4);
-      --glass-hover:rgba(0,0,0,.6);
-    }
     html,body{width:100%;height:100%;font-family:'Montserrat',sans-serif;color:#fff;background:#000;overflow:hidden}
     body{background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;transition:background-image 1s}
     .container{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(0,0,0,.45);padding:1rem;animation:fadeIn 1s forwards}
@@ -43,123 +34,60 @@
     h1{font-size:2rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:.5rem}
     .subtitle{font-size:1rem;color:#ccc;margin-bottom:1.5rem}
 
-    /* ------------------- NUEVO: ESTADÍSTICAS RÁPIDAS ------------------- */
-    .stats-bar{display:flex;gap:1rem;margin-bottom:1rem;flex-wrap:wrap;justify-content:center}
-    .stat-item{background:var(--glass-bg);padding:.5rem 1rem;border-radius:20px;backdrop-filter:blur(5px);font-size:.85rem;display:flex;align-items:center;gap:.3rem;transition:all .3s}
-    .stat-item:hover{background:var(--glass-hover);transform:scale(1.05)}
-    .stat-value{color:var(--primary-color);font-weight:600}
-
-    /* ------------------- BUSCADOR MEJORADO ------------------- */
-    .search-container{display:flex;width:80%;max-width:600px;margin-bottom:1.5rem;position:relative}
-    .search-input{flex:1;padding:12px;border:none;border-radius:25px 0 0 25px;background:rgba(255,255,255,.9);color:#333;font-size:1rem}
-    .search-suggestions{position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.95);border-radius:0 0 10px 10px;z-index:100;display:none;color:#333}
-    .suggestion-item{padding:8px 12px;cursor:pointer;border-bottom:1px solid #eee}
-    .suggestion-item:hover{background:rgba(0,0,0,.1)}
+    /* ------------------- BUSCADOR ------------------- */
+    .search-container{display:flex;width:80%;max-width:600px;margin-bottom:1.5rem}
+    .search-input{flex:1;padding:10px;border:none;border-radius:5px 0 0 5px;background:rgba(255,255,255,.9);color:#333}
     .search-buttons{display:flex}
-    .search-button{padding:12px 15px;border:none;color:#fff;cursor:pointer;transition:all .3s;font-size:1rem}
+    .search-button{padding:10px 15px;border:none;color:#fff;cursor:pointer;transition:background-color .3s,transform .2s}
     .google-btn{background:#4285f4}.google-btn:hover{background:#3367d6}
     .maps-btn{background:#ff5722}.maps-btn:hover{background:#e64a19}
-    .chatgpt-btn{background:#19a971;border-radius:0 25px 25px 0}.chatgpt-btn:hover{background:#158f60}
+    .chatgpt-btn{background:#19a971;border-radius:0 5px 5px 0}.chatgpt-btn:hover{background:#158f60}
     .search-button:hover{transform:translateY(-2px)}
 
-    /* ------------------- LAYOUT MEJORADO ------------------- */
-    main{width:90%;max-width:1400px;display:flex;gap:2rem;overflow-y:auto;max-height:70vh}
+    /* ------------------- LAYOUT ------------------- */
+    main{width:90%;max-width:1200px;display:flex;gap:2rem;overflow-y:auto}
     .column{flex:1;display:flex;flex-direction:column;gap:1.5rem;animation:slideIn .8s ease-out forwards}
     .column:nth-child(1){animation-delay:.2s}.column:nth-child(2){animation-delay:.4s}.column:nth-child(3){animation-delay:.6s}
     @keyframes slideIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
-    
-    .section{background:var(--glass-bg);padding:1rem;border-radius:.8rem;box-shadow:0 4px 6px rgba(0,0,0,.1);backdrop-filter:blur(10px);transition:all .3s;border:1px solid rgba(255,255,255,.1)}
-    .section:hover{transform:translateY(-5px);box-shadow:0 8px 15px rgba(0,0,0,.3);border-color:var(--primary-color)}
-    .section h2{font-size:1.2rem;font-weight:600;margin-bottom:.8rem;text-transform:uppercase;border-bottom:2px solid var(--primary-color);padding-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
+    .section{background:rgba(0,0,0,.4);padding:1rem;border-radius:.5rem;box-shadow:0 4px 6px rgba(0,0,0,.1);backdrop-filter:blur(5px);transition:transform .3s,box-shadow .3s}
+    .section:hover{transform:translateY(-5px);box-shadow:0 6px 12px rgba(0,0,0,.2)}
+    .section h2{font-size:1.2rem;font-weight:600;margin-bottom:.5rem;text-transform:uppercase;border-bottom:1px solid #666;padding-bottom:.25rem;display:flex;align-items:center;gap:.5rem}
     .section ul{list-style:none}.section li{margin:.5rem 0}
-    
-    /* ------------------- ENLACES CON ANIMACIONES ------------------- */
-    a{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-size:.95rem;transition:all .3s;padding:.3rem;border-radius:.3rem;position:relative;overflow:hidden}
-    a::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .5s}
-    a:hover{color:var(--primary-color);transform:translateX(8px);background:rgba(255,255,255,.1)}
-    a:hover::before{left:100%}
+    a{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-size:.95rem;transition:color .3s,transform .3s,padding-left .3s}
+    a:hover{color:#66eaff;transform:translateX(5px);padding-left:2px}
 
-    /* ------------------- NUEVO: NOTAS RÁPIDAS ------------------- */
-    .quick-notes{resize:vertical;min-height:80px;width:100%;background:rgba(255,255,255,.9);color:#333;border:none;border-radius:.5rem;padding:.5rem;font-family:inherit;font-size:.9rem}
-    .notes-actions{display:flex;gap:.5rem;margin-top:.5rem}
-    .btn-small{padding:.3rem .6rem;border:none;border-radius:.3rem;cursor:pointer;font-size:.8rem;color:#fff;transition:all .3s}
-    .btn-save{background:var(--success-color)}.btn-save:hover{background:#218838}
-    .btn-clear{background:var(--danger-color)}.btn-clear:hover{background:#c82333}
-
-    /* ------------------- NUEVO: ATAJOS DE TECLADO ------------------- */
-    .shortcuts-hint{position:fixed;top:10px;right:10px;background:var(--glass-bg);padding:.5rem;border-radius:.5rem;font-size:.7rem;opacity:.7;transition:opacity .3s}
-    .shortcuts-hint:hover{opacity:1}
-
-    /* ------------------- MEJORAS EN WIDGETS EXISTENTES ------------------- */
+    /* Conversor, calendario, pomodoro, relojes, clima (estilos previos)... */
+    /* Conversor, calendario, pomodoro, relojes, clima (estilos previos) */
     #converter-section input,
     #converter-section select,
-    #converter-section button{padding:8px;border:none;border-radius:5px;margin-right:5px;font-family:inherit;transition:all .3s}
-    #converter-section button{background:var(--secondary-color);color:#fff;cursor:pointer}
-    #converter-section button:hover{background:#158f60;transform:scale(1.05)}
-    #conversion-result{margin-top:.8rem;font-size:.9rem;background:rgba(255,255,255,.1);padding:.5rem;border-radius:.3rem}
-
-    /* Calendario mejorado */
-    .month-name{text-align:center;color:#ccc;margin-bottom:.5rem;font-size:1.1rem;text-transform:capitalize;font-weight:600}
+    #converter-section button{padding:5px;border:none;border-radius:3px;margin-right:5px;font-family:inherit}
+    #conversion-result{margin-top:.5rem;font-size:.9rem}
+    .month-name{text-align:center;color:#ccc;margin-bottom:.5rem;font-size:1rem;text-transform:capitalize}
     #calendar table{width:100%;border-collapse:collapse;text-align:center}
-    #calendar th,#calendar td{border:1px solid #444;padding:8px;font-size:.9rem;transition:all .3s}
-    #calendar th{background:var(--primary-color);color:#000;font-weight:600}
-    #calendar td:hover{background:rgba(102,234,255,.2);cursor:pointer}
-    .today{background:var(--primary-color) !important;color:#000 !important;font-weight:600}
-
-    /* Pomodoro mejorado */
-    .pomodoro-container{display:flex;flex-direction:column;align-items:center;gap:.8rem}
-    .timer-display{font-size:2rem;font-weight:600;color:var(--primary-color);text-shadow:0 0 10px rgba(102,234,255,.5)}
-    .timer-buttons{display:flex;gap:.8rem;flex-wrap:wrap}
-    .timer-button{padding:8px 16px;border:none;border-radius:25px;color:#fff;cursor:pointer;transition:all .3s;font-weight:600}
-    .start{background:var(--success-color)}.start:hover{background:#218838}
-    .stop{background:var(--warning-color);color:#333}.stop:hover{background:#e0a800}
-    .reset{background:var(--danger-color)}.reset:hover{background:#c82333}
-    .pomodoro-options{display:flex;justify-content:space-around;width:100%;margin-bottom:.8rem;gap:.5rem}
-    .pomodoro-options select{padding:5px;border:none;border-radius:5px;background:rgba(255,255,255,.9);color:#333}
-
-    /* Clima mejorado */
-    .weather-container{display:flex;flex-direction:column;align-items:center;gap:.8rem}
-    .weather-city-selector{width:100%;padding:8px;border:none;border-radius:5px;background:rgba(255,255,255,.9);color:#333;margin-bottom:8px}
-    .weather-info{display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,.1);padding:.8rem;border-radius:.5rem;width:100%;justify-content:center}
-    .weather-temp{font-size:1.5rem;font-weight:600;color:var(--primary-color)}
-    .weather-icon{font-size:2rem}
-
-    /* Relojes mejorados */
-    .clocks-container{background:rgba(0,0,0,.35);padding:1rem;border-radius:.8rem;text-align:center;font-size:1rem;margin-bottom:1rem}
-    .clock-item{margin:.5rem 0;padding:.3rem;border-radius:.3rem;transition:all .3s}
-    .clock-item:hover{background:rgba(255,255,255,.1)}
-
-    /* ------------------- RESPONSIVE MEJORADO ------------------- */
-    @media(max-width:900px){
-      body{overflow:auto}
-      main{flex-direction:column;align-items:center;gap:1rem;max-height:none}
-      .search-container{width:95%}
-      .stats-bar{flex-direction:column;align-items:center}
-      .timer-buttons{justify-content:center}
-    }
-
-    /* ------------------- MODO OSCURO/CLARO ------------------- */
-    .theme-toggle{position:fixed;top:10px;left:10px;background:var(--glass-bg);border:none;color:#fff;padding:.5rem;border-radius:50%;cursor:pointer;font-size:1.2rem;transition:all .3s}
-    .theme-toggle:hover{background:var(--glass-hover);transform:scale(1.1)}
-
-    /* ------------------- EFECTOS DE GLASSMORPHISM ------------------- */
-    .glass-effect{backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+    #calendar th,#calendar td{border:1px solid #444;padding:5px;font-size:.9rem}
+    #calendar th{background:rgba(255,255,255,.2)}
+    .pomodoro-container{display:flex;flex-direction:column;align-items:center;gap:.5rem}
+    .timer-display{font-size:1.5rem;font-weight:600}
+    .timer-buttons{display:flex;gap:.5rem}
+    .timer-button{padding:5px 10px;border:none;border-radius:3px;color:#fff;cursor:pointer;transition:background-color .3s}
+    .start{background:#28a745}.start:hover{background:#218838}
+    .stop{background:#ffc107;color:#333}.stop:hover{background:#e0a800}
+    .reset{background:#dc3545}.reset:hover{background:#c82333}
+    .pomodoro-options{display:flex;justify-content:space-around;width:100%;margin-bottom:.5rem}
+    .pomodoro-options select{padding:5px;border:none;border-radius:3px;background:rgba(255,255,255,.9);color:#333}
+    .mode-label{text-align:center;font-size:1rem;margin-bottom:.5rem}
+    .clocks-container{background:rgba(0,0,0,.35);padding:.5rem;border-radius:.5rem;text-align:center;font-size:.95rem;margin-bottom:1rem}
+    .weather-container{display:flex;flex-direction:column;align-items:center;gap:.5rem}
+    .weather-city-selector{width:100%;padding:5px;border:none;border-radius:3px;background:rgba(255,255,255,.9);color:#333;margin-bottom:5px}
+    .weather-info{display:flex;align-items:center;gap:.5rem}
+    .weather-temp{font-size:1.2rem;font-weight:600}
+    .weather-icon{font-size:1.5rem}
+    .footer{margin-top:1rem;text-align:center;font-size:.8rem;color:#aaa}
+    @media(max-width:900px){body{overflow:auto}main{flex-direction:column;align-items:center;gap:1rem}.search-container{width:95%}}
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Toggle de tema -->
-    <button class="theme-toggle" id="theme-toggle" title="Cambiar tema">
-      <i class="fas fa-moon"></i>
-    </button>
-
-    <!-- Atajos de teclado -->
-    <div class="shortcuts-hint">
-      <div><kbd>Ctrl+K</kbd> Buscar</div>
-      <div><kbd>Ctrl+N</kbd> Notas</div>
-      <div><kbd>Ctrl+Space</kbd> Pomodoro</div>
-    </div>
-
     <header>
       <h1>Stay focused and trust the process</h1>
       <p class="subtitle">
@@ -168,38 +96,33 @@
       </p>
     </header>
 
-    <!-- Estadísticas rápidas -->
-    <div class="stats-bar">
-      <div class="stat-item">
-        <i class="fas fa-clock"></i>
-        <span>Tiempo activo: <span class="stat-value" id="active-time">0h 0m</span></span>
-      </div>
-      <div class="stat-item">
-        <i class="fas fa-fire"></i>
-        <span>Racha: <span class="stat-value" id="streak-count">0</span> días</span>
-      </div>
-      <div class="stat-item">
-        <i class="fas fa-target"></i>
-        <span>Pomodoros: <span class="stat-value" id="pomodoro-count">0</span></span>
-      </div>
-    </div>
-
-    <!-- Buscador mejorado -->
+    <!-- ------------ BUSCADOR ------------ -->
     <div class="search-container">
-      <input id="search-input" class="search-input" placeholder="Buscar en... (Ctrl+K)" autocomplete="off" />
-      <div id="search-suggestions" class="search-suggestions"></div>
+      <input id="search-input" class="search-input" placeholder="Buscar en..." />
       <div class="search-buttons">
+        <button id="google-search" class="search-button google-btn" title="Google">
+          <i class="fab fa-google"></i>
+        </button>
+        <button id="maps-search" class="search-button maps-btn" title="Maps">
+          <i class="fas fa-map-marked-alt"></i>
+        </button>
+        <button id="chatgpt-search" class="search-button chatgpt-btn" title="ChatGPT">
+          <i class="fas fa-robot"></i>
+        </button>
         <button id="google-search" class="search-button google-btn" title="Google"><i class="fab fa-google"></i></button>
-        <button id="maps-search" class="search-button maps-btn" title="Maps"><i class="fas fa-map-marked-alt"></i></button>
-        <button id="chatgpt-search" class="search-button chatgpt-btn" title="ChatGPT"><i class="fas fa-robot"></i></button>
+        <button id="maps-search"   class="search-button maps-btn"   title="Maps"><i class="fas fa-map-marked-alt"></i></button>
+        <button id="chatgpt-search"class="search-button chatgpt-btn"title="ChatGPT"><i class="fas fa-robot"></i></button>
       </div>
     </div>
 
+    <!-- ------------ PRINCIPAL ------------ -->
     <main>
+      <!-- COL 1 -->
       <!-- ===== COL 1 ===== -->
       <div class="column">
         <!-- DÍA -->
-        <div class="section glass-effect">
+        <div class="section">
+          <h2><i class="fas fa-calendar-day"></i> DÍA</h2>
           <h2><i class="fas fa-calendar-day"></i> Día</h2>
           <ul>
             <li><a href="https://www.alibaba.com/" target="_blank"><i class="fas fa-shopping-cart"></i> Alibaba</a></li>
@@ -208,34 +131,31 @@
             <li><a href="https://chat.openai.com" target="_blank"><i class="fas fa-comment-dots"></i> ChatGPT</a></li>
             <li><a href="https://grok.com/" target="_blank"><i class="fab fa-xing"></i> Grok (X AI)</a></li>
             <li><a href="https://claude.ai/new" target="_blank"><i class="fas fa-feather-alt"></i> Sonnet</a></li>
+            <li><a href="https://www.icloud.com/"   target="_blank"><i class="fab fa-apple"></i> iCloud</a></li>
+            <li><a href="https://chat.openai.com"   target="_blank"><i class="fas fa-comment-dots"></i> ChatGPT</a></li>
+            <li><a href="https://grok.com/"         target="_blank"><i class="fab fa-xing"></i> Grok (X AI)</a></li>
+            <li><a href="https://claude.ai/new"     target="_blank"><i class="fas fa-feather-alt"></i> Sonnet</a></li>
             <li><a href="https://translate.google.com/" target="_blank"><i class="fas fa-language"></i> Traductor</a></li>
             <li><a href="https://app.holded.com/" target="_blank"><i class="fas fa-folder-open"></i> Holded</a></li>
+            <li><a href="https://app.holded.com/"   target="_blank"><i class="fas fa-folder-open"></i> Holded</a></li>
           </ul>
         </div>
 
-        <!-- NOTAS RÁPIDAS (NUEVO) -->
-        <div class="section glass-effect">
-          <h2><i class="fas fa-sticky-note"></i> Notas Rápidas</h2>
-          <textarea id="quick-notes" class="quick-notes" placeholder="Escribe tus notas aquí... (Ctrl+N para enfocar)"></textarea>
-          <div class="notes-actions">
-            <button id="save-notes" class="btn-small btn-save"><i class="fas fa-save"></i> Guardar</button>
-            <button id="clear-notes" class="btn-small btn-clear"><i class="fas fa-trash"></i> Limpiar</button>
-          </div>
-        </div>
-
         <!-- REDES -->
-        <div class="section glass-effect">
+        <div class="section">
           <h2><i class="fas fa-network-wired"></i> Redes</h2>
           <ul>
             <li><a href="https://x.com/home" target="_blank"><i class="fab fa-twitter"></i> X (Twitter)</a></li>
             <li><a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
+            <li><a href="https://x.com/home"        target="_blank"><i class="fab fa-twitter"></i> X (Twitter)</a></li>
+            <li><a href="https://www.youtube.com/"  target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
             <li><a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i> Whatsapp</a></li>
             <li><a href="https://web.telegram.org/" target="_blank"><i class="fab fa-telegram"></i> Telegram</a></li>
           </ul>
         </div>
 
         <!-- DRIVE -->
-        <div class="section glass-effect">
+        <div class="section">
           <h2><i class="fab fa-google-drive"></i> Drive</h2>
           <ul>
             <li><a href="https://drive.google.com/drive/u/0/my-drive" target="_blank"><i class="fas fa-hdd"></i> Mi Unidad</a></li>
@@ -246,14 +166,16 @@
         </div>
       </div>
 
+      <!-- COL 2 -->
       <!-- ===== COL 2 ===== -->
       <div class="column">
         <!-- UTILIDADES -->
-        <div class="section glass-effect">
+        <div class="section">
           <h2><i class="fas fa-tools"></i> Utilidades</h2>
           <ul>
             <li><a href="https://www.idealista.com/usuario/tus-alertas" target="_blank"><i class="fas fa-home"></i> Idealista</a></li>
             <li><a href="https://www.amazon.es/" target="_blank"><i class="fab fa-amazon"></i> Amazon</a></li>
+            <!-- Nuevo enlace GITHUB -->
             <li><a href="https://github.com/TritonRules/Inicio/blob/main/inicio.html" target="_blank"><i class="fab fa-github"></i> GITHUB</a></li>
             <li><a href="https://www.google.com/maps/place/Mavepa/@40.4218119,-3.6838356,835m" target="_blank"><i class="fas fa-map-marker-alt"></i> Mavepa</a></li>
             <li><a href="https://biwenger.as.com/round" target="_blank"><i class="fas fa-futbol"></i> Biwenger</a></li>
@@ -261,36 +183,34 @@
           </ul>
         </div>
 
-        <!-- CONVERSOR MEJORADO -->
-        <div class="section glass-effect" id="converter-section">
+        <!-- CONVERSOR -->
+        <div class="section" id="converter-section">
           <h2><i class="fas fa-exchange-alt"></i> Conversor de Monedas</h2>
           <div>
-            <input id="amount" type="number" placeholder="Cantidad" min="0" step="0.01" />
+            <input id="amount" type="number" placeholder="Cantidad" />
             <select id="currency-from">
               <option value="EUR">EUR</option>
               <option value="USD">USD</option>
               <option value="CNY">CNY</option>
-              <option value="GBP">GBP</option>
-              <option value="JPY">JPY</option>
             </select>
-            <button id="convert-btn"><i class="fas fa-arrows-alt-h"></i> Convertir</button>
+            <button id="convert-btn">Convertir</button>
           </div>
           <div id="conversion-result"></div>
         </div>
 
-        <!-- CALENDARIO MEJORADO -->
-        <div class="section glass-effect" id="calendar-section">
+        <!-- CALENDARIO -->
+        <div class="section" id="calendar-section">
           <h2><i class="fas fa-calendar-alt"></i> Calendario</h2>
           <div id="month-name" class="month-name"></div>
           <div id="calendar"></div>
         </div>
       </div>
 
+      <!-- COL 3 -->
       <!-- ===== COL 3 ===== -->
       <div class="column">
-        <!-- POMODORO MEJORADO -->
-        <div class="section glass-effect">
-          <h2><i class="fas fa-tomato"></i> Pomodoro</h2>
+        <!-- POMODORO -->
+        <div class="section">
           <div class="pomodoro-options">
             <div>
               <label for="work-duration">Trabajo:</label>
@@ -305,7 +225,6 @@
               <select id="break-duration">
                 <option value="5">5 min</option>
                 <option value="10">10 min</option>
-                <option value="15">15 min</option>
               </select>
             </div>
           </div>
@@ -315,19 +234,20 @@
             <div class="timer-buttons">
               <button id="timer-start" class="timer-button start"><i class="fas fa-play"></i> Iniciar</button>
               <button id="timer-stop" class="timer-button stop" disabled><i class="fas fa-pause"></i> Pausa</button>
+              <button id="timer-stop"  class="timer-button stop" disabled><i class="fas fa-pause"></i> Pausa</button>
               <button id="timer-reset" class="timer-button reset"><i class="fas fa-redo"></i> Reset</button>
             </div>
           </div>
         </div>
 
-        <!-- RELOJES MEJORADOS -->
-        <div class="section glass-effect">
-          <h2><i class="fas fa-clock"></i> Relojes Mundiales</h2>
+        <!-- RELOJES -->
+        <div class="section">
+          <h2><i class="fas fa-clock"></i> Relojes</h2>
           <div id="world-clocks" class="clocks-container"></div>
         </div>
 
-        <!-- CLIMA MEJORADO -->
-        <div class="section glass-effect">
+        <!-- CLIMA -->
+        <div class="section">
           <h2><i class="fas fa-cloud-sun"></i> Clima</h2>
           <div class="weather-container">
             <select id="weather-city" class="weather-city-selector">
@@ -347,8 +267,9 @@
           </div>
         </div>
 
+        <!-- BANCOS (NUEVO) -->
         <!-- BANCOS -->
-        <div class="section glass-effect">
+        <div class="section">
           <h2><i class="fas fa-university"></i> Bancos</h2>
           <ul>
             <li><a href="https://www.bbva.es/empresas.html" target="_blank"><i class="fas fa-building-columns"></i> BBVA</a></li>
@@ -359,109 +280,113 @@
       </div>
     </main>
 
-    <footer class="footer">© 2025 - Página de inicio TriTonRuleS - Versión Mejorada</footer>
+    <footer class="footer">© 2025 - Página de inicio TriTonRuleS</footer>
   </div>
 
+  <!-- ------------------ SCRIPTS ------------------ -->
   <script>
-    // Variables globales para estadísticas
-    let startTime = Date.now();
-    let pomodoroSessions = parseInt(localStorage.getItem('pomodoroCount') || '0');
-    let currentStreak = parseInt(localStorage.getItem('currentStreak') || '0');
-
-    // Actualizar estadísticas
-    function updateStats() {
-      const activeTime = Math.floor((Date.now() - startTime) / 1000);
-      const hours = Math.floor(activeTime / 3600);
-      const minutes = Math.floor((activeTime % 3600) / 60);
-      
-      document.getElementById('active-time').textContent = `${hours}h ${minutes}m`;
-      document.getElementById('pomodoro-count').textContent = pomodoroSessions;
-      document.getElementById('streak-count').textContent = currentStreak;
+    /* BUSCADOR */
+    function setupSearch(){
+      const input=document.getElementById('search-input');
+      const gBtn=document.getElementById('google-search');
+      const mBtn=document.getElementById('maps-search');
+      const cBtn=document.getElementById('chatgpt-search');
+      gBtn.onclick=()=>window.open('https://www.google.com/search?q='+encodeURIComponent(input.value),'_blank');
+      mBtn.onclick=()=>window.open('https://www.google.com/maps/search/'+encodeURIComponent(input.value),'_blank');
+      cBtn.onclick=()=>window.open('https://chat.openai.com/?q='+encodeURIComponent(input.value),'_blank');
+      input.addEventListener('keydown',e=>{if(e.key==='Enter'){gBtn.click();cBtn.click();}});
+      const g=document.getElementById('google-search');
+      const m=document.getElementById('maps-search');
+      const c=document.getElementById('chatgpt-search');
+      g.onclick=()=>window.open('https://www.google.com/search?q='+encodeURIComponent(input.value),'_blank');
+      m.onclick=()=>window.open('https://www.google.com/maps/search/'+encodeURIComponent(input.value),'_blank');
+      c.onclick=()=>window.open('https://chat.openai.com/?q='+encodeURIComponent(input.value),'_blank');
+      input.addEventListener('keydown',e=>{if(e.key==='Enter'){g.click();c.click();}});
     }
 
-    // Buscador mejorado con sugerencias
-    function setupEnhancedSearch() {
-      const input = document.getElementById('search-input');
-      const suggestions = document.getElementById('search-suggestions');
-      const g = document.getElementById('google-search');
-      const m = document.getElementById('maps-search');
-      const c = document.getElementById('chatgpt-search');
-
-      // Sugerencias de búsqueda comunes
-      const commonSearches = [
-        'tiempo madrid', 'traductor', 'calculadora', 'gmail', 'github',
-        'amazon', 'youtube', 'netflix', 'spotify', 'whatsapp web'
-      ];
-
-      // Mostrar sugerencias
-      input.addEventListener('input', (e) => {
-        const value = e.target.value.toLowerCase();
-        if (value.length > 1) {
-          const filtered = commonSearches.filter(s => s.includes(value));
-          if (filtered.length > 0) {
-            suggestions.innerHTML = filtered.map(s => 
-              `<div class="suggestion-item" onclick="selectSuggestion('${s}')">${s}</div>`
-            ).join('');
-            suggestions.style.display = 'block';
-          } else {
-            suggestions.style.display = 'none';
-          }
-        } else {
-          suggestions.style.display = 'none';
-        }
-      });
-
-      // Ocultar sugerencias al hacer clic fuera
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.search-container')) {
-          suggestions.style.display = 'none';
-        }
-      });
-
-      // Funciones de búsqueda
-      g.onclick = () => window.open('https://www.google.com/search?q=' + encodeURIComponent(input.value), '_blank');
-      m.onclick = () => window.open('https://www.google.com/maps/search/' + encodeURIComponent(input.value), '_blank');
-      c.onclick = () => window.open('https://chat.openai.com/?q=' + encodeURIComponent(input.value), '_blank');
-      
-      input.addEventListener('keydown', e => {
-        if (e.key === 'Enter') {
-          g.click();
-          suggestions.style.display = 'none';
-        }
-      });
+    /* CONVERSOR */
+    let rates={};
+    async function fetchRates(){try{const r=await fetch('https://api.exchangerate-api.com/v4/latest/EUR');rates=(await r.json()).rates;}catch(e){console.error(e);}}
+    async function fetchRates(){try{rates=(await (await fetch('https://api.exchangerate-api.com/v4/latest/EUR')).json()).rates;}catch(e){console.error(e);}}
+    function convert(){
+      const amt=parseFloat(document.getElementById('amount').value);
+      const from=document.getElementById('currency-from').value;
+      if(!amt||!rates[from])return;
+      const res=document.getElementById('conversion-result');res.innerHTML='';
+      ['EUR','USD','CNY'].forEach(to=>{if(to!==from){const val=(amt*(rates[to]/rates[from])).toFixed(4);res.innerHTML+=`${amt} ${from} = ${val} ${to}<br>`;}});
+      const out=document.getElementById('conversion-result');out.innerHTML='';
+      ['EUR','USD','CNY'].forEach(t=>{if(t!==from){const v=(amt*(rates[t]/rates[from])).toFixed(4);out.innerHTML+=`${amt} ${from} = ${v} ${t}<br>`;}});
     }
 
-    // Seleccionar sugerencia
-    function selectSuggestion(text) {
-      document.getElementById('search-input').value = text;
-      document.getElementById('search-suggestions').style.display = 'none';
+    /* CALENDARIO */
+    function generateCalendar(){
+      const now=new Date(),y=now.getFullYear(),m=now.getMonth();
+      document.getElementById('month-name').textContent=now.toLocaleDateString('es-ES',{month:'long',year:'numeric'});
+      const n=new Date(),y=n.getFullYear(),m=n.getMonth();
+      document.getElementById('month-name').textContent=n.toLocaleDateString('es-ES',{month:'long',year:'numeric'});
+      const first=new Date(y,m,1),last=new Date(y,m+1,0),days=last.getDate();
+      let start=first.getDay();if(start===0)start=7;
+      let html='<table><tr>'+['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(d=>`<th>${d}</th>`).join('')+'</tr><tr>';
+      for(let i=1;i<start;i++)html+='<td></td>';
+      let c=start;for(let d=1;d<=days;d++){html+=`<td>${d}</td>`;if(c%7===0&&d!==days)html+='</tr><tr>';c++;}
+      document.getElementById('calendar').innerHTML=html+'</tr></table>';
     }
 
-    // Notas rápidas
-    function setupQuickNotes() {
-      const notes = document.getElementById('quick-notes');
-      const saveBtn = document.getElementById('save-notes');
-      const clearBtn = document.getElementById('clear-notes');
+    /* RELOJES */
+    function updateWorldClocks(){
+      const z=[['Madrid','Europe/Madrid'],['Shenzhen','Asia/Shanghai'],['San Diego','America/Los_Angeles'],['New York','America/New_York']];
+      document.getElementById('world-clocks').innerHTML=z.map(([n,t])=>`${n}: ${new Date().toLocaleTimeString('es-ES',{timeZone:t,hour12:false})}`).join('<br>');
+    }
 
-      // Cargar notas guardadas
-      notes.value = localStorage.getItem('quickNotes') || '';
+    /* FONDO */
+    function setRandomBackground(){
+      const url=`https://picsum.photos/1920/1080?random=${Date.now()}`,img=new Image();
+      img.src=url;img.onload=()=>document.body.style.backgroundImage=`url('${url}')`;
+    }
 
-      // Guardar automáticamente cada 5 segundos
-      setInterval(() => {
-        if (notes.value !== localStorage.getItem('quickNotes')) {
-          localStorage.setItem('quickNotes', notes.value);
-        }
-      }, 5000);
+    /* CLIMA */
+    function setupWeather(){
+      const coords={madrid:[40.4168,-3.7038],elche:[38.2682,-0.7016],albacete:[38.9943,-1.8561],leon:[42.5987,-5.5671],candanchu:[42.6169,0.7594]};
+      const sel=document.getElementById('weather-city');
+      const map=c=>({0:['Despejado','sun'],1:['Parc. nublado','cloud'],2:['Parc. nublado','cloud'],3:['Parc. nublado','cloud'],45:['Niebla','smog'],48:['Niebla','smog'],51:['Llovizna','cloud-rain'],53:['Llovizna','cloud-rain'],55:['Llovizna','cloud-rain'],61:['Lluvia','cloud-showers-heavy'],63:['Lluvia','cloud-showers-heavy'],65:['Lluvia','cloud-showers-heavy'],66:['Lluvia helada','snowflake'],67:['Lluvia helada','snowflake'],71:['Nieve','snowflake'],73:['Nieve','snowflake'],75:['Nieve','snowflake'],80:['Chubascos','cloud-showers-heavy'],81:['Chubascos','cloud-showers-heavy'],82:['Chubascos','cloud-showers-heavy'],95:['Tormenta','bolt'],96:['Tormenta','bolt'],99:['Tormenta','bolt']})[c]||['--','question'];
+      async function up(){
+        const [lat,lon]=coords[sel.value];
+        const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`;
+        try{const d=await(await fetch(url)).json();const [desc,ic]=map(d.current_weather.weathercode);document.getElementById('weather-temp').textContent=d.current_weather.temperature+'°C';document.getElementById('weather-desc').textContent=desc;document.getElementById('weather-icon').innerHTML=`<i class="fas fa-${ic}"></i>`;const min=d.daily.temperature_2m_min[1],max=d.daily.temperature_2m_max[1],[desc2]=map(d.daily.weathercode[1]);document.getElementById('weather-tomorrow').textContent=`Previsión mañana: ${min}°C - ${max}°C, ${desc2}`;}catch(e){console.error(e);}}
+        try{
+          const d=await(await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`)).json();
+          const [desc,ic]=map(d.current_weather.weathercode);
+          document.getElementById('weather-temp').textContent=d.current_weather.temperature+'°C';
+          document.getElementById('weather-icon').innerHTML=`<i class="fas fa-${ic}"></i>`;
+          document.getElementById('weather-desc').textContent=desc;
+          const min=d.daily.temperature_2m_min[1],max=d.daily.temperature_2m_max[1],[d2]=map(d.daily.weathercode[1]);
+          document.getElementById('weather-tomorrow').textContent=`Previsión mañana: ${min}°C - ${max}°C, ${d2}`;
+        }catch(e){console.error(e);}
+      }
+      sel.onchange=()=>{up();localStorage.setItem('weatherCity',sel.value)};
+      if(localStorage.getItem('weatherCity'))sel.value=localStorage.getItem('weatherCity');
+      up();
+    }
 
-      saveBtn.onclick = () => {
-        localStorage.setItem('quickNotes', notes.value);
-        saveBtn.innerHTML = '<i class="fas fa-check"></i> Guardado';
-        setTimeout(() => {
-          saveBtn.innerHTML = '<i class="fas fa-save"></i> Guardar';
-        }, 2000);
-      };
+    /* POMODORO */
+    function setupPomodoro(){
+      const disp=document.getElementById('timer-display'),start=document.getElementById('timer-start'),stop=document.getElementById('timer-stop'),reset=document.getElementById('timer-reset'),work=document.getElementById('work-duration'),brk=document.getElementById('break-duration'),label=document.getElementById('mode-label');let mins=+work.value,secs=0,running=false,mode='work',timer;const snd=new Audio('https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg');snd.loop=true;
+      function show(){disp.textContent=`${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;label.textContent=mode==='work'?'Modo: Trabajo':'Modo: Descanso';}
+      function tick(){if(secs===0){if(mins===0){clearInterval(timer);snd.play();mode=mode==='work'?'break':'work';mins=mode==='work'?+work.value:+brk.value;secs=0;show();startTimer();return;}mins--;secs=59;}else secs--;show();}
+      const show=()=>{disp.textContent=`${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;label.textContent=mode==='work'?'Modo: Trabajo':'Modo: Descanso';};
+      const tick=()=>{if(secs===0){if(mins===0){clearInterval(timer);snd.play();mode=mode==='work'?'break':'work';mins=mode==='work'?+work.value:+brk.value;secs=0;show();startTimer();return;}mins--;secs=59;}else secs--;show();}
+      function startTimer(){if(running)return;running=true;start.disabled=true;stop.disabled=false;timer=setInterval(tick,1000);}
+      function stopTimer(){clearInterval(timer);running=false;start.disabled=false;stop.disabled=true;}
+      function resetTimer(){stopTimer();mode='work';mins=+work.value;secs=0;snd.pause();snd.currentTime=0;show();}
+      start.onclick=startTimer;stop.onclick=stopTimer;reset.onclick=resetTimer;if(Notification.permission==='default')Notification.requestPermission();show();}
 
-      clearBtn.onclick = () => {
-        if (confirm('¿Seguro que quieres borrar todas las notas?')) {
-          notes.value = '';
-          localStorage.removeItem('quickNotes');
+    /* INICIO */
+    document.addEventListener('DOMContentLoaded',()=>{
+      setRandomBackground();setInterval(setRandomBackground,300000);
+      setupSearch();setupWeather();setupPomodoro();generateCalendar();fetchRates();
+      updateWorldClocks();setInterval(updateWorldClocks,1000);
+      document.getElementById('convert-btn').onclick=convert;
+    });
+  </script>
+</body>
+</html>
