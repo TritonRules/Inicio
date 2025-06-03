@@ -14,27 +14,21 @@
   <!-- Fuentes e iconos -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
-    /* ------------------- RESET Y GENERALES ------------------- */
+    /* -------------- RESET Y GENERALES -------------- */
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{width:100%;height:100%;font-family:'Montserrat',sans-serif;color:#fff;background:#000;overflow:hidden}
     body{background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;transition:background-image 1s}
     .container{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(0,0,0,.45);padding:1rem;animation:fadeIn 1s forwards}
-    @keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     header{text-align:center;margin-bottom:1rem}
     h1{font-size:2rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:.5rem}
     .subtitle{font-size:1rem;color:#ccc;margin-bottom:1.5rem}
 
-    /* ------------------- BUSCADOR ------------------- */
+    /* -------------- BUSCADOR -------------- */
     .search-container{display:flex;width:80%;max-width:600px;margin-bottom:1.5rem}
     .search-input{flex:1;padding:10px;border:none;border-radius:5px 0 0 5px;background:rgba(255,255,255,.9);color:#333}
     .search-buttons{display:flex}
@@ -44,22 +38,23 @@
     .chatgpt-btn{background:#19a971;border-radius:0 5px 5px 0}.chatgpt-btn:hover{background:#158f60}
     .search-button:hover{transform:translateY(-2px)}
 
-    /* ------------------- LAYOUT ------------------- */
+    /* -------------- LAYOUT -------------- */
     main{width:90%;max-width:1200px;display:flex;gap:2rem;overflow-y:auto}
     .column{flex:1;display:flex;flex-direction:column;gap:1.5rem;animation:slideIn .8s ease-out forwards}
     .column:nth-child(1){animation-delay:.2s}.column:nth-child(2){animation-delay:.4s}.column:nth-child(3){animation-delay:.6s}
-    @keyframes slideIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+    @keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
     .section{background:rgba(0,0,0,.4);padding:1rem;border-radius:.5rem;box-shadow:0 4px 6px rgba(0,0,0,.1);backdrop-filter:blur(5px);transition:transform .3s,box-shadow .3s}
     .section:hover{transform:translateY(-5px);box-shadow:0 6px 12px rgba(0,0,0,.2)}
     .section h2{font-size:1.2rem;font-weight:600;margin-bottom:.5rem;text-transform:uppercase;border-bottom:1px solid #666;padding-bottom:.25rem;display:flex;align-items:center;gap:.5rem}
-    .section ul{list-style:none}.section li{margin:.5rem 0}
+
+    /* ---- LISTAS EN DOS COLUMNAS ---- */
+    .section ul{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem 1rem;padding:0}
+    .section li{margin:0}
     a{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-size:.95rem;transition:color .3s,transform .3s,padding-left .3s}
     a:hover{color:#66eaff;transform:translateX(5px);padding-left:2px}
 
-    /* Conversor, calendario, pomodoro, relojes, clima (estilos previos) */
-    #converter-section input,
-    #converter-section select,
-    #converter-section button{padding:5px;border:none;border-radius:3px;margin-right:5px;font-family:inherit}
+    /* ---- CONVERSOR / CALENDARIO / POMODORO / RELOJES / CLIMA ---- */
+    #converter-section input,#converter-section select,#converter-section button{padding:5px;border:none;border-radius:3px;margin-right:5px;font-family:inherit}
     #conversion-result{margin-top:.5rem;font-size:.9rem}
     .month-name{text-align:center;color:#ccc;margin-bottom:.5rem;font-size:1rem;text-transform:capitalize}
     #calendar table{width:100%;border-collapse:collapse;text-align:center}
@@ -75,7 +70,7 @@
     .pomodoro-options{display:flex;justify-content:space-around;width:100%;margin-bottom:.5rem}
     .pomodoro-options select{padding:5px;border:none;border-radius:3px;background:rgba(255,255,255,.9);color:#333}
     .mode-label{text-align:center;font-size:1rem;margin-bottom:.5rem}
-    .clocks-container{background:rgba(0,0,0,.35);padding:.5rem;border-radius:.5rem;text-align:center;font-size:.95rem;margin-bottom:1rem}
+    .clocks-container{background:rgba(0,0,0,.35);padding:.5rem;border-radius:.5rem;text-align:center;font-size:.95rem}
     .weather-container{display:flex;flex-direction:column;align-items:center;gap:.5rem}
     .weather-city-selector{width:100%;padding:5px;border:none;border-radius:3px;background:rgba(255,255,255,.9);color:#333;margin-bottom:5px}
     .weather-info{display:flex;align-items:center;gap:.5rem}
@@ -89,13 +84,10 @@
   <div class="container">
     <header>
       <h1>Stay focused and trust the process</h1>
-      <p class="subtitle">
-        Si una tarea toma menos de 2 minutos, hazla inmediatamente. Done is
-        better than perfect.
-      </p>
+      <p class="subtitle">Si una tarea toma menos de 2 minutos, hazla inmediatamente. Done is better than perfect.</p>
     </header>
 
-    <!-- ------------ BUSCADOR ------------ -->
+    <!-- BUSCADOR -->
     <div class="search-container">
       <input id="search-input" class="search-input" placeholder="Buscar en..." />
       <div class="search-buttons">
@@ -105,8 +97,9 @@
       </div>
     </div>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <main>
-      <!-- ===== COL 1 ===== -->
+      <!-- COL 1 -->
       <div class="column">
         <!-- DÍA -->
         <div class="section">
@@ -146,7 +139,7 @@
         </div>
       </div>
 
-      <!-- ===== COL 2 ===== -->
+      <!-- COL 2 -->
       <div class="column">
         <!-- UTILIDADES -->
         <div class="section">
@@ -154,7 +147,6 @@
           <ul>
             <li><a href="https://www.idealista.com/usuario/tus-alertas" target="_blank"><i class="fas fa-home"></i> Idealista</a></li>
             <li><a href="https://www.amazon.es/" target="_blank"><i class="fab fa-amazon"></i> Amazon</a></li>
-            <!-- Nuevo enlace GITHUB -->
             <li><a href="https://github.com/TritonRules/Inicio/blob/main/inicio.html" target="_blank"><i class="fab fa-github"></i> GITHUB</a></li>
             <li><a href="https://www.google.com/maps/place/Mavepa/@40.4218119,-3.6838356,835m" target="_blank"><i class="fas fa-map-marker-alt"></i> Mavepa</a></li>
             <li><a href="https://biwenger.as.com/round" target="_blank"><i class="fas fa-futbol"></i> Biwenger</a></li>
@@ -185,24 +177,19 @@
         </div>
       </div>
 
-      <!-- ===== COL 3 ===== -->
+      <!-- COL 3 -->
       <div class="column">
         <!-- POMODORO -->
         <div class="section">
           <div class="pomodoro-options">
-            <div>
-              <label for="work-duration">Trabajo:</label>
+            <div><label for="work-duration">Trabajo:</label>
               <select id="work-duration">
-                <option value="25">25 min</option>
-                <option value="45">45 min</option>
-                <option value="55">55 min</option>
+                <option value="25">25 min</option><option value="45">45 min</option><option value="55">55 min</option>
               </select>
             </div>
-            <div>
-              <label for="break-duration">Descanso:</label>
+            <div><label for="break-duration">Descanso:</label>
               <select id="break-duration">
-                <option value="5">5 min</option>
-                <option value="10">10 min</option>
+                <option value="5">5 min</option><option value="10">10 min</option>
               </select>
             </div>
           </div>
@@ -228,11 +215,7 @@
           <h2><i class="fas fa-cloud-sun"></i> Clima</h2>
           <div class="weather-container">
             <select id="weather-city" class="weather-city-selector">
-              <option value="madrid">Madrid</option>
-              <option value="elche">Elche</option>
-              <option value="albacete">Albacete</option>
-              <option value="leon">León</option>
-              <option value="candanchu">Candanchú</option>
+              <option value="madrid">Madrid</option><option value="elche">Elche</option><option value="albacete">Albacete</option><option value="leon">León</option><option value="candanchu">Candanchú</option>
             </select>
             <div class="weather-info">
               <div id="weather-icon" class="weather-icon"><i class="fas fa-sync fa-spin"></i></div>
@@ -263,35 +246,28 @@
   <script>
     /* BUSCADOR */
     function setupSearch(){
-      const input=document.getElementById('search-input');
-      const g=document.getElementById('google-search');
-      const m=document.getElementById('maps-search');
-      const c=document.getElementById('chatgpt-search');
-      g.onclick=()=>window.open('https://www.google.com/search?q='+encodeURIComponent(input.value),'_blank');
-      m.onclick=()=>window.open('https://www.google.com/maps/search/'+encodeURIComponent(input.value),'_blank');
-      c.onclick=()=>window.open('https://chat.openai.com/?q='+encodeURIComponent(input.value),'_blank');
-      input.addEventListener('keydown',e=>{if(e.key==='Enter'){g.click();c.click();}});
+      const i=document.getElementById('search-input'),g=document.getElementById('google-search'),m=document.getElementById('maps-search'),c=document.getElementById('chatgpt-search');
+      g.onclick=()=>window.open('https://www.google.com/search?q='+encodeURIComponent(i.value),'_blank');
+      m.onclick=()=>window.open('https://www.google.com/maps/search/'+encodeURIComponent(i.value),'_blank');
+      c.onclick=()=>window.open('https://chat.openai.com/?q='+encodeURIComponent(i.value),'_blank');
+      i.addEventListener('keydown',e=>{if(e.key==='Enter'){g.click();c.click();}});
     }
 
     /* CONVERSOR */
     let rates={};
-    async function fetchRates(){try{rates=(await (await fetch('https://api.exchangerate-api.com/v4/latest/EUR')).json()).rates;}catch(e){console.error(e);}}
+    async function fetchRates(){try{rates=(await(await fetch('https://api.exchangerate-api.com/v4/latest/EUR')).json()).rates}catch(e){console.error(e)}}
     function convert(){
-      const amt=parseFloat(document.getElementById('amount').value);
-      const from=document.getElementById('currency-from').value;
+      const amt=parseFloat(document.getElementById('amount').value),from=document.getElementById('currency-from').value;
       if(!amt||!rates[from])return;
-      const out=document.getElementById('conversion-result');out.innerHTML='';
-      ['EUR','USD','CNY'].forEach(t=>{if(t!==from){const v=(amt*(rates[t]/rates[from])).toFixed(4);out.innerHTML+=`${amt} ${from} = ${v} ${t}<br>`;}});
+      const o=document.getElementById('conversion-result');o.innerHTML='';
+      ['EUR','USD','CNY'].forEach(t=>{if(t!==from){const v=(amt*(rates[t]/rates[from])).toFixed(4);o.innerHTML+=`${amt} ${from} = ${v} ${t}<br>`;}});
     }
 
     /* CALENDARIO */
     function generateCalendar(){
-      const n=new Date(),y=n.getFullYear(),m=n.getMonth();
-      document.getElementById('month-name').textContent=n.toLocaleDateString('es-ES',{month:'long',year:'numeric'});
-      const first=new Date(y,m,1),last=new Date(y,m+1,0),days=last.getDate();
-      let start=first.getDay();if(start===0)start=7;
-      let html='<table><tr>'+['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(d=>`<th>${d}</th>`).join('')+'</tr><tr>';
-      for(let i=1;i<start;i++)html+='<td></td>';
+      const n=new Date(),y=n.getFullYear(),m=n.getMonth();document.getElementById('month-name').textContent=n.toLocaleDateString('es-ES',{month:'long',year:'numeric'});
+      const first=new Date(y,m,1),last=new Date(y,m+1,0),days=last.getDate();let start=first.getDay();if(start===0)start=7;
+      let html='<table><tr>'+['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(d=>`<th>${d}</th>`).join('')+'</tr><tr>';for(let i=1;i<start;i++)html+='<td></td>';
       let c=start;for(let d=1;d<=days;d++){html+=`<td>${d}</td>`;if(c%7===0&&d!==days)html+='</tr><tr>';c++;}
       document.getElementById('calendar').innerHTML=html+'</tr></table>';
     }
@@ -303,10 +279,7 @@
     }
 
     /* FONDO */
-    function setRandomBackground(){
-      const url=`https://picsum.photos/1920/1080?random=${Date.now()}`,img=new Image();
-      img.src=url;img.onload=()=>document.body.style.backgroundImage=`url('${url}')`;
-    }
+    function setRandomBackground(){const url=`https://picsum.photos/1920/1080?random=${Date.now()}`,img=new Image();img.src=url;img.onload=()=>document.body.style.backgroundImage=`url('${url}')`; }
 
     /* CLIMA */
     function setupWeather(){
