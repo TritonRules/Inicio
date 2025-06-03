@@ -6,29 +6,26 @@
   <title>Stay focused and trust the process</title>
 
   <!-- Favicon -->
-  <link
-    rel="icon"
-    href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🚀</text></svg>'
-  />
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🚀</text></svg>'/>
 
   <!-- Fuentes e iconos -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <style>
-    /* -------------- RESET Y GENERALES -------------- */
+    /* -------- RESET / GENERALES -------- */
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{width:100%;height:100%;font-family:'Montserrat',sans-serif;color:#fff;background:#000;overflow:hidden}
     body{background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;transition:background-image 1s}
     .container{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(0,0,0,.45);padding:1rem;animation:fadeIn 1s forwards}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
     header{text-align:center;margin-bottom:1rem}
     h1{font-size:2rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:.5rem}
     .subtitle{font-size:1rem;color:#ccc;margin-bottom:1.5rem}
 
-    /* -------------- BUSCADOR -------------- */
+    /* -------- BUSCADOR -------- */
     .search-container{display:flex;width:80%;max-width:600px;margin-bottom:1.5rem}
     .search-input{flex:1;padding:10px;border:none;border-radius:5px 0 0 5px;background:rgba(255,255,255,.9);color:#333}
     .search-buttons{display:flex}
@@ -38,22 +35,19 @@
     .chatgpt-btn{background:#19a971;border-radius:0 5px 5px 0}.chatgpt-btn:hover{background:#158f60}
     .search-button:hover{transform:translateY(-2px)}
 
-    /* -------------- LAYOUT -------------- */
+    /* -------- LAYOUT -------- */
     main{width:90%;max-width:1200px;display:flex;gap:2rem;overflow-y:auto}
     .column{flex:1;display:flex;flex-direction:column;gap:1.5rem;animation:slideIn .8s ease-out forwards}
     .column:nth-child(1){animation-delay:.2s}.column:nth-child(2){animation-delay:.4s}.column:nth-child(3){animation-delay:.6s}
-    @keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes slideIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
     .section{background:rgba(0,0,0,.4);padding:1rem;border-radius:.5rem;box-shadow:0 4px 6px rgba(0,0,0,.1);backdrop-filter:blur(5px);transition:transform .3s,box-shadow .3s}
     .section:hover{transform:translateY(-5px);box-shadow:0 6px 12px rgba(0,0,0,.2)}
     .section h2{font-size:1.2rem;font-weight:600;margin-bottom:.5rem;text-transform:uppercase;border-bottom:1px solid #666;padding-bottom:.25rem;display:flex;align-items:center;gap:.5rem}
-
-    /* ---- LISTAS EN DOS COLUMNAS ---- */
     .section ul{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem 1rem;padding:0}
-    .section li{margin:0}
     a{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-size:.95rem;transition:color .3s,transform .3s,padding-left .3s}
     a:hover{color:#66eaff;transform:translateX(5px);padding-left:2px}
 
-    /* ---- CONVERSOR / CALENDARIO / POMODORO / RELOJES / CLIMA ---- */
+    /* -------- COMPONENTES -------- */
     #converter-section input,#converter-section select,#converter-section button{padding:5px;border:none;border-radius:3px;margin-right:5px;font-family:inherit}
     #conversion-result{margin-top:.5rem;font-size:.9rem}
     .month-name{text-align:center;color:#ccc;margin-bottom:.5rem;font-size:1rem;text-transform:capitalize}
@@ -77,7 +71,7 @@
     .weather-temp{font-size:1.2rem;font-weight:600}
     .weather-icon{font-size:1.5rem}
     .footer{margin-top:1rem;text-align:center;font-size:.8rem;color:#aaa}
-    @media(max-width:900px){body{overflow:auto}main{flex-direction:column;align-items:center;gap:1rem}.search-container{width:95%}}
+    @media(max-width:900px){body{overflow:auto}main{flex-direction:column;gap:1rem}.search-container{width:95%}}
   </style>
 </head>
 <body>
@@ -97,11 +91,10 @@
       </div>
     </div>
 
-    <!-- CONTENIDO PRINCIPAL -->
     <main>
-      <!-- COL 1 -->
+      <!-- =========== COLUMNA 1 =========== -->
       <div class="column">
-        <!-- DÍA -->
+        <!-- Día -->
         <div class="section">
           <h2><i class="fas fa-calendar-day"></i> Día</h2>
           <ul>
@@ -116,7 +109,7 @@
           </ul>
         </div>
 
-        <!-- REDES -->
+        <!-- Redes -->
         <div class="section">
           <h2><i class="fas fa-network-wired"></i> Redes</h2>
           <ul>
@@ -127,7 +120,7 @@
           </ul>
         </div>
 
-        <!-- DRIVE -->
+        <!-- Drive -->
         <div class="section">
           <h2><i class="fab fa-google-drive"></i> Drive</h2>
           <ul>
@@ -137,11 +130,21 @@
             <li><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank"><i class="fas fa-table"></i> Spreadsheets</a></li>
           </ul>
         </div>
+
+        <!-- Bancos -->
+        <div class="section">
+          <h2><i class="fas fa-university"></i> Bancos</h2>
+          <ul>
+            <li><a href="https://www.bbva.es/empresas.html" target="_blank"><i class="fas fa-building-columns"></i> BBVA</a></li>
+            <li><a href="https://www.bankinter.com/empresas/empresa" target="_blank"><i class="fas fa-building-columns"></i> Bankinter</a></li>
+            <li><a href="https://www.revolut.com/business/" target="_blank"><i class="fas fa-building-columns"></i> Revolut B</a></li>
+          </ul>
+        </div>
       </div>
 
-      <!-- COL 2 -->
+      <!-- =========== COLUMNA 2 =========== -->
       <div class="column">
-        <!-- UTILIDADES -->
+        <!-- Utilidades -->
         <div class="section">
           <h2><i class="fas fa-tools"></i> Utilidades</h2>
           <ul>
@@ -154,22 +157,20 @@
           </ul>
         </div>
 
-        <!-- CONVERSOR -->
+        <!-- Conversor -->
         <div class="section" id="converter-section">
           <h2><i class="fas fa-exchange-alt"></i> Conversor de Monedas</h2>
           <div>
-            <input id="amount" type="number" placeholder="Cantidad" />
+            <input id="amount" type="number" placeholder="Cantidad"/>
             <select id="currency-from">
-              <option value="EUR">EUR</option>
-              <option value="USD">USD</option>
-              <option value="CNY">CNY</option>
+              <option value="EUR">EUR</option><option value="USD">USD</option><option value="CNY">CNY</option>
             </select>
             <button id="convert-btn">Convertir</button>
           </div>
           <div id="conversion-result"></div>
         </div>
 
-        <!-- CALENDARIO -->
+        <!-- Calendario -->
         <div class="section" id="calendar-section">
           <h2><i class="fas fa-calendar-alt"></i> Calendario</h2>
           <div id="month-name" class="month-name"></div>
@@ -177,20 +178,16 @@
         </div>
       </div>
 
-      <!-- COL 3 -->
+      <!-- =========== COLUMNA 3 =========== -->
       <div class="column">
-        <!-- POMODORO -->
+        <!-- Pomodoro -->
         <div class="section">
           <div class="pomodoro-options">
             <div><label for="work-duration">Trabajo:</label>
-              <select id="work-duration">
-                <option value="25">25 min</option><option value="45">45 min</option><option value="55">55 min</option>
-              </select>
+              <select id="work-duration"><option value="25">25 min</option><option value="45">45 min</option><option value="55">55 min</option></select>
             </div>
             <div><label for="break-duration">Descanso:</label>
-              <select id="break-duration">
-                <option value="5">5 min</option><option value="10">10 min</option>
-              </select>
+              <select id="break-duration"><option value="5">5 min</option><option value="10">10 min</option></select>
             </div>
           </div>
           <div id="mode-label" class="mode-label">Modo: Trabajo</div>
@@ -204,13 +201,13 @@
           </div>
         </div>
 
-        <!-- RELOJES -->
+        <!-- Relojes -->
         <div class="section">
           <h2><i class="fas fa-clock"></i> Relojes</h2>
           <div id="world-clocks" class="clocks-container"></div>
         </div>
 
-        <!-- CLIMA -->
+        <!-- Clima -->
         <div class="section">
           <h2><i class="fas fa-cloud-sun"></i> Clima</h2>
           <div class="weather-container">
@@ -226,23 +223,13 @@
             <a id="weather-link" class="weather-link" target="_blank">Más detalles <i class="fas fa-external-link-alt"></i></a>
           </div>
         </div>
-
-        <!-- BANCOS -->
-        <div class="section">
-          <h2><i class="fas fa-university"></i> Bancos</h2>
-          <ul>
-            <li><a href="https://www.bbva.es/empresas.html" target="_blank"><i class="fas fa-building-columns"></i> BBVA</a></li>
-            <li><a href="https://www.bankinter.com/empresas/empresa" target="_blank"><i class="fas fa-building-columns"></i> Bankinter</a></li>
-            <li><a href="https://www.revolut.com/business/" target="_blank"><i class="fas fa-building-columns"></i> Revolut B</a></li>
-          </ul>
-        </div>
       </div>
     </main>
 
     <footer class="footer">© 2025 - Página de inicio TriTonRuleS</footer>
   </div>
 
-  <!-- ------------------ SCRIPTS ------------------ -->
+  <!-- =========== SCRIPTS =========== -->
   <script>
     /* BUSCADOR */
     function setupSearch(){
@@ -265,9 +252,11 @@
 
     /* CALENDARIO */
     function generateCalendar(){
-      const n=new Date(),y=n.getFullYear(),m=n.getMonth();document.getElementById('month-name').textContent=n.toLocaleDateString('es-ES',{month:'long',year:'numeric'});
+      const n=new Date(),y=n.getFullYear(),m=n.getMonth();
+      document.getElementById('month-name').textContent=n.toLocaleDateString('es-ES',{month:'long',year:'numeric'});
       const first=new Date(y,m,1),last=new Date(y,m+1,0),days=last.getDate();let start=first.getDay();if(start===0)start=7;
-      let html='<table><tr>'+['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(d=>`<th>${d}</th>`).join('')+'</tr><tr>';for(let i=1;i<start;i++)html+='<td></td>';
+      let html='<table><tr>'+['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(d=>`<th>${d}</th>`).join('')+'</tr><tr>';
+      for(let i=1;i<start;i++)html+='<td></td>';
       let c=start;for(let d=1;d<=days;d++){html+=`<td>${d}</td>`;if(c%7===0&&d!==days)html+='</tr><tr>';c++;}
       document.getElementById('calendar').innerHTML=html+'</tr></table>';
     }
@@ -305,14 +294,15 @@
 
     /* POMODORO */
     function setupPomodoro(){
-      const disp=document.getElementById('timer-display'),start=document.getElementById('timer-start'),stop=document.getElementById('timer-stop'),reset=document.getElementById('timer-reset'),work=document.getElementById('work-duration'),brk=document.getElementById('break-duration'),label=document.getElementById('mode-label');let mins=+work.value,secs=0,running=false,mode='work',timer;const snd=new Audio('https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg');snd.loop=true;
+      const disp=document.getElementById('timer-display'),start=document.getElementById('timer-start'),stop=document.getElementById('timer-stop'),reset=document.getElementById('timer-reset'),work=document.getElementById('work-duration'),brk=document.getElementById('break-duration'),label=document.getElementById('mode-label');
+      let mins=+work.value,secs=0,running=false,mode='work',timer;const snd=new Audio('https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg');snd.loop=true;
       const show=()=>{disp.textContent=`${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;label.textContent=mode==='work'?'Modo: Trabajo':'Modo: Descanso';};
       const tick=()=>{if(secs===0){if(mins===0){clearInterval(timer);snd.play();mode=mode==='work'?'break':'work';mins=mode==='work'?+work.value:+brk.value;secs=0;show();startTimer();return;}mins--;secs=59;}else secs--;show();}
       function startTimer(){if(running)return;running=true;start.disabled=true;stop.disabled=false;timer=setInterval(tick,1000);}
       function stopTimer(){clearInterval(timer);running=false;start.disabled=false;stop.disabled=true;}
       function resetTimer(){stopTimer();mode='work';mins=+work.value;secs=0;snd.pause();snd.currentTime=0;show();}
       start.onclick=startTimer;stop.onclick=stopTimer;reset.onclick=resetTimer;if(Notification.permission==='default')Notification.requestPermission();show();}
-    
+
     /* INICIO */
     document.addEventListener('DOMContentLoaded',()=>{
       setRandomBackground();setInterval(setRandomBackground,300000);
